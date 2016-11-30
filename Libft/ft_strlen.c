@@ -6,15 +6,15 @@
 /*   By: psergean <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/12 18:09:47 by psergean          #+#    #+#             */
-/*   Updated: 2016/11/27 16:17:44 by psergean         ###   ########.fr       */
+/*   Updated: 2016/11/30 16:43:29 by psergean         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int		ft_strlen(const char *s)
+size_t	ft_strlen(const char *s)
 {
-	int index;
+	size_t index;
 
 	index = 0;
 	while (s[index] != '\0')

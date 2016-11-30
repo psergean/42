@@ -6,7 +6,7 @@
 /*   By: psergean <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/12 17:16:38 by psergean          #+#    #+#             */
-/*   Updated: 2016/11/28 17:54:52 by psergean         ###   ########.fr       */
+/*   Updated: 2016/11/30 17:59:37 by psergean         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ void				ft_putnbr_fd(int n, int fd);
 void				ft_putendl(char const *s);
 void				ft_putendl_fd(char const *s, int fd);
 void				ft_strdel(char **as);
-int					ft_strlen(const char *s);
+size_t				ft_strlen(const char *s);
 int					ft_strcmp(const char *s1, const char *s2);
 int					ft_strncmp(const char *s1, const char *s2, size_t n);
 char				*ft_strdup(const char *s1);
@@ -75,10 +75,20 @@ int					ft_isprint(int c);
 int					ft_toupper(int c);
 int					ft_tolower(int c);
 t_list				*ft_lstnew(void const *content, size_t content_size);
-void				ft_lstdelone(t_list **alst, void (*del)(void*, size_t));
-void				ft_lstdel(t_list **alst, void (*del)(void*, size_t));
+void				ft_lstdelone(t_list **alst, void (*del)(void *, size_t));
+void				ft_lstdel(t_list **alst, void (*del)(void *, size_t));
 void				ft_lstadd(t_list **alst, t_list *new);
 void				ft_lstiter(t_list *lst, void (*f)(t_list *elem));
 t_list				*ft_lstmap(t_list *lst, t_list *(*f)(t_list *elem));
+char				**ft_create_tab(const char *s, char c,
+		int word, int max_len);
+size_t				ft_len_itoa(int n);
+int					ft_isspace(int c);
+int					ft_isupper(int c);
+int					ft_islower(int c);
+int					ft_isgraph(int c);
+int					ft_isblank(int c);
+int					ft_ispunct(int c);
+int					ft_iscntrl(int c);
 
 #endif

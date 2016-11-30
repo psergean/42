@@ -6,7 +6,7 @@
 #    By: psergean <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/11/12 17:18:01 by psergean          #+#    #+#              #
-#    Updated: 2016/11/28 17:47:30 by psergean         ###   ########.fr        #
+#    Updated: 2016/11/30 17:59:34 by psergean         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -32,7 +32,9 @@ SRC = ft_putchar.c ft_putchar_fd.c ft_putstr.c ft_putnbr_fd.c \
 	  ft_bzero.c ft_isalpha.c ft_isdigit.c ft_isalnum.c \
 	  ft_isascii.c ft_isprint.c ft_toupper.c ft_tolower.c \
 	  ft_lstnew.c ft_lstdelone.c ft_lstdel.c ft_lstadd.c \
-	  ft_lstiter.c ft_lstmap.c
+	  ft_lstiter.c ft_lstmap.c ft_create_tab.c \
+	  ft_len_itoa.c ft_isspace.c ft_isupper.c ft_islower.c \
+	  ft_isgraph.c ft_isblank.c ft_ispunct.c ft_iscntrl.c
 
 OBJ = ft_putchar.o ft_putchar_fd.o ft_putstr.o ft_putnbr_fd.o \
 	  ft_putstr_fd.o ft_putnbr.o ft_putendl.o ft_putendl_fd.o \
@@ -48,7 +50,9 @@ OBJ = ft_putchar.o ft_putchar_fd.o ft_putstr.o ft_putnbr_fd.o \
 	  ft_bzero.o ft_isalpha.o ft_isdigit.o ft_isalnum.o \
 	  ft_isascii.o ft_isprint.o ft_toupper.o ft_tolower.o \
 	  ft_lstnew.o ft_lstdelone.o ft_lstdel.o ft_lstadd.o \
-	  ft_lstiter.o ft_lstmap.o
+	  ft_lstiter.o ft_lstmap.o ft_create_tab.o \
+	  ft_len_itoa.o ft_isspace.o ft_isupper.o ft_islower.o \
+	  ft_isgraph.o ft_isblank.o ft_ispunct.o ft_iscntrl.o
 
 all: $(NAME)
 

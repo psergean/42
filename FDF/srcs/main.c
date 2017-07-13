@@ -38,7 +38,7 @@ int   my_key_funct(int keycode)
   return (0);
 }
 
-int   key_hook(t_env *env)
+int   key_funct(t_env *env)
 {
   return (mlx_key_hook(env->win, my_key_funct, 0));
 }
@@ -54,6 +54,7 @@ int   main(int ac, char **av)
   }
   if (!(check_input(ac)))
     return (0);
-  key_hook(env);
+  key_funct(env);
+  //key_hook(env);
   mlx_loop(env->mlx);
 }

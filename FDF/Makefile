@@ -18,7 +18,7 @@ FLAGS_MLX = -L./minilibx_macos -lmlx -framework OpenGL -framework AppKit
 
 CC = gcc
 
-SRCS = test_minilibx.c
+SRCS = ./srcs/main.c
 
 OBJS = $(SRCS:.c=.o)
 
@@ -35,7 +35,7 @@ all: $(NAME)
 $(NAME):$(OBJS)
 	make -C $(LIBFT_PATH)
 	make -C $(MLX_PATH)
-	$(CC) $(FLAGS) -o $(NAME) $(OBJS) -I$(INC) $(FLAGS_MLX) $(LIBFT)
+	$(CC) $(FLAGS) -o $(NAME) $(SRCS) -I$(INC) $(FLAGS_MLX) $(LIBFT)
 
 clean:
 	rm -rf $(OBJS)

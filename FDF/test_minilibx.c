@@ -7,11 +7,9 @@ int   main()
   void *win;
   int x;
   int y;
-  int e;
-  int w;
 
   mlx = mlx_init();
-  win = mlx_new_window(mlx, 400, 400, "mlx 42");
+  win = mlx_new_window(mlx, 1280, 960, "mlx 42");
   y = 100;
   while(y < 300)
   {
@@ -23,16 +21,5 @@ int   main()
     }
     y++;
   }
-  w = 50;
-  while(w < 150)
-  {
-    e = 50;
-    while(e < 150)
-    {
-      mlx_pixel_put(mlx, win, e, w, 0x09F9F99F);
-      e++;
-    }
-    w++;
-  }  
   mlx_loop(mlx);
 }

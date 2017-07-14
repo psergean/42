@@ -4,7 +4,7 @@
 #include <sys/types.h>
 #include <sys/stat.h>
 #include <fcntl.h>
-#include "Libft/libft.h"
+#include "Libft/includes/libft.h"
 #include "stdio.h"
 
 int   main(int ac, char **av)
@@ -14,19 +14,20 @@ int   main(int ac, char **av)
   char *line = NULL;
 
   count = 0;
-  //line = (char**)malloc(sizeof(**line));
   fd = open(av[1], O_RDONLY);
-//  while(count != 2)
+   while(count != 2)
+  {
+    get_next_line(fd, &line);
+    ft_putstr(line);
+    ft_putstr("\n");
+    count++;
+  }
+//  while (get_next_line(fd, &line))
 //  {
-//    get_next_line(fd, line);
-//    count++;
+//    ft_putstr(line);
+//    ft_putstr("\n");
+//    free(line);
 //  }
-	while (get_next_line(fd, &line))
-	{
-		ft_putstr(line);
-		ft_putstr("\n");
-    free(line);
-	}
   if (ac == 15)
   {
     ft_putstr("ta mere");

@@ -11,7 +11,6 @@
 /* ************************************************************************** */
 
 #include "get_next_line.h"
-#include "stdio.h"
 
 static t_file	*newf(int fd, t_file *begin)
 {

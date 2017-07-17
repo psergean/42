@@ -18,7 +18,10 @@ FLAGS_MLX = -L./minilibx_macos -lmlx -framework OpenGL -framework AppKit
 
 CC = gcc
 
-SRCS = ./srcs/main.c
+SRCS = ./srcs/main.c\
+	./srcs/key_hook.c\
+	./srcs/init.c\
+	./srcs/parse.c
 
 OBJS = $(SRCS:.c=.o)
 

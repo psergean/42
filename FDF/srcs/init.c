@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: psergean <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -12,29 +12,42 @@
 
 #include "./../includes/fdf.h"
 
-int   check_input(int ac)
+int   read_file(t_env *env)
 {
-  if (ac != 2)
+  char  buff[BUFF_SIZE + 1];
+  char  *tmp;
+  int   ret;
+
+  while ((ret = read(env->fd, buff, BUFF_SIZE)) > 0)
   {
-    ft_putstr_fd("usage:./fdf file_map.\n", 2);
-    return (0);
+    buff[ret] = '\0';
+    tmp = ft_strjoin(env->file, buff);
+    env->file = ft_strdup(tmp);
   }
+  if (ret == -1)
+    return (0);
   return (1);
 }
 
-int   main(int ac, char **av)
-{
-  t_env *env = NULL;
 
-  if (!env)
-  {
-    env = init_env(env, &av[1]);
-  }
-  if (!(check_input(ac)))
-    return (0);
-  parse(env);
-  key_funct(env);
-  mlx_key_hook(env->win, key_hook, env);
-  mlx_loop(env->mlx);
-  return (0);
+t_env *init_env(t_env *env, char **av)
+{
+  if (!(env = (t_env*)malloc(sizeof(*env))))
+    return (NULL);
+  env->fd = open(av[1], O_RDONLY);
+  env->mlx = mlx_init();
+  env->win = mlx_new_window(env->mlx, 1280, 960, "FdF");
+  env->file = ft_strnew(0);
+  read_file(env);
+  return (env);
+}
+
+t_coord *init_coord(t_coord *coord)
+{
+  if (!(coord = (t_coord*)malloc(sizeof(*coord))))
+    return (NULL);
+  coord->x_c = 0;
+  coord->y_c = 0;
+  coord->z_c = 0;
+  return (coord);
 }

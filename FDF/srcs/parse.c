@@ -1,29 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strcat.c                                        :+:      :+:    :+:   */
+/*   parse.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: psergean <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/11/17 18:42:13 by psergean          #+#    #+#             */
-/*   Updated: 2016/11/18 14:14:30 by psergean         ###   ########.fr       */
+/*   Created: 2016/11/18 17:24:36 by psergean          #+#    #+#             */
+/*   Updated: 2016/11/18 17:25:42 by psergean         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "./../includes/fdf.h"
 
-char	*ft_strcat(char *dest, const char *src)
+int   parse(t_env *env)
 {
-	int		index;
-	size_t	len;
+  t_coord *coord = NULL;
 
-	len = ft_strlen(dest);
-	index = 0;
-	while (src[index] != '\0')
-	{
-		dest[len + index] = src[index];
-		index++;
-	}
-	dest[len + index] = '\0';
-	return (dest);
+  if (!coord)
+      coord = init_coord(coord);
+
+  return (0);
 }

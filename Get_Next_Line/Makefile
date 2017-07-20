@@ -1,4 +1,4 @@
-NAME = YOLO
+NAME = gnl
 
 SRCS = main.c \
 		get_next_line.c

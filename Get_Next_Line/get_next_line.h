@@ -6,7 +6,7 @@
 /*   By: psergean <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/18 17:24:36 by psergean          #+#    #+#             */
-/*   Updated: 2016/11/18 17:25:42 by psergean         ###   ########.fr       */
+/*   Updated: 2017/07/20 15:00:51 by psergean         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 # define GET_NEXT_LINE_H
 
-# include "Libft/includes/libft.h"
+# include "libft/includes/libft.h"
 # include <stdlib.h>
 # include <unistd.h>
 

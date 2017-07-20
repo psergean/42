@@ -6,7 +6,7 @@
 /*   By: psergean <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/18 17:24:36 by psergean          #+#    #+#             */
-/*   Updated: 2016/11/18 17:25:42 by psergean         ###   ########.fr       */
+/*   Updated: 2017/07/20 14:59:09 by psergean         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ static int		get_str(t_file *begin, char **line)
 		eol[0] = '\0';
 		*line = ft_strdup(begin->str);
 		begin->str = ft_strncpy(begin->str, &eol[1], ft_strlen(&eol[1]) + 1);
-    return (1);
+		return (1);
 	}
 	if (ft_strlen(begin->str) > 0)
 	{

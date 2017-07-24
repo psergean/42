@@ -22,10 +22,4 @@
 
 int					get_next_line(const int fd, char **line);
 
-typedef struct		s_file
-{
-	char			*str;
-	int				fd;
-}					t_file;
-
 #endif

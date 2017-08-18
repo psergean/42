@@ -21,7 +21,11 @@ CC = gcc
 SRCS = ./srcs/main.c\
 	./srcs/key_hook.c\
 	./srcs/init.c\
-	./srcs/parse.c
+	./srcs/parse.c\
+	./srcs/draw.c\
+	./srcs/view.c\
+	./srcs/display.c\
+	./srcs/exit_error.c
 
 OBJS = $(SRCS:.c=.o)
 

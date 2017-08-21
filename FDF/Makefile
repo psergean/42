@@ -6,7 +6,7 @@
 #    By: psergean <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/11/12 17:18:01 by psergean          #+#    #+#              #
-#    Updated: 2016/11/30 17:59:34 by psergean         ###   ########.fr        #
+#    Updated: 2017/08/18 10:48:07 by psergean         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -46,10 +46,12 @@ $(NAME):$(OBJS)
 
 clean:
 	rm -rf $(OBJS)
+	rm -rf ./includes/fdf.h.gch
 	make -C $(LIBFT_PATH) clean
 
 fclean: clean
 	rm -rf $(NAME)
+	rm -rf ./includes/fdf.h.gch
 	make -C $(LIBFT_PATH) fclean
 
 re: fclean all

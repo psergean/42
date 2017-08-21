@@ -16,8 +16,6 @@ typedef struct    s_coord
 {
   int     xi;
   int     yi;
-  int     xf;
-  int     yf;
   int     z;
 }                 t_coord;
 
@@ -64,7 +62,7 @@ void          ft_exit(t_env *env);
 t_env         *init_env(t_env *env, char **av);
 void          init_max(t_env *env);
 void          init_coord(t_env *env, char *z, int x, int y, int k);
-t_calc        *init_calc(t_env *env, t_calc *calc, int j);
+void          init_calc(t_env *env, t_calc *calc, int j);
 int           read_file(t_env *env);
 t_coord_f       *view_para(t_env *env);
 void          init_coord_f(t_env *env, int i);

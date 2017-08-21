@@ -21,15 +21,14 @@ int   main(int ac, char **av)
   if (!env)
   {
     env = init_env(env, av);
-//    printf("%s\n", env->file);
   }
   env->coord = parse(env);
   env->coord_f = view_para(env);
   key_funct(env);
   mlx_key_hook(env->win, key_hook, env);
   draw(env);
-  display(env);
+//  display(env);
   mlx_loop(env->mlx);
-//  free(env);
+  free(env);
   return (0);
 }

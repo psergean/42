@@ -6,7 +6,7 @@
 /*   By: psergean <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/18 17:24:36 by psergean          #+#    #+#             */
-/*   Updated: 2016/11/18 17:25:42 by psergean         ###   ########.fr       */
+/*   Updated: 2017/08/18 10:46:36 by psergean         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,40 +50,42 @@ t_env     *init_env(t_env *env, char **av)
   return (env);
 }
 
-t_calc    *init_calc(t_env *env, t_calc *calc, int j)
+void    init_calc(t_env *env, t_calc *calc, int j)
 {
   calc->xi = env->coord_f[j].xi;
   calc->yi = env->coord_f[j].yi;
-  calc->xf = env->coord_f[j].xf;
-  calc->yf = env->coord_f[j].yf;
+  calc->xf = env->coord_f[j + 1].xi;
+  calc->yf = env->coord_f[j + 1].yi;
   calc->dx = calc->xf - calc->xi;
   calc->dy = calc->yf - calc->yi;
   calc->xinc = (calc->dx > 0) ? 1 : -1;
   calc->yinc = (calc->dy > 0) ? 1 : -1;
-  printf("dx = %f ", calc->dx);
-  printf("dy = %f\n", calc->dy);
+//  printf("xinc = %d ", calc->xinc);
+//  printf("yinc = %d\n", calc->yinc);
 //  printf("%d ", calc->yi);
 //  printf("%d\n\n", calc->yf);
-//  printf("env->coord[%d] xi = %d ", j, env->coord_f[j].xi);
-//  printf("env->coord[%d] yi = %d\n", j, env->coord_f[j].yi);
-//  printf("env->coord[%d] xf = %d ", j, env->coord_f[j].xf);
-//  printf("env->coord[%d] yf = %d\n\n", j, env->coord_f[j].yf);
-  return (calc);
+//  printf("env->coord_f[%d] xi = %f ", j, env->coord_f[j].xi);
+//  printf("env->coord_f[%d] yi = %f\n", j, env->coord_f[j].yi);
+//  printf("env->coord_f[%d] xf = %f ", j, env->coord_f[j].xf);
+//  printf("env->coord_f[%d] yf = %f\n\n", j, env->coord_f[j].yf);
+//  printf("env->coord[%d] xi = %d ", j, env->coord[j].xi);
+//  printf("env->coord[%d] yi = %d\n", j, env->coord[j].yi);
+//  printf("env->coord[%d] xf = %d ", j, env->coord[j].xf);
+//  printf("env->coord[%d] yf = %d\n\n", j, env->coord[j].yf);
 }
 
 void  init_coord(t_env *env, char *z, int x, int y, int k)
 {
-  env->coord[k].xi = x;
-  env->coord[k].yi = y;
-  env->coord[k].xf = x + 1;
-  env->coord[k].yf = y + 1;
-  if (x + 1 > env->nb_x)
-    env->coord[k].xf = x;
-  env->coord[k].yf = y + 1;
-  if (y + 1 > env->nb_y)
-    env->coord[k].yf = y;
+  env->coord[k].xi = x * 3;
+  env->coord[k].yi = y * 3;
+//  env->coord[k].xf = (x + 1) * 10;
+//  env->coord[k].yf = y * 10;
+//  if (x + 1 > env->nb_x)
+//    env->coord[k].xf = x * 10;
+//  if (y + 1 > env->nb_y)
+//    env->coord[k].yf = y * 10;
   env->coord[k].z = ft_atoi(z);
-  env->coord[k].z += 1;
+//  env->coord[k].z += 1;
 }
 
 void    init_max(t_env *env)

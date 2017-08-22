@@ -14,8 +14,17 @@
 
 void        init_coord_f(t_env *env, int i)
 {
-   env->coord_f[i].xi = (env->coord[i].xi + 0.7 ) * env->coord[i].z;
-   env->coord_f[i].yi = ((env->coord[i].yi + 0.7) / 2) * env->coord[i].z;
+  int   j;
+  int   k;
+  int   y1;
+  int   x1;
+  int   x;
+  int   y;
+  int   dx;
+  int   dy;
+  int   cumul;
+//   env->coord_f[i].xi = (env->coord[i].xi + 0.7 ) * env->coord[i].z;
+//   env->coord_f[i].yi = ((env->coord[i].yi + 0.7) / 2) * env->coord[i].z;
 //   env->coord_f[i].xf = (env->coord[i + 1].xi + 0.7) * env->coord[i + 1].z;
 //   env->coord_f[i].yf = ((env->coord[i + 1].yi + 0.7) / 2) * env->coord[i + 1].z;
 //   if (i == env->nb - 1)
@@ -23,13 +32,51 @@ void        init_coord_f(t_env *env, int i)
 //     env->coord_f[i].xf = (env->coord[i].xi + 0.7) * (env->coord[i].z);
 //     env->coord_f[i].yf = ((env->coord[i].yi + 0.7) / 2) * (env->coord[i].z);
 //   }
-  // if (env->coord[i].z > 2)
-  // {
-  //   printf("z = %d\n", env->coord[i].z);
-  //   mlx_pixel_put(env->mlx, env->win, env->coord[i].xi, env->coord[i].yi, 0xFF00FF);
-  // }
-  // else
-  //   mlx_pixel_put(env->mlx, env->win, env->coord[i].xi, env->coord[i].yi, 0x00FFFFFF);
+   if (env->coord[i].z > 2)
+   {
+//     printf("z = %d\n", env->coord[i].z);
+     mlx_pixel_put(env->mlx, env->win, env->coord[i].xi, env->coord[i].yi, 0xFF00FF);
+   }
+   else
+     mlx_pixel_put(env->mlx, env->win, env->coord[i].xi, env->coord[i].yi, 0x00FFFFFF);
+
+     j = 0;
+     cumul = 0;
+     x = env->coord[i].xi;
+     y = env->coord[i].yi;
+     dx = env->coord[i + 1].xi - env->coord[i].xi;
+     printf("x = coord[%d].xi = %d\n", i, env->coord[i].xi);
+     while (j <= dx)
+     {
+       x += 1;
+       cumul += (dx / 2);
+       if (cumul >= dx)
+       {
+         cumul -= dx;
+         y += 0;
+       }
+       mlx_pixel_put(env->mlx, env->win, x, y, 0x00FFFFFF);
+       j++;
+     }
+
+    k = 0;
+    cumul = 0;
+    x1 = env->coord[i].xi;
+     y1 = env->coord[i].yi;
+     dy = env->coord[i].yi - env->coord[i + env->nb_x].yi;
+     printf(" x1 = coord[%d].yi = %d\n\n", i, env->coord[i].xi);
+     while (k <= dy)
+     {
+       y1 += 1;
+       //cumul += (dy / 2);
+       //if (cumul >= dy)
+       //{
+         //cumul -= dy;
+         //x1 += 0;
+       //}
+       mlx_pixel_put(env->mlx, env->win, x1, y1, 0x00FFFFFF);
+       k++;
+     }
   // printf("env->coord[%d] xi = %f ", i, env->coord_f[i].xi);
   // printf("env->coord[%d] yi = %f\n", i, env->coord_f[i].yi);
 //  printf("env->coord[%d] xf = %f ", i, env->coord_f[i].xf);

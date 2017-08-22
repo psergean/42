@@ -76,8 +76,8 @@ void    init_calc(t_env *env, t_calc *calc, int j)
 
 void  init_coord(t_env *env, char *z, int x, int y, int k)
 {
-  env->coord[k].xi = x * 3;
-  env->coord[k].yi = y * 3;
+  env->coord[k].xi = x * 20;
+  env->coord[k].yi = y * 20;
 //  env->coord[k].xf = (x + 1) * 10;
 //  env->coord[k].yf = y * 10;
 //  if (x + 1 > env->nb_x)

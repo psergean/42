@@ -26,7 +26,7 @@ int   main(int ac, char **av)
   env->coord_f = view_para(env);
   key_funct(env);
   mlx_key_hook(env->win, key_hook, env);
-//  draw(env);
+  draw(env);
 //  display(env);
   mlx_loop(env->mlx);
   free(env);

@@ -23,8 +23,6 @@ typedef struct    s_coord_f
 {
   float     xi;
   float     yi;
-  float     xf;
-  float     yf;
 }                 t_coord_f;
 
 typedef struct    s_env
@@ -46,13 +44,12 @@ typedef struct    s_calc
 {
   float     xi;
   float     yi;
-  float     xf;
-  float     yf;
-  float     dx;
-  float     dy;
+  int       dx;
+  int       dy;
   int     xinc;
   int     yinc;
   float     cumul;
+  float     z;
 }                 t_calc;
 
 int           main(int ac, char **av);

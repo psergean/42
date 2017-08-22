@@ -54,12 +54,13 @@ void    init_calc(t_env *env, t_calc *calc, int j)
 {
   calc->xi = env->coord_f[j].xi;
   calc->yi = env->coord_f[j].yi;
-  calc->xf = env->coord_f[j + 1].xi;
-  calc->yf = env->coord_f[j + 1].yi;
-  calc->dx = calc->xf - calc->xi;
-  calc->dy = calc->yf - calc->yi;
+  calc->dx = env->coord_f[j + 1].xi - env->coord_f[j].xi;
+  calc->dy = env->coord_f[j + env->nb_x].yi - env->coord_f[j].yi;
   calc->xinc = (calc->dx > 0) ? 1 : -1;
   calc->yinc = (calc->dy > 0) ? 1 : -1;
+  calc->z = env->coord[j].z;
+  // calc->dx = (calc->dx >= 0) ? calc->dx : -calc->dx;
+  // calc->dy = (calc->dy >= 0) ? calc->dy : -calc->dy;
 //  printf("xinc = %d ", calc->xinc);
 //  printf("yinc = %d\n", calc->yinc);
 //  printf("%d ", calc->yi);
@@ -76,16 +77,9 @@ void    init_calc(t_env *env, t_calc *calc, int j)
 
 void  init_coord(t_env *env, char *z, int x, int y, int k)
 {
-  env->coord[k].xi = x * 20;
-  env->coord[k].yi = y * 20;
-//  env->coord[k].xf = (x + 1) * 10;
-//  env->coord[k].yf = y * 10;
-//  if (x + 1 > env->nb_x)
-//    env->coord[k].xf = x * 10;
-//  if (y + 1 > env->nb_y)
-//    env->coord[k].yf = y * 10;
+  env->coord[k].xi = x * 40;
+  env->coord[k].yi = y * 40;
   env->coord[k].z = ft_atoi(z);
-//  env->coord[k].z += 1;
 }
 
 void    init_max(t_env *env)

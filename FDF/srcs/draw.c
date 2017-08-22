@@ -14,65 +14,73 @@
 
 void   draw_line_x(t_env *env, t_calc *calc)
 {
-  int   i;
-  int   x;
-  int   y;
+  int          j;
+  float        x;
+  float        y;
+  float        cumul;
 
-  i = 1;
+  j = 1;
   x = calc->xi;
   y = calc->yi;
-  while (i <= calc->dx)
+  cumul = 0;
+  while (j <= calc->dx)
   {
     x += calc->xinc;
-    calc->cumul += (calc->dx / 2);
-    if (calc->cumul >= calc->dx)
+    cumul += (calc->dx / 2);
+    if (cumul >= calc->dx)
     {
-      calc->cumul -= calc->dx;
-      y += calc->yinc;
+        cumul -= calc->dx;
+        y += calc->yinc;
     }
-    mlx_pixel_put(env->mlx, env->win, x, y, 0x00FFFFFF);
-    i++;
+    if (calc->z > 2)
+        mlx_pixel_put(env->mlx, env->win, x, y, 0xF04578);
+    else
+        mlx_pixel_put(env->mlx, env->win, x, y, 0x00FFFFFF);
+    j++;
   }
 }
 
 void   draw_line_y(t_env *env, t_calc *calc)
 {
-  int   i;
-  int   x;
-  int   y;
+    int          j;
+    float        x;
+    float        y;
+    float        cumul;
 
-  i = 1;
-  x = calc->xi;
-  y = calc->yi;
-  while (i <= calc->dy)
-  {
-    y += calc->yinc;
-    calc->cumul += (calc->dy / 2);
-    if (calc->cumul >= calc->dy)
+    j = 1;
+    x = calc->xi;
+    y = calc->yi;
+    cumul = 0;
+    while (j <= calc->dy)
     {
-      calc->cumul -= calc->dy;
-      x += calc->xinc;
+        y += calc->yinc;
+        cumul += (calc->dy / 2);
+    if (cumul >= calc->dy)
+    {
+        cumul -= calc->dy;
+        x += calc->xinc;
     }
-    mlx_pixel_put(env->mlx, env->win, x, y, 0x00FFFFFF);
-    i++;
+    if (calc->z > 2)
+    {
+        mlx_pixel_put(env->mlx, env->win, x, y, 0xF04578);
+    }
+    else
+        mlx_pixel_put(env->mlx, env->win, x, y, 0x00FFFFFF);
+    j++;
   }
 }
 
 void   draw_line(t_env *env, int j)
 {
-  t_calc  *calc;
+    t_calc  *calc;
 
-  if (!(calc = (t_calc*)malloc(sizeof(*calc))))
-    return ;
-  init_calc(env, calc, j);
-  if (calc->dx > calc->dy)
-  {
+    if (!(calc = (t_calc*)malloc(sizeof(*calc))))
+        return ;
+    init_calc(env, calc, j);
     draw_line_x(env, calc);
-  }
-  if (calc->dx < calc->dy)
     draw_line_y(env, calc);
-  free(calc);
-  calc = NULL;
+    free(calc);
+    calc = NULL;
 }
 
 void   draw(t_env *env)
@@ -83,7 +91,6 @@ void   draw(t_env *env)
   while(j < env->nb)
   {
     draw_line(env, j);
-//    printf("%d\n", j);
     j++;
   }
 }

@@ -6,30 +6,30 @@
 /*   By: psergean <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/13 15:46:16 by psergean          #+#    #+#             */
-/*   Updated: 2017/08/18 10:47:15 by psergean         ###   ########.fr       */
+/*   Updated: 2017/08/23 16:04:20 by psergean         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "./../includes/fdf.h"
 
-int   my_key_funct(int keycode)
+int		my_key_funct(int keycode)
 {
-  printf("key event %d\n", keycode);
-  return (0);
+	printf("key event %d\n", keycode);
+	return (0);
 }
 
-int   key_funct(t_env *env)
+int		key_funct(t_env *env)
 {
-  return (mlx_key_hook(env->win, my_key_funct, 0));
+	return (mlx_key_hook(env->win, my_key_funct, 0));
 }
 
-int     key_hook(int keycode, t_env *env)
+int		key_hook(int keycode, t_env *env)
 {
-    if (keycode == 53)
-    {
-      mlx_destroy_window(env->mlx, env->win);
-      free(env);
-      exit(0);
-    }
-    return (0);
+	if (keycode == 53)
+	{
+		mlx_destroy_window(env->mlx, env->win);
+		free(env);
+		exit(0);
+	}
+	return (0);
 }

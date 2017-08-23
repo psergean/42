@@ -20,8 +20,10 @@ void        init_coord_f(t_env *env, int i)
   // int   dx;
   // int   dy;
   // int   cumul;
-    env->coord_f[i].xi = env->coord[i].xi; //(env->coord[i].xi + 0.7 ) * env->coord[i].z;
-    env->coord_f[i].yi = env->coord[i].yi; //((env->coord[i].yi + 0.7) / 2) * env->coord[i].z;
+    env->coord_f[i].xi = env->coord[i].xi;//(env->coord[i].xi + 0.7 ) * env->coord[i].z;
+    env->coord_f[i].yi = env->coord[i].yi;//((env->coord[i].yi + 0.7) / 2) * env->coord[i].z;
+    env->coord_f[i].xi *= 40;
+    env->coord_f[i].yi *= 40;
   //    j = 1;
   //    cumul = 0;
   //    x = env->coord[i].xi;

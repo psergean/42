@@ -22,11 +22,11 @@ void   draw_line_x(t_env *env, t_calc *calc)
   j = 1;
   x = calc->xi;
   y = calc->yi;
-  cumul = 0;
+  cumul = (calc->dx / 2);
   while (j <= calc->dx)
   {
     x += calc->xinc;
-    cumul += (calc->dx / 2);
+    cumul += calc->dy;
     if (cumul >= calc->dx)
     {
         cumul -= calc->dx;
@@ -50,11 +50,11 @@ void   draw_line_y(t_env *env, t_calc *calc)
     j = 1;
     x = calc->xi;
     y = calc->yi;
-    cumul = 0;
+    cumul = (calc->dy / 2);
     while (j <= calc->dy)
     {
         y += calc->yinc;
-        cumul += (calc->dy / 2);
+        cumul += calc->dx;
     if (cumul >= calc->dy)
     {
         cumul -= calc->dy;
@@ -77,8 +77,10 @@ void   draw_line(t_env *env, int j)
     if (!(calc = (t_calc*)malloc(sizeof(*calc))))
         return ;
     init_calc(env, calc, j);
-    draw_line_x(env, calc);
-    draw_line_y(env, calc);
+    if (calc->dx >= calc->dy)
+        draw_line_x(env, calc);
+    else
+        draw_line_y(env, calc);
     free(calc);
     calc = NULL;
 }

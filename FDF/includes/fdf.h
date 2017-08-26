@@ -6,7 +6,7 @@
 /*   By: psergean <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/23 14:49:11 by psergean          #+#    #+#             */
-/*   Updated: 2017/08/23 14:57:15 by psergean         ###   ########.fr       */
+/*   Updated: 2017/08/26 15:49:34 by psergean         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 # define FDF_H
 
 # include "./../minilibx_macos/mlx.h"
-# include "./../libft/includes/libft.h"
-# include "./../libft/includes/get_next_line.h"
+# include "./../Libft/includes/libft.h"
+# include "./../Libft/includes/get_next_line.h"
 # include <sys/types.h>
 # include <sys/stat.h>
 # include <fcntl.h>

@@ -61,8 +61,8 @@ void		init_calc(t_env *env, t_calc *calc, int i, int j)
 	calc->z = env->coord[j].z;
 	//calc->dx = ABS(calc->dx);
 	//calc->dy = ABS(calc->dy);
-  // calc->dx = (calc->dx >= 0) ? calc->dx : -calc->dx;
-  // calc->dy = (calc->dy >= 0) ? calc->dy : -calc->dy;
+	calc->dx = (calc->dx >= 0) ? calc->dx : -calc->dx;
+	calc->dy = (calc->dy >= 0) ? calc->dy : -calc->dy;
 //  printf("xinc = %d ", calc->xinc);
 //  printf("yinc = %d\n", calc->yinc);
 //  printf("%d ", calc->yi);
@@ -79,9 +79,9 @@ void		init_calc(t_env *env, t_calc *calc, int i, int j)
 
 void		init_coord(t_env *env, int x, int y, int k)
 {
-	env->coord[k].xi = x * 5;
-	env->coord[k].yi = y * 5;
-	env->coord[k].z = ft_atoi(env->x_split[x - 1]);
+	env->coord[k].xi = x * 35;
+	env->coord[k].yi = y * 35;
+	env->coord[k].z = ft_atoi(env->x_split[x - 1]) * 8;
 }
 
 void		init_max(t_env *env)

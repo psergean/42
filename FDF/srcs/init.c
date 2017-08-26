@@ -50,17 +50,17 @@ t_env		*init_env(t_env *env, char **av)
 	return (env);
 }
 
-void		init_calc(t_env *env, t_calc *calc, int j)
+void		init_calc(t_env *env, t_calc *calc, int i, int j)
 {
-	calc->xi = env->coord_f[j].xi;
-	calc->yi = env->coord_f[j].yi;
-	calc->dx = env->coord_f[j + 1].xi - env->coord_f[j].xi;
-	calc->dy = env->coord_f[j + env->nb_x].yi - env->coord_f[j].yi;
+	calc->xi = env->coord_f[i].xi;
+	calc->yi = env->coord_f[i].yi;
+	calc->dx = env->coord_f[j].xi - env->coord_f[i].xi;
+	calc->dy = env->coord_f[j].yi - env->coord_f[i].yi;
 	calc->xinc = (calc->dx >= 0) ? 1 : -1;
 	calc->yinc = (calc->dy >= 0) ? 1 : -1;
 	calc->z = env->coord[j].z;
-	// calc->dx = ABS(calc->dx);
-	// calc->dy = ABS(calc->dy);
+	//calc->dx = ABS(calc->dx);
+	//calc->dy = ABS(calc->dy);
   // calc->dx = (calc->dx >= 0) ? calc->dx : -calc->dx;
   // calc->dy = (calc->dy >= 0) ? calc->dy : -calc->dy;
 //  printf("xinc = %d ", calc->xinc);
@@ -79,8 +79,8 @@ void		init_calc(t_env *env, t_calc *calc, int j)
 
 void		init_coord(t_env *env, int x, int y, int k)
 {
-	env->coord[k].xi = x;
-	env->coord[k].yi = y;
+	env->coord[k].xi = x * 5;
+	env->coord[k].yi = y * 5;
 	env->coord[k].z = ft_atoi(env->x_split[x - 1]);
 }
 

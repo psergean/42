@@ -20,10 +20,8 @@ void        init_coord_f(t_env *env, int i)
   // int   dx;
   // int   dy;
   // int   cumul;
-    env->coord_f[i].xi = env->coord[i].xi;//(env->coord[i].xi + 0.7 ) * env->coord[i].z;
-    env->coord_f[i].yi = env->coord[i].yi;//((env->coord[i].yi + 0.7) / 2) * env->coord[i].z;
-    env->coord_f[i].xi *= 40;
-    env->coord_f[i].yi *= 40;
+    env->coord_f[i].xi = 300 + (env->coord[i].xi + 0.7) * (env->coord[i].z + 1);
+    env->coord_f[i].yi = 200 + ((env->coord[i].yi + 0.7) / 2) * (env->coord[i].z + 1);
   //    j = 1;
   //    cumul = 0;
   //    x = env->coord[i].xi;
@@ -77,10 +75,9 @@ void        init_coord_f(t_env *env, int i)
     //  else
     //  mlx_pixel_put(env->mlx, env->win, env->coord[i].xi, env->coord[i].yi, 0x00FFFFFF);
 
-  // printf("env->coord[%d] xi = %f ", i, env->coord_f[i].xi);
-  // printf("env->coord[%d] yi = %f\n", i, env->coord_f[i].yi);
-//  printf("env->coord[%d] xf = %f ", i, env->coord_f[i].xf);
-//  printf("env->coord[%d] yf = %f\n\n", i, env->coord_f[i].yf);
+  printf("env->coord_f[%d] xi = %f ", i, env->coord_f[i].xi);
+  printf("env->coord_f[%d] yi = %f\n", i, env->coord_f[i].yi);
+
 }
 
 t_coord_f     *view_para(t_env *env)

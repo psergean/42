@@ -43,6 +43,8 @@ t_env		*init_env(t_env *env, char **av)
 		perror(av[1]);
 		ft_exit(env);
 	}
+	if (!(check_file(env)))
+		ft_exit(env);
 	env->nb_x = 0;
 	env->nb_y = 0;
 	init_max(env);
@@ -89,17 +91,29 @@ void		init_coord(t_env *env, int x, int y, int k)
 
 void		init_max(t_env *env)
 {
+	int		i;
 	int		x;
 	int		y;
 
 	env->y_split = ft_strsplit(env->file, '\n');
-	env->x_split = ft_strsplit(env->y_split[1], ' ');
+	env->x_split = ft_strsplit(env->y_split[0], ' ');
 	x = 0;
-	while (env->x_split[x] != '\0')
+	while(env->x_split[x] != '\0')
 		x++;
 	env->nb_x = x;
 	y = 0;
-	while (env->y_split[y] != '\0')
+	i = 0;
+	while(env->y_split[y] != '\0')
+	{
+		env->x_split = ft_strsplit(env->y_split[y], ' ');
+		while(env->x_split[i] != '\0')
+			i++;
 		y++;
+	}
 	env->nb_y = y;
+	if (i % env->nb_x != 0)
+	{
+		ft_putstr_fd("Error: Value is missing on file.\n", 2);
+		ft_exit(env);
+	}
 }

@@ -90,5 +90,6 @@ void				draw_line_x(t_env *env, t_calc *calc);
 void				draw_line_y(t_env *env, t_calc *calc);
 void				draw(t_env *env);
 void				display(t_env *env);
+int					check_file(t_env *env);
 
 #endif

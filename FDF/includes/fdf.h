@@ -52,6 +52,11 @@ typedef struct		s_env
 	int				nb;
 	char			**x_split;
 	char			**y_split;
+	float			zinc;
+	int				zoom;
+	int				dec_x;
+	int				dec_y;
+	// int				view;
 }					t_env;
 
 typedef struct		s_calc
@@ -76,7 +81,8 @@ void				init_coord(t_env *env, int x, int y, int k);
 void				init_calc(t_env *env, t_calc *calc, int i, int j);
 int					read_file(t_env *env);
 t_coord_f			*view(t_env *env);
-void				init_coord_f(t_env *env, int i);
+void				init_coord_iso(t_env *env, int i);
+// void				init_coord_para(t_env *env, int i);
 int					my_key_funct(int keycode);
 int					key_hook(int keycode, t_env *env);
 void				draw_line(t_env *env, int i, int j);

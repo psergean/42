@@ -20,12 +20,36 @@ int		my_key_funct(int keycode)
 
 int		key_hook(int keycode, t_env *env)
 {
-//	mlx_key_hook(env->win, my_key_funct, 0);
 	if (keycode == 53)
 	{
 		mlx_destroy_window(env->mlx, env->win);
 		free(env);
 		exit(0);
 	}
+	if (keycode == 24)
+		env->zinc += 1;
+	if (keycode == 27 && env->zinc > 0)
+		env->zinc -= 1;
+	if (keycode == 126 || keycode == 125)
+		env->dec_y += keycode == 126 ? -10 : 10;
+	if (keycode == 124 || keycode == 123)
+		env->dec_x += keycode == 124 ? 10 : -10;
+	if (keycode == 6 || keycode == 7)
+		env->zoom += keycode == 6 ? 1 : -1;
+	// if (keycode == 35 || keycode == 34)
+	// 	env->view += keycode == 35 ? 1 : -1;
+	if (keycode == 15)
+	{
+		env->zinc = 5;
+		env->dec_x = 600;
+		env->dec_y = 300;
+		env->zoom = 35;
+	}
+	my_key_funct(keycode);
+	mlx_clear_window(env->mlx, env->win);
+	env->coord = parse(env);
+	env->coord_f = view(env);
+	draw(env);
+	display(env);
 	return (0);
 }

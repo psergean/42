@@ -36,7 +36,7 @@ t_env		*init_env(t_env *env, char **av)
 		return (NULL);
 	env->fd = open(av[1], O_RDONLY);
 	env->mlx = mlx_init();
-	env->win = mlx_new_window(env->mlx, 900, 600, "FdF");
+	env->win = mlx_new_window(env->mlx, 1260, 980, "FdF");
 	env->file = ft_strnew(0);
 	if ((env->fd = open(av[1], O_RDONLY)) < 0 || !(read_file(env)))
 	{
@@ -47,6 +47,11 @@ t_env		*init_env(t_env *env, char **av)
 	env->nb_y = 0;
 	init_max(env);
 	env->nb = env->nb_x * env->nb_y;
+	env->zinc = 5;
+	env->dec_x = 600;
+	env->dec_y = 300;
+	env->zoom = 35;
+	// env->view = 0;
 	return (env);
 }
 
@@ -58,7 +63,7 @@ void		init_calc(t_env *env, t_calc *calc, int i, int j)
 	calc->dy = env->coord_f[j].yi - env->coord_f[i].yi;
 	calc->xinc = (calc->dx >= 0) ? 1 : -1;
 	calc->yinc = (calc->dy >= 0) ? 1 : -1;
-	calc->z = env->coord[j].z;
+	calc->z = env->coord[i].z;
 	calc->dx = ABS(calc->dx);
 	calc->dy = ABS(calc->dy);
 //  printf("xinc = %d ", calc->xinc);
@@ -77,9 +82,9 @@ void		init_calc(t_env *env, t_calc *calc, int i, int j)
 
 void		init_coord(t_env *env, int x, int y, int k)
 {
-	env->coord[k].xi = x * 35;
-	env->coord[k].yi = y * 35;
-	env->coord[k].z = ft_atoi(env->x_split[x - 1]) * 5;
+	env->coord[k].xi = x * env->zoom;
+	env->coord[k].yi = y * env->zoom;
+	env->coord[k].z = ft_atoi(env->x_split[x - 1]) * env->zinc;
 }
 
 void		init_max(t_env *env)

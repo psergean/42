@@ -23,7 +23,6 @@ int				main(int ac, char **av)
 	{
 		env = init_env(env, av);
 	}
-	mlx_key_hook(env->win, key_hook, env);
 	env->coord = parse(env);
 	env->coord_f = view(env);
 	draw(env);

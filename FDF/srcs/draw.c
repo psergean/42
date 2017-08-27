@@ -32,7 +32,7 @@ void   draw_line_x(t_env *env, t_calc *calc)
         cumul -= calc->dx;
         y += calc->yinc;
     }
-    if (calc->z > 2)
+    if (calc->z >= 1)
         mlx_pixel_put(env->mlx, env->win, x, y, 0xF04578);
     else
         mlx_pixel_put(env->mlx, env->win, x, y, 0x00FFFFFF);
@@ -60,12 +60,12 @@ void   draw_line_y(t_env *env, t_calc *calc)
         cumul -= calc->dy;
         x += calc->xinc;
     }
-    if (calc->z > 2)
+    if (calc->z >= 1)
     {
         mlx_pixel_put(env->mlx, env->win, x, y, 0xF04578);
     }
     else
-        mlx_pixel_put(env->mlx, env->win, x, y, 0x00FFFFFF);
+    mlx_pixel_put(env->mlx, env->win, x, y, 0x00FFFFFF);
     j++;
   }
 }

@@ -88,22 +88,8 @@ void   draw_line(t_env *env, int i, int j)
 void   draw(t_env *env)
 {
   int   i;
-  // int   j;
 
   i = 0;
-  // while(i < env->nb)
-  // {
-  //   j = i + 1;
-  //   draw_line(env, i, j);
-  //   i++;
-  // }
-  // i = 0;
-  // while(i < env->nb)
-  // {
-  //   j = i + env->nb_x;
-  //   draw_line(env, i, j);
-  //   i++;
-  // }
   while (i < env->nb)
 	{
 		if ((i + 1) % env->nb_x != 0)

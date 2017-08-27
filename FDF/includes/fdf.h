@@ -14,8 +14,8 @@
 # define FDF_H
 
 # include "./../minilibx_macos/mlx.h"
-# include "./../Libft/includes/libft.h"
-# include "./../Libft/includes/get_next_line.h"
+# include "./../libft/includes/libft.h"
+# include "./../libft/includes/get_next_line.h"
 # include <sys/types.h>
 # include <sys/stat.h>
 # include <fcntl.h>
@@ -75,9 +75,8 @@ void				init_max(t_env *env);
 void				init_coord(t_env *env, int x, int y, int k);
 void				init_calc(t_env *env, t_calc *calc, int i, int j);
 int					read_file(t_env *env);
-t_coord_f			*view_para(t_env *env);
+t_coord_f			*view(t_env *env);
 void				init_coord_f(t_env *env, int i);
-int					key_funct(t_env *env);
 int					my_key_funct(int keycode);
 int					key_hook(int keycode, t_env *env);
 void				draw_line(t_env *env, int i, int j);

@@ -18,13 +18,9 @@ int		my_key_funct(int keycode)
 	return (0);
 }
 
-int		key_funct(t_env *env)
-{
-	return (mlx_key_hook(env->win, my_key_funct, 0));
-}
-
 int		key_hook(int keycode, t_env *env)
 {
+//	mlx_key_hook(env->win, my_key_funct, 0);
 	if (keycode == 53)
 	{
 		mlx_destroy_window(env->mlx, env->win);

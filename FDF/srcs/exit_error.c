@@ -40,7 +40,7 @@ int			check_file(t_env *env)
 	{
 		if (env->file[i] == '\n' || env->file[i] == '\0')
 			y++;
-		if (ft_isalpha(env->file[i]) || env->file[i] == '\t')
+		if (!(ft_isdigit(env->file[i])) && env->file[i] != ' ' && env->file[i] != '\n' && env->file[i] != '\0' && env->file[i] != '-')
 		{
 			ft_putstr_fd("Error: Value is corrupt.\n", 2);
 			ft_exit(env);

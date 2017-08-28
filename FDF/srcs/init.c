@@ -87,6 +87,11 @@ void		init_coord(t_env *env, int x, int y, int k)
 	env->coord[k].xi = x * env->zoom;
 	env->coord[k].yi = y * env->zoom;
 	env->coord[k].z = ft_atoi(env->x_split[x - 1]) * env->zinc;
+	if (env->coord[k].z <= -50000 || env->coord[k].z >= 50000)
+	{
+		ft_putstr_fd("Error: Value is too small or too large.\n", 2);
+		ft_exit(env);
+	}
 }
 
 void		init_max(t_env *env)

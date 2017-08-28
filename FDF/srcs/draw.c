@@ -14,16 +14,16 @@
 
 void   draw_line_x(t_env *env, t_calc *calc)
 {
-  int          j;
+  int          i;
   float        x;
   float        y;
   float        cumul;
 
-  j = 1;
+  i = 1;
   x = calc->xi;
   y = calc->yi;
   cumul = (calc->dx / 2);
-  while (j <= calc->dx)
+  while (i <= calc->dx)
   {
     x += calc->xinc;
     cumul += calc->dy;
@@ -36,22 +36,22 @@ void   draw_line_x(t_env *env, t_calc *calc)
         mlx_pixel_put(env->mlx, env->win, x, y, 0xF04578);
     else
         mlx_pixel_put(env->mlx, env->win, x, y, 0x00FFFFFF);
-    j++;
+    i++;
   }
 }
 
-void   draw_line_y(t_env *env, t_calc *calc)
+void   draw_line_y(t_env *env, t_calc *calc, int j)
 {
-    int          j;
+    int          i;
     float        x;
     float        y;
     float        cumul;
 
-    j = 1;
+    i = 1;
     x = calc->xi;
     y = calc->yi;
     cumul = (calc->dy / 2);
-    while (j <= calc->dy)
+    while (i <= calc->dy)
     {
         y += calc->yinc;
         cumul += calc->dx;
@@ -60,13 +60,13 @@ void   draw_line_y(t_env *env, t_calc *calc)
         cumul -= calc->dy;
         x += calc->xinc;
     }
-    if (calc->z >= 1)
+    if (calc->z >= 1 || env->coord[j].z >= 1)
     {
         mlx_pixel_put(env->mlx, env->win, x, y, 0xF04578);
     }
     else
-    mlx_pixel_put(env->mlx, env->win, x, y, 0x00FFFFFF);
-    j++;
+        mlx_pixel_put(env->mlx, env->win, x, y, 0x00FFFFFF);
+    i++;
   }
 }
 
@@ -80,7 +80,7 @@ void   draw_line(t_env *env, int i, int j)
     if (calc->dx >= calc->dy)
         draw_line_x(env, calc);
     else
-        draw_line_y(env, calc);
+        draw_line_y(env, calc, j);
     free(calc);
     calc = NULL;
 }

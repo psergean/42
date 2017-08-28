@@ -6,7 +6,7 @@
 /*   By: psergean <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/18 10:46:25 by psergean          #+#    #+#             */
-/*   Updated: 2017/08/23 15:07:06 by psergean         ###   ########.fr       */
+/*   Updated: 2017/08/28 14:59:27 by psergean         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,11 +36,12 @@ int			check_file(t_env *env)
 
 	i = 0;
 	y = 0;
-	while(env->file[i] != '\0')
+	while (env->file[i] != '\0')
 	{
 		if (env->file[i] == '\n' || env->file[i] == '\0')
 			y++;
-		if (!(ft_isdigit(env->file[i])) && env->file[i] != ' ' && env->file[i] != '\n' && env->file[i] != '\0' && env->file[i] != '-')
+		if (!(ft_isdigit(env->file[i])) && env->file[i] != ' ' &&
+				env->file[i] != '\n' && env->file[i] != '\0' && env->file[i] != '-')
 		{
 			ft_putstr_fd("Error: Value is corrupt.\n", 2);
 			ft_exit(env);

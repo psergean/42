@@ -6,7 +6,7 @@
 /*   By: psergean <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/18 17:24:36 by psergean          #+#    #+#             */
-/*   Updated: 2017/08/23 16:01:55 by psergean         ###   ########.fr       */
+/*   Updated: 2017/08/28 15:02:01 by psergean         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,6 @@ t_env		*init_env(t_env *env, char **av)
 	env->dec_x = 600;
 	env->dec_y = 300;
 	env->zoom = 35;
-	// env->view = 0;
 	return (env);
 }
 
@@ -68,18 +67,6 @@ void		init_calc(t_env *env, t_calc *calc, int i, int j)
 	calc->z = env->coord[i].z;
 	calc->dx = ABS(calc->dx);
 	calc->dy = ABS(calc->dy);
-//  printf("xinc = %d ", calc->xinc);
-//  printf("yinc = %d\n", calc->yinc);
-//  printf("%d ", calc->yi);
-//  printf("%d\n\n", calc->yf);
-//  printf("env->coord_f[%d] xi = %f ", j, env->coord_f[j].xi);
-//  printf("env->coord_f[%d] yi = %f\n", j, env->coord_f[j].yi);
-//  printf("env->coord_f[%d] xf = %f ", j, env->coord_f[j].xf);
-//  printf("env->coord_f[%d] yf = %f\n\n", j, env->coord_f[j].yf);
-//  printf("env->coord[%d] xi = %d ", j, env->coord[j].xi);
-//  printf("env->coord[%d] yi = %d\n", j, env->coord[j].yi);
-//  printf("env->coord[%d] xf = %d ", j, env->coord[j].xf);
-//  printf("env->coord[%d] yf = %d\n\n", j, env->coord[j].yf);
 }
 
 void		init_coord(t_env *env, int x, int y, int k)
@@ -103,15 +90,15 @@ void		init_max(t_env *env)
 	env->y_split = ft_strsplit(env->file, '\n');
 	env->x_split = ft_strsplit(env->y_split[0], ' ');
 	x = 0;
-	while(env->x_split[x] != '\0')
+	while (env->x_split[x] != '\0')
 		x++;
 	env->nb_x = x;
 	y = 0;
 	i = 0;
-	while(env->y_split[y] != '\0')
+	while (env->y_split[y] != '\0')
 	{
 		env->x_split = ft_strsplit(env->y_split[y], ' ');
-		while(env->x_split[i] != '\0')
+		while (env->x_split[i] != '\0')
 			i++;
 		y++;
 	}

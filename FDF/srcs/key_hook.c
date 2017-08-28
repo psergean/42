@@ -6,7 +6,7 @@
 /*   By: psergean <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/13 15:46:16 by psergean          #+#    #+#             */
-/*   Updated: 2017/08/23 16:04:20 by psergean         ###   ########.fr       */
+/*   Updated: 2017/08/28 15:04:09 by psergean         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,8 +36,6 @@ int		key_hook(int keycode, t_env *env)
 		env->dec_x += keycode == 124 ? 10 : -10;
 	if (keycode == 6 || keycode == 7)
 		env->zoom += keycode == 6 ? 1 : -1;
-	// if (keycode == 35 || keycode == 34)
-	// 	env->view += keycode == 35 ? 1 : -1;
 	if (keycode == 15)
 	{
 		env->zinc = 5;

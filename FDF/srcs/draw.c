@@ -12,7 +12,7 @@
 
 #include "./../includes/fdf.h"
 
-void		draw_line_x(t_env *env, t_calc *calc)
+void		draw_line_x(t_env *env, t_calc *calc, int j)
 {
 	int			i;
 	float		x;
@@ -32,7 +32,7 @@ void		draw_line_x(t_env *env, t_calc *calc)
 			cumul -= calc->dx;
 			y += calc->yinc;
 		}
-		if (calc->z >= 1)
+		if (calc->z >= 1 || env->coord[j].z >= 1)
 			mlx_pixel_put(env->mlx, env->win, x, y, 0xF04578);
 		else
 			mlx_pixel_put(env->mlx, env->win, x, y, 0x00FFFFFF);
@@ -76,7 +76,7 @@ void		draw_line(t_env *env, int i, int j)
 		return ;
 	init_calc(env, calc, i, j);
 	if (calc->dx >= calc->dy)
-		draw_line_x(env, calc);
+		draw_line_x(env, calc, j);
 	else
 		draw_line_y(env, calc, j);
 	free(calc);

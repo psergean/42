@@ -79,6 +79,16 @@ void		init_coord(t_env *env, int x, int y, int k)
 		ft_putstr_fd("Error: Value is too small or too large.\n", 2);
 		ft_exit(env);
 	}
+	if (env->coord[k].xi <= -50000 || env->coord[k].xi >= 50000)
+	{
+		ft_putstr_fd("Error: Value is too small or too large.\n", 2);
+		ft_exit(env);
+	}
+	if (env->coord[k].yi <= -50000 || env->coord[k].yi >= 50000)
+	{
+		ft_putstr_fd("Error: Value is too small or too large.\n", 2);
+		ft_exit(env);
+	}
 }
 
 void		init_max(t_env *env)

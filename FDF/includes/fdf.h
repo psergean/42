@@ -36,7 +36,7 @@ typedef	struct		s_coord_f
 {
 	float			xi;
 	float			yi;
-    float           z;
+  float     z;
 }					t_coord_f;
 
 typedef struct		s_env
@@ -85,8 +85,9 @@ void				init_coord_iso(t_env *env, int i);
 // void				init_coord_para(t_env *env, int i);
 int					my_key_funct(int keycode);
 int					key_hook(int keycode, t_env *env);
+int					key_hook_2(int keycode, t_env *env);
 void				draw_line(t_env *env, int i, int j);
-void				draw_line_x(t_env *env, t_calc *calc);
+void				draw_line_x(t_env *env, t_calc *calc, int j);
 void				draw_line_y(t_env *env, t_calc *calc, int j);
 void				draw(t_env *env);
 void				display(t_env *env);

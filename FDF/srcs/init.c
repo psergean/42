@@ -75,20 +75,11 @@ void		init_coord(t_env *env, int x, int y, int k)
 	env->coord[k].yi = y * env->zoom;
 	env->coord[k].z = ft_atoi(env->x_split[x - 1]) * env->zinc;
 	if (env->coord[k].z <= -50000 || env->coord[k].z >= 50000)
-	{
-		ft_putstr_fd("Error: Value is too small or too large.\n", 2);
-		ft_exit(env);
-	}
+		ft_error(env, "Error: Value is too small or too large.\n");
 	if (env->coord[k].xi <= -50000 || env->coord[k].xi >= 50000)
-	{
-		ft_putstr_fd("Error: Value is too small or too large.\n", 2);
-		ft_exit(env);
-	}
+		ft_error(env, "Error: Value is too small or too large.\n");
 	if (env->coord[k].yi <= -50000 || env->coord[k].yi >= 50000)
-	{
-		ft_putstr_fd("Error: Value is too small or too large.\n", 2);
-		ft_exit(env);
-	}
+		ft_error(env, "Error: Value is too small or too large.\n");
 }
 
 void		init_max(t_env *env)
@@ -114,8 +105,5 @@ void		init_max(t_env *env)
 	}
 	env->nb_y = y;
 	if (i % env->nb_x != 0)
-	{
-		ft_putstr_fd("Error: Value is missing on file.\n", 2);
-		ft_exit(env);
-	}
+		ft_error(env, "Error: Value is missing on file.\n");
 }

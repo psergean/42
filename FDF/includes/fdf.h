@@ -75,6 +75,7 @@ int					main(int ac, char **av);
 int					check_input(int ac);
 t_coord				*parse(t_env *env);
 void				ft_exit(t_env *env);
+void 				ft_error(t_env *env, char *str);
 t_env				*init_env(t_env *env, char **av);
 void				init_max(t_env *env);
 void				init_coord(t_env *env, int x, int y, int k);

@@ -29,6 +29,12 @@ int			check_input(int ac)
 	return (1);
 }
 
+void 		ft_error(t_env *env, char *str)
+{
+	ft_putstr_fd(str, 2);
+	ft_exit(env);
+}
+
 int			check_file(t_env *env)
 {
 	int		i;
@@ -38,20 +44,16 @@ int			check_file(t_env *env)
 	y = 0;
 	while (env->file[i] != '\0')
 	{
+		if (env->file[i] == '\n' && env->file[i + 1] == '\n')
+			ft_error(env, "Error: Empty line.\n");
 		if (env->file[i] == '\n' || env->file[i] == '\0')
 			y++;
 		if (!(ft_isdigit(env->file[i])) && env->file[i] != ' ' &&
 				env->file[i] != '\n' && env->file[i] != '-')
-		{
-			ft_putstr_fd("Error: Value is corrupt.\n", 2);
-			ft_exit(env);
-		}
+			ft_error(env, "Error: Value is corrupt.\n");
 		i++;
 	}
 	if (y <= 1)
-	{
-		ft_putstr_fd("Error: Empty file or missing line on file.\n", 2);
-		ft_exit(env);
-	}
+		ft_error(env, "Error: Empty file or missing line on file.\n");
 	return (1);
 }

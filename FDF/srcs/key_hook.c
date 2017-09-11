@@ -6,7 +6,7 @@
 /*   By: psergean <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/13 15:46:16 by psergean          #+#    #+#             */
-/*   Updated: 2017/08/28 15:04:09 by psergean         ###   ########.fr       */
+/*   Updated: 2017/09/11 16:44:10 by psergean         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,6 @@ int		key_hook(int keycode, t_env *env)
 	if (keycode == 126 || keycode == 125)
 		env->dec_y += keycode == 126 ? -10 : 10;
 	key_hook_2(keycode, env);
-	// my_key_funct(keycode);
 	mlx_clear_window(env->mlx, env->win);
 	env->coord = parse(env);
 	env->coord_f = view(env);

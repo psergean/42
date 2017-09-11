@@ -6,7 +6,7 @@
 /*   By: psergean <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/23 14:49:11 by psergean          #+#    #+#             */
-/*   Updated: 2017/08/26 15:49:34 by psergean         ###   ########.fr       */
+/*   Updated: 2017/09/11 16:10:36 by psergean         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ typedef	struct		s_coord_f
 {
 	float			xi;
 	float			yi;
-  float     z;
+	float			z;
 }					t_coord_f;
 
 typedef struct		s_env
@@ -56,7 +56,6 @@ typedef struct		s_env
 	int				zoom;
 	int				dec_x;
 	int				dec_y;
-	// int				view;
 }					t_env;
 
 typedef struct		s_calc
@@ -75,7 +74,7 @@ int					main(int ac, char **av);
 int					check_input(int ac);
 t_coord				*parse(t_env *env);
 void				ft_exit(t_env *env);
-void 				ft_error(t_env *env, char *str);
+void				ft_error(t_env *env, char *str);
 t_env				*init_env(t_env *env, char **av);
 void				init_max(t_env *env);
 void				init_coord(t_env *env, int x, int y, int k);
@@ -83,7 +82,6 @@ void				init_calc(t_env *env, t_calc *calc, int i, int j);
 int					read_file(t_env *env);
 t_coord_f			*view(t_env *env);
 void				init_coord_iso(t_env *env, int i);
-// void				init_coord_para(t_env *env, int i);
 int					my_key_funct(int keycode);
 int					key_hook(int keycode, t_env *env);
 int					key_hook_2(int keycode, t_env *env);

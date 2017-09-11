@@ -6,7 +6,7 @@
 /*   By: psergean <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/18 10:46:25 by psergean          #+#    #+#             */
-/*   Updated: 2017/08/28 14:59:27 by psergean         ###   ########.fr       */
+/*   Updated: 2017/09/11 15:47:37 by psergean         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ int			check_input(int ac)
 	return (1);
 }
 
-void 		ft_error(t_env *env, char *str)
+void		ft_error(t_env *env, char *str)
 {
 	ft_putstr_fd(str, 2);
 	ft_exit(env);

@@ -6,11 +6,24 @@
 /*   By: psergean <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/18 17:24:36 by psergean          #+#    #+#             */
-/*   Updated: 2017/08/23 15:06:03 by psergean         ###   ########.fr       */
+/*   Updated: 2017/09/13 16:43:18 by psergean         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "./../includes/fdf.h"
+
+void			free_tab(char **tab)
+{
+	int		x;
+
+	x = 0;
+	while (tab[x] != NULL)
+	{
+		free(tab[x]);
+		x++;
+	}
+	free(tab);
+}
 
 t_coord			*parse(t_env *env)
 {
@@ -31,6 +44,7 @@ t_coord			*parse(t_env *env)
 			j++;
 			k++;
 		}
+		free_tab(env->x_split);
 		i++;
 	}
 	return (env->coord);

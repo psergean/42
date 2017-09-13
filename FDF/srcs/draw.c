@@ -96,4 +96,6 @@ void		draw(t_env *env)
 			draw_line(env, i, i + env->nb_x);
 		i++;
 	}
+	free(env->coord);
+	free(env->coord_f);
 }

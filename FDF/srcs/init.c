@@ -6,7 +6,7 @@
 /*   By: psergean <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/18 17:24:36 by psergean          #+#    #+#             */
-/*   Updated: 2017/08/28 15:02:01 by psergean         ###   ########.fr       */
+/*   Updated: 2017/09/13 16:43:38 by psergean         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,9 @@ int			read_file(t_env *env)
 	{
 		buff[ret] = '\0';
 		tmp = ft_strjoin(env->file, buff);
+		free(env->file);
 		env->file = ft_strdup(tmp);
+		free(tmp);
 	}
 	if (ret == -1)
 		return (0);
@@ -94,6 +96,7 @@ void		init_max(t_env *env)
 	while (env->x_split[x] != '\0')
 		x++;
 	env->nb_x = x;
+	free_tab(env->x_split);
 	y = 0;
 	i = 0;
 	while (env->y_split[y] != '\0')
@@ -101,6 +104,7 @@ void		init_max(t_env *env)
 		env->x_split = ft_strsplit(env->y_split[y], ' ');
 		while (env->x_split[i] != '\0')
 			i++;
+		free_tab(env->x_split);
 		y++;
 	}
 	env->nb_y = y;

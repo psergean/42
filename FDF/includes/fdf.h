@@ -6,7 +6,7 @@
 /*   By: psergean <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/23 14:49:11 by psergean          #+#    #+#             */
-/*   Updated: 2017/09/11 16:10:36 by psergean         ###   ########.fr       */
+/*   Updated: 2017/09/13 16:44:16 by psergean         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,5 +91,6 @@ void				draw_line_y(t_env *env, t_calc *calc, int j);
 void				draw(t_env *env);
 void				display(t_env *env);
 int					check_file(t_env *env);
+void				free_tab(char **tab);
 
 #endif

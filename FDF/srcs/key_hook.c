@@ -39,6 +39,7 @@ int		key_hook(int keycode, t_env *env)
 	if (keycode == 53)
 	{
 		mlx_destroy_window(env->mlx, env->win);
+		free_tab(env->y_split);
 		free(env);
 		exit(0);
 	}

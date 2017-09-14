@@ -23,6 +23,7 @@ SRCS = ./srcs/main.c\
 	./srcs/mandelbrot.c\
 	./srcs/julia.c\
 	./srcs/key_hook.c\
+	./srcs/display.c\
 	./srcs/exit_error.c
 
 OBJS = $(SRCS:.c=.o)

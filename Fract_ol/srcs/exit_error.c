@@ -20,6 +20,12 @@ void		ft_exit(t_env *env)
 	return ;
 }
 
+void		ft_error(t_env *env, char *str)
+{
+	ft_putstr_fd(str, 2);
+	ft_exit(env);
+}
+
 int			check_input(int ac)
 {
 	if (ac != 2)

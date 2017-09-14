@@ -6,11 +6,11 @@
 #    By: psergean <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/11/12 17:18:01 by psergean          #+#    #+#              #
-#    Updated: 2017/08/18 10:48:07 by psergean         ###   ########.fr        #
+#    Updated: 2017/09/14 13:19:21 by psergean         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = fdf
+NAME = fractol
 
 FLAGS = -Wall -Wextra -Werror
 
@@ -19,12 +19,10 @@ FLAGS_MLX = -L./minilibx_macos -lmlx -framework OpenGL -framework AppKit
 CC = gcc
 
 SRCS = ./srcs/main.c\
-	./srcs/key_hook.c\
 	./srcs/init.c\
-	./srcs/parse.c\
-	./srcs/draw.c\
-	./srcs/view.c\
-	./srcs/display.c\
+	./srcs/mandelbrot.c\
+	./srcs/julia.c\
+	./srcs/key_hook.c\
 	./srcs/exit_error.c
 
 OBJS = $(SRCS:.c=.o)
@@ -46,7 +44,7 @@ $(NAME):$(OBJS)
 
 clean:
 	rm -rf $(OBJS)
-	rm -rf ./includes/fdf.h.gch
+	rm -rf ./includes/fract_ol.h.gch
 	make -C $(LIBFT_PATH) clean
 
 fclean: clean

@@ -16,7 +16,10 @@ t_env		*init_env(t_env *env)
 {
 	env = (t_env*)malloc(sizeof(*env));
 	env->mlx = mlx_init();
-	env->win = mlx_new_window(env->mlx, 1260, 980, "Fract_ol");
+	env->win = mlx_new_window(env->mlx, WIDTH, HEIGTH, "Fract_ol");
+	env->width = WIDTH;
+	env->heigth = HEIGTH;
+	env->img = mlx_new_image(env->mlx, env->width, env->heigth);
 	return (env);
 }
 

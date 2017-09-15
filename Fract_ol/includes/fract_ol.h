@@ -22,6 +22,9 @@
 # include <stdlib.h>
 # include <stdio.h>
 # include <math.h>
+# define WIDTH 1260
+# define HEIGTH 980
+# define SIZE_WIN WIDTH * HEIGTH
 
 
 typedef struct		s_fract
@@ -33,6 +36,10 @@ typedef struct		s_env
 {
 	void			*mlx;
 	void			*win;
+	void			*img;
+//	char			*pxl;
+	int				width;
+	int				heigth;
 	t_fract			*fract;
 	void			(*f)(struct s_env *);
 }					t_env;

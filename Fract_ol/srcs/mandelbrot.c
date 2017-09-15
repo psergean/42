@@ -11,3 +11,8 @@
 /* ************************************************************************** */
 
 #include "./../includes/fract_ol.h"
+
+void            mandelbrot(t_env *env)
+{
+    mlx_pixel_put(env->mlx, env->win, 600, 500, 0x00FFFFFF);
+}

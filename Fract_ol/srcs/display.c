@@ -14,4 +14,5 @@
 
 void		display(t_env *env)
 {
+    mlx_string_put(env->mlx, env->win, 10, 0, 0x00FFFFFF, "Quit : Esc");
 }

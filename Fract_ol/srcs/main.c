@@ -12,7 +12,7 @@
 
 #include "./../includes/fract_ol.h"
 
-int			main(int  ac, char **av)
+int			main(int ac, char **av)
 {
 	t_env	*env;
 
@@ -20,7 +20,8 @@ int			main(int  ac, char **av)
 	if (!check_input(ac))
 		return (0);
 	if (!env)
-		init(av[1], env);
+		env = init(av, env);
+	display(env);
 	mlx_key_hook(env->win, key_hook, env);
 	mlx_loop(env->mlx);
 	free(env);

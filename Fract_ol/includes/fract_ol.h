@@ -33,16 +33,20 @@ typedef struct		s_env
 {
 	void			*mlx;
 	void			*win;
+	t_fract			*fract;
 	void			(*f)(struct s_env *);
 }					t_env;
 
 int					main(int ac, char **av);
 
-t_env				*init_env(t_env *env)
-void				init_fract(char **av, t_env *env)
-void				init(char **av, t_env *env);
+t_env				*init_env(t_env *env);
+t_fract				*init_fract();
+t_env				*init(char **av, t_env *env);
 
+void				mandelbrot(t_env *env);
+void				julia(t_env *env);
 
+void				display(t_env *env);
 int					key_hook(int keycode, t_env *env);
 
 void				ft_exit(t_env *env);

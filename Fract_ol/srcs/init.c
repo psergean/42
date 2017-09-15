@@ -14,24 +14,31 @@
 
 t_env		*init_env(t_env *env)
 {
-	env = (t_env*)ft_memalloc(sizeof(t_env);
+	env = (t_env*)malloc(sizeof(*env));
+	env->mlx = mlx_init();
+	env->win = mlx_new_window(env->mlx, 1260, 980, "Fract_ol");
 	return (env);
 }
 
-void		init_fract(char **av, t_env *env)
+t_fract		*init_fract()
 {
-	fract = (t_fract*)ft_memalloc(sizeof(t_fract);
-	if (ft_strcmp(av, "mandelbrot") == 0)
-		env->f = &mandelbrot;
-	else if (ft_strcmp(av, "julia") == 0)
-		env->f = &julia;
-	env->f(env);
+	t_fract		*fract;
+
+	fract = NULL;
+	fract = (t_fract*)ft_memalloc(sizeof(t_fract));
+	return (fract);
 }
 
-void		init(char **av, t_env *env)
+t_env		*init(char **av, t_env *env)
 {
-	if (!env = init_env(env))
-		ft_error(env, "Error: I can't malloc env.\n");
-	if (!(init_fract(av, env)))
+	env = init_env(env);
+	env->fract = init_fract();
+	if (ft_strcmp(av[1], "mandelbrot") == 0)
+		env->f = &mandelbrot;
+	else if (ft_strcmp(av[1], "julia") == 0)
+		env->f = &julia;
+	else
 		ft_error(env, "Error: I can only reading the fractale of Mandelbrot, Julia or ...\n");
+	env->f(env);
+	return (env);
 }

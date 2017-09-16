@@ -25,10 +25,21 @@
 # define WIDTH 1260
 # define HEIGTH 980
 # define SIZE_WIN WIDTH * HEIGTH
-
+# define X1 -2.1
+# define Y1 -1.2
+# define X2 0.6
+# define Y2 1.2
+# define ITE_MAX 50
+# define ZOOM_X WIDTH / (X2 - X1)
+# define ZOOM_Y HEIGTH / (Y2 - Y1)
 
 typedef struct		s_fract
 {
+	float				c_r;
+	float				c_i;
+	float				z_r;
+	float				z_i;
+	float				i;
 }					t_fract;
 
 
@@ -51,6 +62,7 @@ t_fract				*init_fract();
 t_env				*init(char **av, t_env *env);
 
 void				mandelbrot(t_env *env);
+void				mandelbrot_ite(t_env *env);
 void				julia(t_env *env);
 
 void				display(t_env *env);

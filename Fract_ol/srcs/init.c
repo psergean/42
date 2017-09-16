@@ -29,6 +29,11 @@ t_fract		*init_fract()
 
 	fract = NULL;
 	fract = (t_fract*)ft_memalloc(sizeof(t_fract));
+	fract->c_r = 0;
+	fract->c_i = 0;
+	fract->z_r = 0;
+	fract->z_i = 0;
+	fract->i = 0;
 	return (fract);
 }
 

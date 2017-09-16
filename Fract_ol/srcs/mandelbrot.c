@@ -6,13 +6,47 @@
 /*   By: psergean <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/14 13:04:17 by psergean          #+#    #+#             */
-/*   Updated: 2017/09/14 13:04:56 by psergean         ###   ########.fr       */
+/*   Updated: 2017/09/16 15:30:50 by psergean         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "./../includes/fract_ol.h"
 
-void            mandelbrot(t_env *env)
+void			mandelbrot_ite(t_env *env)
 {
-    mlx_pixel_put(env->mlx, env->win, 600, 500, 0x00FFFFFF);
+	int			tmp;
+
+	tmp = env->fract->z_r;
+	while (env->fract->i < ITE_MAX)
+	{
+		env->fract->z_r = (env->fract->z_r * env->fract->z_r) -
+			(env->fract->z_i * env->fract->z_i) + env->fract->c_r;
+		env->fract->z_i = (2 * env->fract->z_i) * tmp + env->fract->c_i;
+		env->fract->i = env->fract->i + 1;
+	}
+}
+
+void			mandelbrot(t_env *env)
+{
+	int			x;
+	int			y;
+
+	x = 0;
+	y = 0;
+	env->fract->c_r = x / ZOOM_X + X1;
+	env->fract->c_i = y / ZOOM_Y + Y1;
+	while (x < WIDTH)
+	{
+		while (y < HEIGTH)
+		{
+			env->fract->c_r = (float)x / ZOOM_X + X1;
+			env->fract->c_i = (float)y / ZOOM_Y + Y1;
+			env->fract->z_r = 0;
+			env->fract->z_i = 0;
+			mandelbrot_ite(env);
+			y++;
+		}
+		x++;
+	}
+	mlx_put_image_to_window(env->mlx, env->win, env->img, 0, 0);
 }

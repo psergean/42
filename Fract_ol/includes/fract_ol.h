@@ -47,10 +47,13 @@ typedef struct		s_env
 {
 	void			*mlx;
 	void			*win;
-	void			*img;
-//	char			*pxl;
 	int				width;
 	int				heigth;
+	void			*img;
+	char			*pxl;
+	int				bpp;
+	int				size_line;
+	int				endian;
 	t_fract			*fract;
 	void			(*f)(struct s_env *);
 }					t_env;

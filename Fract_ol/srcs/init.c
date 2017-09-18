@@ -20,6 +20,7 @@ t_env		*init_env(t_env *env)
 	env->width = WIDTH;
 	env->heigth = HEIGTH;
 	env->img = mlx_new_image(env->mlx, env->width, env->heigth);
+	env->pxl = mlx_get_data_addr(env->img, &(env->bpp), &(env->size_line), &(env->endian));
 	return (env);
 }
 

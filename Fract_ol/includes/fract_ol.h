@@ -39,7 +39,7 @@ typedef struct		s_fract
 	float				c_i;
 	float				z_r;
 	float				z_i;
-	float				i;
+	int					i;
 }					t_fract;
 
 
@@ -65,7 +65,7 @@ t_fract				*init_fract();
 t_env				*init(char **av, t_env *env);
 
 void				mandelbrot(t_env *env);
-void				mandelbrot_ite(t_env *env);
+void				mandelbrot_ite(t_env *env, int x, int y);
 void				julia(t_env *env);
 
 void				display(t_env *env);

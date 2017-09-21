@@ -16,21 +16,21 @@ void				mandelbrot_ite(t_env *env, int x, int y)
 {
 	int			tmp;
 
-	tmp = env->fract->z_r;
 	env->fract->i = 0;
-	while (env->fract->i < ITE_MAX && (env->fract->z_r * env->fract->z_r) + (env->fract->z_i * env->fract->z_i) < 4)
+	while (env->fract->i < ITE_MAX && (env->fract->z_r * env->fract->z_r) + (env->fract->z_i * env->fract->z_i) <= 4)
 	{
+		tmp = env->fract->z_r;
 		env->fract->z_r = (env->fract->z_r * env->fract->z_r) -
 			(env->fract->z_i * env->fract->z_i) + env->fract->c_r;
-		env->fract->z_i = ((2 * env->fract->z_i) * tmp) + env->fract->c_i;
+		env->fract->z_i = 2 * env->fract->z_i * tmp + env->fract->c_i;
 		// printf("env->fract->z_r = %f.\n", env->fract->z_r);
-		// printf("env->fract->z_i = %f.\n\n", env->fract->z_i);
-		env->fract->i++;
+		// printf("env->fract->i = %d.\n", env->fract->i);
+		env->fract->i = env->fract->i + 1;
 	}
-	if (env->fract->i == ITE_MAX)
+	if ((env->fract->z_r * env->fract->z_r) + (env->fract->z_i * env->fract->z_i) >= 4)
 		mlx_pixel_put(env->mlx, env->win, x, y, 0x00FFFFFF);
-	// else
-	// 	mlx_pixel_put(env->mlx, env->win, x, y, 0x00FFFF);
+	else
+		mlx_pixel_put(env->mlx, env->win, x, y, 0x00FFFF);
 }
 
 void			mandelbrot(t_env *env)

@@ -22,16 +22,16 @@
 # include <stdlib.h>
 # include <stdio.h>
 # include <math.h>
-# define WIDTH 1260
-# define HEIGTH 980
-# define SIZE_WIN WIDTH * HEIGTH
 # define X1 -2.1
 # define Y1 -1.2
 # define X2 0.6
 # define Y2 1.2
-# define ITE_MAX 50
-# define ZOOM_X WIDTH / (X2 - X1)
-# define ZOOM_Y HEIGTH / (Y2 - Y1)
+# define WIDTH (X2 - X1) * 300
+# define HEIGTH (Y2 - Y1) * 300
+# define SIZE_WIN WIDTH * HEIGTH
+# define ITE_MAX 20
+// # define ZOOM_X WIDTH / (X2 - X1)
+// # define ZOOM_Y HEIGTH / (Y2 - Y1)
 
 typedef struct		s_fract
 {

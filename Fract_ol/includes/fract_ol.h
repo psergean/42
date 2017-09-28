@@ -54,6 +54,7 @@ typedef struct		s_env
 	int				bpp;
 	int				size_line;
 	int				endian;
+	int				color;
 	t_fract			*fract;
 	void			(*f)(struct s_env *);
 }					t_env;
@@ -68,6 +69,7 @@ void				mandelbrot(t_env *env);
 void				mandelbrot_ite(t_env *env, int x, int y);
 void				julia(t_env *env);
 
+void 				put_pixel(t_env *env, int x, int y);
 void				display(t_env *env);
 int					key_hook(int keycode, t_env *env);
 

@@ -12,6 +12,14 @@
 
 #include "./../includes/fract_ol.h"
 
+void 				put_pixel(t_env *env, int x, int y)
+{
+	int				i;
+
+	i = (x * (env->bpp / 8)) + (y * env->size_line);
+	ft_memcpy(env->pxl + i, &env->color, 4);
+}
+
 void				mandelbrot_ite(t_env *env, int x, int y)
 {
 	float			tmp;
@@ -23,14 +31,18 @@ void				mandelbrot_ite(t_env *env, int x, int y)
 		env->fract->z_r = (env->fract->z_r * env->fract->z_r) -
 			(env->fract->z_i * env->fract->z_i) + env->fract->c_r;
 		env->fract->z_i = 2 * env->fract->z_i * tmp + env->fract->c_i;
-		printf("env->fract->z_r = %f.\n", env->fract->z_r);
+		// printf("env->fract->z_r = %f.\n", env->fract->z_r);
 		// printf("env->fract->i = %d.\n", env->fract->i);
 		env->fract->i++;
 	}
-	if (env->fract->i == ITE_MAX)
-		mlx_pixel_put(env->mlx, env->win, x, y, 0x00FFFFFF);
-	else
-		mlx_pixel_put(env->mlx, env->win, x, y, 0x000000);
+	if (env->fract->i != ITE_MAX)
+	{
+		env->color = env->fract->i * 99 / ITE_MAX;
+		put_pixel(env, x, y);
+	}
+		// mlx_pixel_put(env->mlx, env->win, x, y, 0x0);
+	// else
+		// mlx_pixel_put(env->mlx, env->win, x, y, 0xffdab9);
 }
 
 void			mandelbrot(t_env *env)
@@ -54,5 +66,5 @@ void			mandelbrot(t_env *env)
 		}
 		x++;
 	}
-	// mlx_put_image_to_window(env->mlx, env->win, env->img, 0, 0);
+	mlx_put_image_to_window(env->mlx, env->win, env->img, 0, 0);
 }

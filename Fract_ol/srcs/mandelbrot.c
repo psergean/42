@@ -12,7 +12,7 @@
 
 #include "./../includes/fract_ol.h"
 
-void 				put_pixel(t_env *env, int x, int y)
+void 				put_pixel_to_image(t_env *env, int x, int y)
 {
 	int				i;
 
@@ -37,12 +37,9 @@ void				mandelbrot_ite(t_env *env, int x, int y)
 	}
 	if (env->fract->i != ITE_MAX)
 	{
-		env->color = env->fract->i * 99 / ITE_MAX;
-		put_pixel(env, x, y);
+		env->color = env->fract->i * 255 / ITE_MAX;
+		put_pixel_to_image(env, x, y);
 	}
-		// mlx_pixel_put(env->mlx, env->win, x, y, 0x0);
-	// else
-		// mlx_pixel_put(env->mlx, env->win, x, y, 0xffdab9);
 }
 
 void			mandelbrot(t_env *env)
@@ -51,16 +48,15 @@ void			mandelbrot(t_env *env)
 	int			y;
 
 	x = 0;
-	while (x < WIDTH)
+	while (x < env->width)
 	{
 		y = 0;
-		while (y < HEIGTH)
+		while (y < env->heigth)
 		{
-			env->fract->c_r = (float)x / 300 + X1;
-			env->fract->c_i = (float)y / 300 + Y1;
+			env->fract->c_r = (float)x / 300 + env->fract->x1;
+			env->fract->c_i = (float)y / 300 + env->fract->y1;
 			env->fract->z_r = 0;
 			env->fract->z_i = 0;
-			// env->fract->i = 0;
 			mandelbrot_ite(env, x, y);
 			y++;
 		}

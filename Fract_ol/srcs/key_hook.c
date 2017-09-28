@@ -14,6 +14,10 @@
 
 int				key_hook(int keycode, t_env *env)
 {
+	if (keycode)
+	{
+		printf("%d\n", keycode);
+	}
 	if (keycode == 53)
 	{
 		mlx_destroy_window(env->mlx, env->win);

@@ -22,16 +22,7 @@
 # include <stdlib.h>
 # include <stdio.h>
 # include <math.h>
-# define X1 -2.1
-# define Y1 -1.2
-# define X2 0.6
-# define Y2 1.2
-# define WIDTH (X2 - X1) * 300
-# define HEIGTH (Y2 - Y1) * 300
-# define SIZE_WIN WIDTH * HEIGTH
-# define ITE_MAX 20
-// # define ZOOM_X WIDTH / (X2 - X1)
-// # define ZOOM_Y HEIGTH / (Y2 - Y1)
+# define ITE_MAX 150
 
 typedef struct		s_fract
 {
@@ -40,6 +31,10 @@ typedef struct		s_fract
 	float				z_r;
 	float				z_i;
 	int					i;
+	float				x1;
+	float				x2;
+	float				y1;
+	float				y2;
 }					t_fract;
 
 
@@ -47,9 +42,9 @@ typedef struct		s_env
 {
 	void			*mlx;
 	void			*win;
+	void			*img;
 	int				width;
 	int				heigth;
-	void			*img;
 	char			*pxl;
 	int				bpp;
 	int				size_line;
@@ -62,14 +57,17 @@ typedef struct		s_env
 int					main(int ac, char **av);
 
 t_env				*init_env(t_env *env);
-t_fract				*init_fract();
+void				init_img(t_env *env);
+t_fract			*init_mandelbrot_fract();
+t_fract			*init_julia_fract();
 t_env				*init(char **av, t_env *env);
 
 void				mandelbrot(t_env *env);
 void				mandelbrot_ite(t_env *env, int x, int y);
 void				julia(t_env *env);
+void				julia_ite(t_env *env, int x, int y);
 
-void 				put_pixel(t_env *env, int x, int y);
+void 				put_pixel_to_image(t_env *env, int x, int y);
 void				display(t_env *env);
 int					key_hook(int keycode, t_env *env);
 

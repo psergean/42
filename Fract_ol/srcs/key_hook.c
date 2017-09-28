@@ -24,5 +24,15 @@ int				key_hook(int keycode, t_env *env)
 		free(env);
 		exit(0);
 	}
+	// if (keycode == 38)
+	// {
+	// 	mlx_destroy_image(env->mlx, env->img);
+	// 	mlx_destroy_window(env->mlx, env->win);
+	// 	free(env);
+	// 	env = init_env(env);
+	// 	env->fract = init_julia_fract();
+	// 	init_img(env);
+	// 	env->f = &julia;
+	// }
 	return (0);
 }

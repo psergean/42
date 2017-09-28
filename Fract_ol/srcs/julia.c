@@ -12,6 +12,24 @@
 
 #include "./../includes/fract_ol.h"
 
+t_fract		*init_julia_fract()
+{
+	t_fract		*fract;
+
+	fract = NULL;
+	fract = (t_fract*)ft_memalloc(sizeof(t_fract));
+	fract->c_r = 0;
+	fract->c_i = 0;
+	fract->z_r = 0;
+	fract->z_i = 0;
+	fract->i = 0;
+	fract->x1 = -1;
+	fract->x2 = 1;
+	fract->y1 = -1.2;
+	fract->y2 = 1.2;
+	return (fract);
+}
+
 void				julia_ite(t_env *env, int x, int y)
 {
 	float			tmp;

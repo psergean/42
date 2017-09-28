@@ -24,15 +24,22 @@ int				key_hook(int keycode, t_env *env)
 		free(env);
 		exit(0);
 	}
-	// if (keycode == 38)
-	// {
-	// 	mlx_destroy_image(env->mlx, env->img);
-	// 	mlx_destroy_window(env->mlx, env->win);
-	// 	free(env);
-	// 	env = init_env(env);
-	// 	env->fract = init_julia_fract();
-	// 	init_img(env);
-	// 	env->f = &julia;
-	// }
+	if (keycode == 38 || keycode == 46)
+	{
+		mlx_destroy_image(env->mlx, env->img);
+		env->img = mlx_new_image(env->mlx, env->width, env->heigth);
+		env->pxl = mlx_get_data_addr(env->img, &(env->bpp), &(env->size_line), &(env->endian));
+		env->f = keycode == 38 ? &julia : &mandelbrot;
+	}
+	if (keycode == 69 || keycode == 78)
+	{
+		mlx_destroy_image(env->mlx, env->img);
+		env->img = mlx_new_image(env->mlx, env->width, env->heigth);
+		env->pxl = mlx_get_data_addr(env->img, &(env->bpp), &(env->size_line), &(env->endian));
+		env->zoom = keycode == 69 ? env->zoom + 1 : env->zoom - 1;
+		if (env->zoom < 1)
+			env->zoom = 1;
+	}
+	env->f(env);
 	return (0);
 }

@@ -12,7 +12,7 @@
 
 #include "./../includes/fract_ol.h"
 
-t_fract		*init_julia_fract()
+t_fract		*init_julia_fract(t_env *env)
 {
 	t_fract		*fract;
 
@@ -27,6 +27,8 @@ t_fract		*init_julia_fract()
 	fract->x2 = 1;
 	fract->y1 = -1.2;
 	fract->y2 = 1.2;
+	fract->zoom_x = env->width / (fract->x2 - fract->x1);
+	fract->zoom_y = env->heigth / (fract->y2 - fract->y1);
 	return (fract);
 }
 
@@ -56,16 +58,17 @@ void			julia(t_env *env)
 	int			y;
 
 	x = 0;
+	env->fract = init_julia_fract(env);
 	while (x < env->width)
 	{
 		y = 0;
 		while (y < env->heigth)
 		{
-			env->fract->z_r = (float)x / 300 + env->fract->x1;
-			env->fract->z_i = (float)y / 300 + env->fract->y1;
+			env->fract->z_r = ((float)x / env->fract->zoom_x + env->fract->x1) / env->zoom;
+			env->fract->z_i = ((float)y / env->fract->zoom_y + env->fract->y1) / env->zoom;
 			env->fract->c_r = 0.285;
 			env->fract->c_i = 0.01;
-			mandelbrot_ite(env, x, y);
+			julia_ite(env, x, y);
 			y++;
 		}
 		x++;

@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   mandelbrot.c                                       :+:      :+:    :+:   */
+/*   burningship.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: psergean <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -12,7 +12,7 @@
 
 #include "./../includes/fract_ol.h"
 
-t_fract		*init_mandelbrot_fract(t_env *env)
+t_fract		*init_burningship_fract(t_env *env)
 {
 	t_fract		*fract;
 
@@ -23,24 +23,16 @@ t_fract		*init_mandelbrot_fract(t_env *env)
 	fract->z_r = 0;
 	fract->z_i = 0;
 	fract->i = 0;
-	fract->x1 = -2.1;
-	fract->x2 = 0.6;
-	fract->y1 = -1.2;
-	fract->y2 = 1.2;
+	fract->x1 = -2;
+	fract->x2 = 1;
+	fract->y1 = -2;
+	fract->y2 = 1.;
 	fract->zoom_x = env->width / (fract->x2 - fract->x1);
 	fract->zoom_y = env->heigth / (fract->y2 - fract->y1);
 	return (fract);
 }
 
-void 				put_pixel_to_image(t_env *env, int x, int y)
-{
-	int				i;
-
-	i = (x * (env->bpp / 8)) + (y * env->size_line);
-	ft_memcpy(env->pxl + i, &env->color, 4);
-}
-
-void				mandelbrot_ite(t_env *env, int x, int y)
+void				burningship_ite(t_env *env, int x, int y)
 {
 	float			tmp;
 
@@ -50,23 +42,23 @@ void				mandelbrot_ite(t_env *env, int x, int y)
 		tmp = env->fract->z_r;
 		env->fract->z_r = (env->fract->z_r * env->fract->z_r) -
 			(env->fract->z_i * env->fract->z_i) + env->fract->c_r;
-		env->fract->z_i = 2 * env->fract->z_i * tmp + env->fract->c_i;
+		env->fract->z_i = 2 * fabsf(env->fract->z_i * tmp) + env->fract->c_i;
 		env->fract->i++;
 	}
 	if (env->fract->i != ITE_MAX)
 	{
-		env->color = env->fract->i * 510 * 255 / ITE_MAX;
+		env->color = env->fract->i * 255 / ITE_MAX;
 		put_pixel_to_image(env, x, y);
 	}
 }
 
-void			mandelbrot(t_env *env)
+void			burningship(t_env *env)
 {
 	int			x;
 	int			y;
 
 	x = 0;
-	env->fract = init_mandelbrot_fract(env);
+	env->fract = init_burningship_fract(env);
 	while (x < env->width)
 	{
 		y = 0;
@@ -76,7 +68,7 @@ void			mandelbrot(t_env *env)
 			env->fract->c_i = ((float)y / env->fract->zoom_y + env->fract->y1) / env->zoom;
 			env->fract->z_r = 0;
 			env->fract->z_i = 0;
-			mandelbrot_ite(env, x, y);
+			burningship_ite(env, x, y);
 			y++;
 		}
 		x++;

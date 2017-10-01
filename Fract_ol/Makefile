@@ -24,7 +24,13 @@ SRCS = ./srcs/main.c\
 	./srcs/display.c\
 	./srcs/exit_error.c\
 	./srcs/mandelbrot.c\
-	./srcs/julia.c
+	./srcs/julia.c\
+	./srcs/burningship.c\
+	./srcs/dendrite.c\
+	./srcs/lapin_de_douady.c\
+	./srcs/julia_bis.c\
+	./srcs/tapis_de_sierpinski.c\
+	# ./srcs/test.c
 
 OBJS = $(SRCS:.c=.o)
 

@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   mandelbrot.c                                       :+:      :+:    :+:   */
+/*   julia_bis.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: psergean <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/09/14 13:04:17 by psergean          #+#    #+#             */
-/*   Updated: 2017/09/16 15:30:50 by psergean         ###   ########.fr       */
+/*   Created: 2017/09/14 13:05:02 by psergean          #+#    #+#             */
+/*   Updated: 2017/09/14 13:05:42 by psergean         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "./../includes/fract_ol.h"
 
-t_fract		*init_mandelbrot_fract(t_env *env)
+t_fract		*init_julia_bis_fract(t_env *env)
 {
 	t_fract		*fract;
 
@@ -23,24 +23,16 @@ t_fract		*init_mandelbrot_fract(t_env *env)
 	fract->z_r = 0;
 	fract->z_i = 0;
 	fract->i = 0;
-	fract->x1 = -2.1;
-	fract->x2 = 0.6;
-	fract->y1 = -1.2;
-	fract->y2 = 1.2;
+	fract->x1 = -1.8;
+	fract->x2 = 1.8;
+	fract->y1 = -1.7;
+	fract->y2 = 1.7;
 	fract->zoom_x = env->width / (fract->x2 - fract->x1);
 	fract->zoom_y = env->heigth / (fract->y2 - fract->y1);
 	return (fract);
 }
 
-void 				put_pixel_to_image(t_env *env, int x, int y)
-{
-	int				i;
-
-	i = (x * (env->bpp / 8)) + (y * env->size_line);
-	ft_memcpy(env->pxl + i, &env->color, 4);
-}
-
-void				mandelbrot_ite(t_env *env, int x, int y)
+void				julia_bis_ite(t_env *env, int x, int y)
 {
 	float			tmp;
 
@@ -55,28 +47,28 @@ void				mandelbrot_ite(t_env *env, int x, int y)
 	}
 	if (env->fract->i != ITE_MAX)
 	{
-		env->color = env->fract->i * 510 * 255 / ITE_MAX;
+		env->color = env->fract->i * 255 / ITE_MAX;
 		put_pixel_to_image(env, x, y);
 	}
 }
 
-void			mandelbrot(t_env *env)
+void			julia_bis(t_env *env)
 {
 	int			x;
 	int			y;
 
 	x = 0;
-	env->fract = init_mandelbrot_fract(env);
+	env->fract = init_julia_bis_fract(env);
 	while (x < env->width)
 	{
 		y = 0;
 		while (y < env->heigth)
 		{
-			env->fract->c_r = ((float)x / env->fract->zoom_x + env->fract->x1) / env->zoom;
-			env->fract->c_i = ((float)y / env->fract->zoom_y + env->fract->y1) / env->zoom;
-			env->fract->z_r = 0;
-			env->fract->z_i = 0;
-			mandelbrot_ite(env, x, y);
+			env->fract->z_r = ((float)x / env->fract->zoom_x + env->fract->x1) / env->zoom;
+			env->fract->z_i = ((float)y / env->fract->zoom_y + env->fract->y1) / env->zoom;
+			env->fract->c_r = -1;
+			env->fract->c_i = 0;
+			julia_bis_ite(env, x, y);
 			y++;
 		}
 		x++;

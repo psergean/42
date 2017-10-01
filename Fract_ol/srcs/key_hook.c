@@ -31,12 +31,26 @@ int				key_hook(int keycode, t_env *env)
 		env->pxl = mlx_get_data_addr(env->img, &(env->bpp), &(env->size_line), &(env->endian));
 		env->f = keycode == 38 ? &julia : &mandelbrot;
 	}
-	if (keycode == 69 || keycode == 78)
+	if (keycode == 11 || keycode == 45)
 	{
 		mlx_destroy_image(env->mlx, env->img);
 		env->img = mlx_new_image(env->mlx, env->width, env->heigth);
 		env->pxl = mlx_get_data_addr(env->img, &(env->bpp), &(env->size_line), &(env->endian));
-		env->zoom = keycode == 69 ? env->zoom + 1 : env->zoom - 1;
+		env->f = keycode == 11 ? &burningship : &dendrite;
+	}
+	if (keycode == 37 || keycode == 40)
+	{
+		mlx_destroy_image(env->mlx, env->img);
+		env->img = mlx_new_image(env->mlx, env->width, env->heigth);
+		env->pxl = mlx_get_data_addr(env->img, &(env->bpp), &(env->size_line), &(env->endian));
+		env->f = keycode == 37 ? &lapin : &julia_bis;
+	}
+	if (keycode == 27 || keycode == 24)
+	{
+		mlx_destroy_image(env->mlx, env->img);
+		env->img = mlx_new_image(env->mlx, env->width, env->heigth);
+		env->pxl = mlx_get_data_addr(env->img, &(env->bpp), &(env->size_line), &(env->endian));
+		env->zoom = keycode == 24 ? env->zoom + 1 : env->zoom - 1;
 		if (env->zoom < 1)
 			env->zoom = 1;
 	}

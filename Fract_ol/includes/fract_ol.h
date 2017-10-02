@@ -22,7 +22,6 @@
 # include <stdlib.h>
 # include <stdio.h>
 # include <math.h>
-# define ITE_MAX 500
 
 typedef struct		s_fract
 {
@@ -39,6 +38,7 @@ typedef struct		s_fract
 	float				zoom_y;
 	int					x;
 	int					y;
+	int					ite_max;
 }					t_fract;
 
 
@@ -57,6 +57,9 @@ typedef struct		s_env
 	t_fract			*fract;
 	void			(*f)(struct s_env *);
 	float			zoom;
+	int				ite;
+	float			dec_y;
+	float			dec_x;
 }					t_env;
 
 int					main(int ac, char **av);
@@ -83,12 +86,12 @@ void				lapin(t_env *env);
 t_fract			*init_julia_bis_fract(t_env *env);
 void				julia_bis(t_env *env);
 void				julia_bis_ite(t_env *env, int x, int y);
-t_fract			*init_tapis_fract();
+t_fract			*init_tapis_fract(t_env *env);
 void				tapis(t_env *env);
 void				tapis_ite(t_env *env, int x, int y);
-// t_fract			*init_test_fract();
-// void				test(t_env *env);
-// void				test_ite(t_env *env, int x, int y);
+t_fract			*init_test_fract();
+void				test(t_env *env);
+void				test_ite(t_env *env, int x, int y);
 
 void 				put_pixel_to_image(t_env *env, int x, int y);
 void				display(t_env *env);

@@ -54,6 +54,37 @@ int				key_hook(int keycode, t_env *env)
 		if (env->zoom < 1)
 			env->zoom = 1;
 	}
+	if (keycode == 34 || keycode == 31)
+	{
+		mlx_destroy_image(env->mlx, env->img);
+		env->img = mlx_new_image(env->mlx, env->width, env->heigth);
+		env->pxl = mlx_get_data_addr(env->img, &(env->bpp), &(env->size_line), &(env->endian));
+		env->ite = keycode == 34 ? env->ite + 10 : env->ite - 10;
+	}
+	if (keycode == 15)
+	{
+		mlx_destroy_image(env->mlx, env->img);
+		env->img = mlx_new_image(env->mlx, env->width, env->heigth);
+		env->pxl = mlx_get_data_addr(env->img, &(env->bpp), &(env->size_line), &(env->endian));
+		env->zoom = 1;
+		env->ite = 0;
+		env->dec_y = 0.0;
+		env->dec_x = 0.0;
+	}
+	if (keycode == 126 || keycode == 125)
+	{
+		mlx_destroy_image(env->mlx, env->img);
+		env->img = mlx_new_image(env->mlx, env->width, env->heigth);
+		env->pxl = mlx_get_data_addr(env->img, &(env->bpp), &(env->size_line), &(env->endian));
+		env->dec_y = keycode == 126 ? env->dec_y - 0.1 : env->dec_y + 0.1;
+	}
+	if (keycode == 123 || keycode == 124)
+	{
+		mlx_destroy_image(env->mlx, env->img);
+		env->img = mlx_new_image(env->mlx, env->width, env->heigth);
+		env->pxl = mlx_get_data_addr(env->img, &(env->bpp), &(env->size_line), &(env->endian));
+		env->dec_x = keycode == 123 ? env->dec_x + 0.1 : env->dec_x - 0.1;
+	}
 	env->f(env);
 	return (0);
 }

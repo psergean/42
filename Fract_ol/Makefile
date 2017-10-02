@@ -30,7 +30,7 @@ SRCS = ./srcs/main.c\
 	./srcs/lapin_de_douady.c\
 	./srcs/julia_bis.c\
 	./srcs/tapis_de_sierpinski.c\
-	# ./srcs/test.c
+	./srcs/test.c
 
 OBJS = $(SRCS:.c=.o)
 

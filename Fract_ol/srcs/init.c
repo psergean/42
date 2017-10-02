@@ -17,13 +17,16 @@ t_env		*init_env(t_env *env)
 	env = (t_env*)malloc(sizeof(*env));
 	env->mlx = mlx_init();
 	env->zoom = 1;
+	env->ite = 0;
+	env->dec_y = 0.0;
+	env->dec_x = 0.0;
 	return (env);
 }
 
 void		init_img(t_env *env)
 {
-	env->width = 600;
-	env->heigth = 600;
+	env->width = 1000;
+	env->heigth = 1000;
 	env->win = mlx_new_window(env->mlx, env->width, env->heigth, "Fract_ol");
 	env->img = mlx_new_image(env->mlx, env->width, env->heigth);
 	env->pxl = mlx_get_data_addr(env->img, &(env->bpp), &(env->size_line), &(env->endian));
@@ -47,10 +50,10 @@ t_env		*init(char **av, t_env *env)
 		env->f = &julia_bis;
 	else if (ft_strcmp(av[1], "tapis_de_sierpinski") == 0)
 		env->f = &tapis;
-	// else if (ft_strcmp(av[1], "test") == 0)
-	// 	env->f = &test;
+	else if (ft_strcmp(av[1], "test") == 0)
+		env->f = &test;
 	else
-		ft_error(env, "Error: I can only reading the fractale of Mandelbrot, Julia, Dendrite or Burningship\n");
+		ft_error(env, "Error: I can only reading the fractale of Mandelbrot, Julia,\n Dendrite, Burningship, Lapin_de_douady or Tapis_de_sierpinski.\n");
 	env->f(env);
 	return (env);
 }

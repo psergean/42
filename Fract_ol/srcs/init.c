@@ -48,12 +48,11 @@ t_env		*init(char **av, t_env *env)
 		env->f = &lapin;
 	else if (ft_strcmp(av[1], "julia_bis") == 0)
 		env->f = &julia_bis;
-	else if (ft_strcmp(av[1], "tapis_de_sierpinski") == 0)
-		env->f = &tapis;
-	else if (ft_strcmp(av[1], "test") == 0)
-		env->f = &test;
 	else
-		ft_error(env, "Error: I can only reading the fractale of Mandelbrot, Julia,\n Dendrite, Burningship, Lapin_de_douady or Tapis_de_sierpinski.\n");
+	{
+		ft_putstr_fd("Error:  I can only reading the fractale of Mandelbrot, Julia,\n", 2);
+		ft_error(env, "\tDendrite, Burningship or Lapin_de_douady.\n");
+	}
 	env->f(env);
 	return (env);
 }

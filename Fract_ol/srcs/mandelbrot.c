@@ -33,14 +33,6 @@ t_fract		*init_mandelbrot_fract(t_env *env)
 	return (fract);
 }
 
-void 				put_pixel_to_image(t_env *env, int x, int y)
-{
-	int				i;
-
-	i = (x * (env->bpp / 8)) + (y * env->size_line);
-	ft_memcpy(env->pxl + i, &env->color, 4);
-}
-
 void				mandelbrot_ite(t_env *env, int x, int y)
 {
 	float			tmp;

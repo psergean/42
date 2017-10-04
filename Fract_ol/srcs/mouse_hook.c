@@ -1,31 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   mouse_hook.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: psergean <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/09/14 12:58:36 by psergean          #+#    #+#             */
-/*   Updated: 2017/09/14 13:02:24 by psergean         ###   ########.fr       */
+/*   Created: 2017/10/04 19:49:35 by psergean          #+#    #+#             */
+/*   Updated: 2017/10/04 19:51:58 by psergean         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "./../includes/fract_ol.h"
 
-int			main(int ac, char **av)
+int         mouse_hook(int button, int x, int y, t_env *env)
 {
-	t_env	*env;
+    printf("button == %d, (%d:%d), %f\n", button, x, y, env->zoom);
+    return (0);
+}
 
-	env = NULL;
-	if (!check_input(ac))
-		return (0);
-	if (!env)
-		env = init(av, env);
-	mlx_string_put(env->mlx, env->win, 10, 0, 0x00FFFFFF, "Help : h");
-	mlx_key_hook(env->win, key_hook, env);
-	mlx_mouse_hook(env->win, mouse_hook, env);
-	mlx_hook(env->win, MOTION_NOTIFY, MOTION_MASK_PTR, mouse_motion_notify, env);
-	mlx_loop(env->mlx);
-	free(env);
-	return (0);
+int       mouse_motion_notify(int x, int y, t_env *env)
+{
+	if (x < 0 || x >= env->width || y < 0 || y >= env->heigth)
+        return (0);
+    env->mouse_x = x;
+    env->mouse_y = y;
+    env->f(env);
+    mlx_string_put(env->mlx, env->win, 10, 0, 0x00FFFFFF, "Help : h");
+    return (1);
 }

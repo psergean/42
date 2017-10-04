@@ -1,31 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   pixels_and_colors.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: psergean <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/09/14 12:58:36 by psergean          #+#    #+#             */
-/*   Updated: 2017/09/14 13:02:24 by psergean         ###   ########.fr       */
+/*   Created: 2017/09/14 13:02:36 by psergean          #+#    #+#             */
+/*   Updated: 2017/09/14 13:04:01 by psergean         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "./../includes/fract_ol.h"
 
-int			main(int ac, char **av)
+void 				put_pixel_to_image(t_env *env, int x, int y)
 {
-	t_env	*env;
+	int				i;
 
-	env = NULL;
-	if (!check_input(ac))
-		return (0);
-	if (!env)
-		env = init(av, env);
-	mlx_string_put(env->mlx, env->win, 10, 0, 0x00FFFFFF, "Help : h");
-	mlx_key_hook(env->win, key_hook, env);
-	mlx_mouse_hook(env->win, mouse_hook, env);
-	mlx_hook(env->win, MOTION_NOTIFY, MOTION_MASK_PTR, mouse_motion_notify, env);
-	mlx_loop(env->mlx);
-	free(env);
-	return (0);
+	i = (x * (env->bpp / 8)) + (y * env->size_line);
+	ft_memcpy(env->pxl + i, &env->color, 4);
 }

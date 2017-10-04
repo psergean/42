@@ -29,6 +29,7 @@ int				key_hook(int keycode, t_env *env)
 		mlx_destroy_image(env->mlx, env->img);
 		env->img = mlx_new_image(env->mlx, env->width, env->heigth);
 		env->pxl = mlx_get_data_addr(env->img, &(env->bpp), &(env->size_line), &(env->endian));
+		env->zoom = 1;
 		env->f = keycode == 38 ? &julia : &mandelbrot;
 	}
 	if (keycode == 11 || keycode == 45)
@@ -36,6 +37,7 @@ int				key_hook(int keycode, t_env *env)
 		mlx_destroy_image(env->mlx, env->img);
 		env->img = mlx_new_image(env->mlx, env->width, env->heigth);
 		env->pxl = mlx_get_data_addr(env->img, &(env->bpp), &(env->size_line), &(env->endian));
+		env->zoom = 1;
 		env->f = keycode == 11 ? &burningship : &dendrite;
 	}
 	if (keycode == 37 || keycode == 40)
@@ -43,6 +45,7 @@ int				key_hook(int keycode, t_env *env)
 		mlx_destroy_image(env->mlx, env->img);
 		env->img = mlx_new_image(env->mlx, env->width, env->heigth);
 		env->pxl = mlx_get_data_addr(env->img, &(env->bpp), &(env->size_line), &(env->endian));
+		env->zoom = 1;
 		env->f = keycode == 37 ? &lapin : &julia_bis;
 	}
 	if (keycode == 27 || keycode == 24)
@@ -50,7 +53,7 @@ int				key_hook(int keycode, t_env *env)
 		mlx_destroy_image(env->mlx, env->img);
 		env->img = mlx_new_image(env->mlx, env->width, env->heigth);
 		env->pxl = mlx_get_data_addr(env->img, &(env->bpp), &(env->size_line), &(env->endian));
-		env->zoom = keycode == 24 ? env->zoom + 1 : env->zoom - 1;
+		env->zoom = keycode == 24 ? env->zoom + 0.2 : env->zoom - 0.2;
 		if (env->zoom < 1)
 			env->zoom = 1;
 	}
@@ -76,7 +79,7 @@ int				key_hook(int keycode, t_env *env)
 		mlx_destroy_image(env->mlx, env->img);
 		env->img = mlx_new_image(env->mlx, env->width, env->heigth);
 		env->pxl = mlx_get_data_addr(env->img, &(env->bpp), &(env->size_line), &(env->endian));
-		env->dec_y = keycode == 126 ? env->dec_y - 0.1 : env->dec_y + 0.1;
+		env->dec_y = keycode == 126 ? env->dec_y + 0.1 : env->dec_y - 0.1;
 	}
 	if (keycode == 123 || keycode == 124)
 	{
@@ -86,5 +89,13 @@ int				key_hook(int keycode, t_env *env)
 		env->dec_x = keycode == 123 ? env->dec_x + 0.1 : env->dec_x - 0.1;
 	}
 	env->f(env);
+	mlx_string_put(env->mlx, env->win, 10, 0, 0x00FFFFFF, "Help : h");
+	if (keycode == 4)
+	{
+		mlx_destroy_image(env->mlx, env->img);
+		env->img = mlx_new_image(env->mlx, env->width, env->heigth);
+		env->pxl = mlx_get_data_addr(env->img, &(env->bpp), &(env->size_line), &(env->endian));
+		display(env);
+	}
 	return (0);
 }

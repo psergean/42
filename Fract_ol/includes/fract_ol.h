@@ -22,6 +22,8 @@
 # include <stdlib.h>
 # include <stdio.h>
 # include <math.h>
+# define MOTION_MASK_PTR (1L<<6)
+# define MOTION_NOTIFY 6
 
 typedef struct		s_fract
 {
@@ -60,6 +62,8 @@ typedef struct		s_env
 	int				ite;
 	float			dec_y;
 	float			dec_x;
+	int				mouse_x;
+	int				mouse_y;
 }					t_env;
 
 int					main(int ac, char **av);
@@ -68,34 +72,29 @@ t_env				*init_env(t_env *env);
 void				init_img(t_env *env);
 t_env				*init(char **av, t_env *env);
 
-t_fract			*init_mandelbrot_fract(t_env *env);
+t_fract				*init_mandelbrot_fract(t_env *env);
 void				mandelbrot(t_env *env);
 void				mandetlbrot_ite(t_env *env, int x, int y);
-t_fract			*init_julia_fract(t_env *env);
+t_fract				*init_julia_fract(t_env *env);
 void				julia(t_env *env);
 void				julia_ite(t_env *env, int x, int y);
-t_fract			*init_burningship_fract(t_env *env);
+t_fract				*init_burningship_fract(t_env *env);
 void				burningship(t_env *env);
 void				burningship_ite(t_env *env, int x, int y);
-t_fract			*init_dendrite_fract(t_env *env);
+t_fract				*init_dendrite_fract(t_env *env);
 void				dendrite_ite(t_env *env, int x, int y);
 void				dendrite(t_env *env);
-t_fract			*init_lapin_fract(t_env *env);
+t_fract				*init_lapin_fract(t_env *env);
 void				lapin_ite(t_env *env, int x, int y);
 void				lapin(t_env *env);
-t_fract			*init_julia_bis_fract(t_env *env);
+t_fract				*init_julia_bis_fract(t_env *env);
 void				julia_bis(t_env *env);
 void				julia_bis_ite(t_env *env, int x, int y);
-t_fract			*init_tapis_fract(t_env *env);
-void				tapis(t_env *env);
-void				tapis_ite(t_env *env, int x, int y);
-t_fract			*init_test_fract();
-void				test(t_env *env);
-void				test_ite(t_env *env, int x, int y);
-
 void 				put_pixel_to_image(t_env *env, int x, int y);
 void				display(t_env *env);
 int					key_hook(int keycode, t_env *env);
+int					mouse_hook(int button, int x, int y, t_env *env);
+int					mouse_motion_notify(int x, int y, t_env *env);
 
 void				ft_exit(t_env *env);
 void				ft_error(t_env *env, char *str);

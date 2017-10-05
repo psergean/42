@@ -15,12 +15,12 @@
 int				mouse_hook(int button, int x, int y, t_env *env)
 {
 	printf("button == %d, (%d:%d), %f\n", button, x, y, env->zoom);
-	if (button == 7 || button == 4)
+	if (button == 4 || button == 5)
 	{
-		env->zoom = button == 7 ? env->zoom - 0.2 : env->zoom + 0.2;
-		env->x = button == 7 ? env->x + (float)(env->width / 2 - x) :
+		env->zoom = button == 4 ? env->zoom - 0.2 : env->zoom + 0.2;
+		env->x = button == 4 ? env->x + (float)(env->width / 2 - x) :
 			env->x - (float)(env->width / 2 - x);
-		env->y = button == 7 ? env->y + (float)(env->heigth / 2 - y) :
+		env->y = button == 4 ? env->y + (float)(env->heigth / 2 - y) :
 			env->y - (float)(env->heigth / 2 - y);
 		if (env->zoom < 1)
 			env->zoom = 1;
@@ -38,6 +38,10 @@ int				mouse_motion_notify(int x, int y, t_env *env)
 		return (0);
 	env->mouse_x = x;
 	env->mouse_y = y;
+	mlx_destroy_image(env->mlx, env->img);
+	env->img = mlx_new_image(env->mlx, env->width, env->heigth);
+	env->pxl = mlx_get_data_addr(env->img, &(env->bpp),
+			&(env->size_line), &(env->endian));
 	env->f(env);
 	mlx_string_put(env->mlx, env->win, 10, 0, 0x00FFFFFF, "Help : h");
 	return (1);

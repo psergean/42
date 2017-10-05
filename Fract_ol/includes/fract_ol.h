@@ -22,7 +22,7 @@
 # include <stdlib.h>
 # include <stdio.h>
 # include <math.h>
-# define MOTION_MASK_PTR (1L<<6)
+# define MOTION_MASK_PTR (1L << 6)
 # define MOTION_NOTIFY 6
 
 typedef struct		s_fract

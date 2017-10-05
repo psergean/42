@@ -17,5 +17,23 @@ void				put_pixel_to_image(t_env *env, int x, int y)
 	int				i;
 
 	i = (x * (env->bpp / 8)) + (y * env->size_line);
+	colors(env);
 	ft_memcpy(env->pxl + i, &env->color, 4);
+}
+
+void				colors(t_env *env)
+{
+	int				r;
+	int				g;
+	int				b;
+
+	if (env->fract->i == env->fract->ite_max)
+		env->color = 0x000000;
+	else
+	{
+		r = (env->fract->i * 5) * 2;
+		g = ((255 - (env->fract->i * 10)) * 2);
+		b = ((255 - (env->fract->i * 2)) * 2);
+		env->color = (r << 16) + (g << 8) + b;
+	}
 }

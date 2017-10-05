@@ -47,11 +47,7 @@ void				mandelbrot_ite(t_env *env, int x, int y)
 		env->fract->z_i = 2 * env->fract->z_i * tmp + env->fract->c_i;
 		env->fract->i++;
 	}
-	if (env->fract->i != env->fract->ite_max)
-	{
-		env->color = env->fract->i * 510 * 255 / env->fract->ite_max;
-		put_pixel_to_image(env, x, y);
-	}
+	put_pixel_to_image(env, x, y);
 }
 
 void				mandelbrot(t_env *env)

@@ -90,6 +90,7 @@ t_fract				*init_julia_bis_fract(t_env *env);
 void				julia_bis(t_env *env);
 void				julia_bis_ite(t_env *env, int x, int y);
 void				put_pixel_to_image(t_env *env, int x, int y);
+void				colors(t_env *env);
 void				display(t_env *env);
 int					key_hook(int keycode, t_env *env);
 int					key_hook2(int keycode, t_env *env);

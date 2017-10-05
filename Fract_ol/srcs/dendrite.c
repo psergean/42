@@ -6,13 +6,13 @@
 /*   By: psergean <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/14 13:04:17 by psergean          #+#    #+#             */
-/*   Updated: 2017/09/16 15:30:50 by psergean         ###   ########.fr       */
+/*   Updated: 2017/10/04 23:55:57 by psergean         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "./../includes/fract_ol.h"
 
-t_fract		*init_dendrite_fract(t_env *env)
+t_fract			*init_dendrite_fract(t_env *env)
 {
 	t_fract		*fract;
 
@@ -33,12 +33,13 @@ t_fract		*init_dendrite_fract(t_env *env)
 	return (fract);
 }
 
-void				dendrite_ite(t_env *env, int x, int y)
+void			dendrite_ite(t_env *env, int x, int y)
 {
-	float			tmp;
+	float		tmp;
 
 	env->fract->i = 0;
-	while (env->fract->i < env->fract->ite_max && (env->fract->z_r * env->fract->z_r) + (env->fract->z_i * env->fract->z_i) < 4)
+	while (env->fract->i < env->fract->ite_max && (env->fract->z_r *
+				env->fract->z_r) + (env->fract->z_i * env->fract->z_i) < 4)
 	{
 		tmp = env->fract->z_r;
 		env->fract->z_r = (env->fract->z_r * env->fract->z_r) -
@@ -65,8 +66,10 @@ void			dendrite(t_env *env)
 		y = 0;
 		while (y < env->heigth)
 		{
-			env->fract->z_r = ((float)x / env->fract->zoom_x + env->fract->x1) / env->zoom;
-			env->fract->z_i = ((float)y / env->fract->zoom_y + env->fract->y1) / env->zoom;
+			env->fract->z_r = ((float)x / env->fract->zoom_x + env->fract->x1)
+				/ env->zoom;
+			env->fract->z_i = ((float)y / env->fract->zoom_y + env->fract->y1)
+				/ env->zoom;
 			env->fract->c_r = 0;
 			env->fract->c_i = 1;
 			dendrite_ite(env, x, y);

@@ -6,18 +6,17 @@
 /*   By: psergean <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/14 13:37:51 by psergean          #+#    #+#             */
-/*   Updated: 2017/09/14 13:45:50 by psergean         ###   ########.fr       */
+/*   Updated: 2017/10/04 23:39:18 by psergean         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "./../includes/fract_ol.h"
 
-
-void		ft_exit(t_env *env)
+int			ft_exit(t_env *env)
 {
 	free(env);
 	exit(0);
-	return ;
+	return (0);
 }
 
 void		ft_error(t_env *env, char *str)

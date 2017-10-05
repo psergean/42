@@ -6,15 +6,15 @@
 /*   By: psergean <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/14 13:05:02 by psergean          #+#    #+#             */
-/*   Updated: 2017/09/14 13:05:42 by psergean         ###   ########.fr       */
+/*   Updated: 2017/10/05 00:00:44 by psergean         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "./../includes/fract_ol.h"
 
-t_fract		*init_julia_bis_fract(t_env *env)
+t_fract				*init_julia_bis_fract(t_env *env)
 {
-	t_fract		*fract;
+	t_fract			*fract;
 
 	fract = NULL;
 	fract = (t_fract*)ft_memalloc(sizeof(t_fract));
@@ -38,7 +38,8 @@ void				julia_bis_ite(t_env *env, int x, int y)
 	float			tmp;
 
 	env->fract->i = 0;
-	while (env->fract->i < env->fract->ite_max && (env->fract->z_r * env->fract->z_r) + (env->fract->z_i * env->fract->z_i) < 4)
+	while (env->fract->i < env->fract->ite_max && (env->fract->z_r *
+				env->fract->z_r) + (env->fract->z_i * env->fract->z_i) < 4)
 	{
 		tmp = env->fract->z_r;
 		env->fract->z_r = (env->fract->z_r * env->fract->z_r) -
@@ -53,10 +54,10 @@ void				julia_bis_ite(t_env *env, int x, int y)
 	}
 }
 
-void			julia_bis(t_env *env)
+void				julia_bis(t_env *env)
 {
-	int			x;
-	int			y;
+	int				x;
+	int				y;
 
 	x = 0;
 	env->fract = init_julia_bis_fract(env);
@@ -65,8 +66,10 @@ void			julia_bis(t_env *env)
 		y = 0;
 		while (y < env->heigth)
 		{
-			env->fract->z_r = ((float)x / env->fract->zoom_x + env->fract->x1) / env->zoom;
-			env->fract->z_i = ((float)y / env->fract->zoom_y + env->fract->y1) / env->zoom;
+			env->fract->z_r = ((float)x / env->fract->zoom_x + env->fract->x1)
+				/ env->zoom;
+			env->fract->z_i = ((float)y / env->fract->zoom_y + env->fract->y1)
+				/ env->zoom;
 			env->fract->c_r = -1;
 			env->fract->c_i = 0;
 			julia_bis_ite(env, x, y);

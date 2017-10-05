@@ -6,15 +6,15 @@
 /*   By: psergean <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/14 13:05:02 by psergean          #+#    #+#             */
-/*   Updated: 2017/09/14 13:05:42 by psergean         ###   ########.fr       */
+/*   Updated: 2017/10/05 00:03:51 by psergean         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "./../includes/fract_ol.h"
 
-t_fract		*init_lapin_fract(t_env *env)
+t_fract				*init_lapin_fract(t_env *env)
 {
-	t_fract		*fract;
+	t_fract			*fract;
 
 	fract = NULL;
 	fract = (t_fract*)ft_memalloc(sizeof(t_fract));
@@ -26,7 +26,7 @@ t_fract		*init_lapin_fract(t_env *env)
 	fract->x1 = -1.4 + env->dec_x;
 	fract->x2 = 1.4 + env->dec_x;
 	fract->y1 = -1.6 + env->dec_y;
-	fract->y2 = 1.4+ env->dec_y;
+	fract->y2 = 1.4 + env->dec_y;
 	fract->zoom_x = env->width / (fract->x2 - fract->x1);
 	fract->zoom_y = env->heigth / (fract->y2 - fract->y1);
 	fract->ite_max = 50 + env->ite;
@@ -38,7 +38,8 @@ void				lapin_ite(t_env *env, int x, int y)
 	float			tmp;
 
 	env->fract->i = 0;
-	while (env->fract->i < env->fract->ite_max && (env->fract->z_r * env->fract->z_r) + (env->fract->z_i * env->fract->z_i) < 4)
+	while (env->fract->i < env->fract->ite_max && (env->fract->z_r *
+				env->fract->z_r) + (env->fract->z_i * env->fract->z_i) < 4)
 	{
 		tmp = env->fract->z_r;
 		env->fract->z_r = (env->fract->z_r * env->fract->z_r) -
@@ -53,10 +54,10 @@ void				lapin_ite(t_env *env, int x, int y)
 	}
 }
 
-void			lapin(t_env *env)
+void				lapin(t_env *env)
 {
-	int			x;
-	int			y;
+	int				x;
+	int				y;
 
 	x = 0;
 	env->fract = init_lapin_fract(env);
@@ -65,8 +66,10 @@ void			lapin(t_env *env)
 		y = 0;
 		while (y < env->heigth)
 		{
-			env->fract->z_r = ((float)x / env->fract->zoom_x + env->fract->x1) / env->zoom;
-			env->fract->z_i = ((float)y / env->fract->zoom_y + env->fract->y1) / env->zoom;
+			env->fract->z_r = ((float)x / env->fract->zoom_x + env->fract->x1)
+				/ env->zoom;
+			env->fract->z_i = ((float)y / env->fract->zoom_y + env->fract->y1)
+				/ env->zoom;
 			env->fract->c_r = -0.123;
 			env->fract->c_i = 0.745;
 			lapin_ite(env, x, y);

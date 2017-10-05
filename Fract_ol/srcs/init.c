@@ -6,7 +6,7 @@
 /*   By: psergean <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/14 13:02:36 by psergean          #+#    #+#             */
-/*   Updated: 2017/09/14 13:04:01 by psergean         ###   ########.fr       */
+/*   Updated: 2017/10/04 23:53:56 by psergean         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,8 @@ void		init_img(t_env *env)
 	env->heigth = 1000;
 	env->win = mlx_new_window(env->mlx, env->width, env->heigth, "Fract_ol");
 	env->img = mlx_new_image(env->mlx, env->width, env->heigth);
-	env->pxl = mlx_get_data_addr(env->img, &(env->bpp), &(env->size_line), &(env->endian));
+	env->pxl = mlx_get_data_addr(env->img, &(env->bpp),
+			&(env->size_line), &(env->endian));
 }
 
 t_env		*init(char **av, t_env *env)
@@ -50,8 +51,9 @@ t_env		*init(char **av, t_env *env)
 		env->f = &julia_bis;
 	else
 	{
-		ft_putstr_fd("Error:  I can only reading the fractale of Mandelbrot, Julia,\n", 2);
-		ft_error(env, "\tDendrite, Burningship or Lapin_de_douady.\n");
+		ft_putstr_fd("Error:  I can only reading the fractale\n", 2);
+		ft_putstr_fd("\tof Mandelbrot, Julia, Dendrite,\n", 2);
+		ft_error(env, "\tBurningship or Lapin_de_douady.\n");
 	}
 	env->f(env);
 	return (env);

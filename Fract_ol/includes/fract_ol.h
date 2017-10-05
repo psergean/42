@@ -6,12 +6,12 @@
 /*   By: psergean <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/14 12:45:22 by psergean          #+#    #+#             */
-/*   Updated: 2017/09/14 13:18:14 by psergean         ###   ########.fr       */
+/*   Updated: 2017/10/05 02:00:51 by psergean         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FRACTOL_H
-# define FRACTOL_H
+#ifndef FRACT_OL_H
+# define FRACT_OL_H
 
 # include "./../minilibx_macos/mlx.h"
 # include "./../libft/includes/libft.h"
@@ -43,7 +43,6 @@ typedef struct		s_fract
 	int					ite_max;
 }					t_fract;
 
-
 typedef struct		s_env
 {
 	void			*mlx;
@@ -64,14 +63,14 @@ typedef struct		s_env
 	float			dec_x;
 	int				mouse_x;
 	int				mouse_y;
+	float			x;
+	float			y;
 }					t_env;
 
 int					main(int ac, char **av);
-
 t_env				*init_env(t_env *env);
 void				init_img(t_env *env);
 t_env				*init(char **av, t_env *env);
-
 t_fract				*init_mandelbrot_fract(t_env *env);
 void				mandelbrot(t_env *env);
 void				mandetlbrot_ite(t_env *env, int x, int y);
@@ -90,13 +89,16 @@ void				lapin(t_env *env);
 t_fract				*init_julia_bis_fract(t_env *env);
 void				julia_bis(t_env *env);
 void				julia_bis_ite(t_env *env, int x, int y);
-void 				put_pixel_to_image(t_env *env, int x, int y);
+void				put_pixel_to_image(t_env *env, int x, int y);
 void				display(t_env *env);
 int					key_hook(int keycode, t_env *env);
+int					key_hook2(int keycode, t_env *env);
+int					key_hook3(int keycode, t_env *env);
+int					key_hook4(int keycode, t_env *env);
+int					key_hook5(int keycode, t_env *env);
 int					mouse_hook(int button, int x, int y, t_env *env);
 int					mouse_motion_notify(int x, int y, t_env *env);
-
-void				ft_exit(t_env *env);
+int					ft_exit(t_env *env);
 void				ft_error(t_env *env, char *str);
 int					check_input(int ac);
 

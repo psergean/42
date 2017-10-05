@@ -6,13 +6,13 @@
 /*   By: psergean <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/14 13:02:36 by psergean          #+#    #+#             */
-/*   Updated: 2017/09/14 13:04:01 by psergean         ###   ########.fr       */
+/*   Updated: 2017/10/05 01:57:34 by psergean         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "./../includes/fract_ol.h"
 
-void 				put_pixel_to_image(t_env *env, int x, int y)
+void				put_pixel_to_image(t_env *env, int x, int y)
 {
 	int				i;
 

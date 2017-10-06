@@ -17,7 +17,7 @@ int				mouse_hook(int button, int x, int y, t_env *env)
 	printf("button == %d, (%d:%d), %f\n", button, x, y, env->zoom);
 	if (button == 4 || button == 5)
 	{
-		env->zoom = button == 4 ? env->zoom - 0.2 : env->zoom + 0.2;
+		env->zoom = button == 4 ? env->zoom / 1.2 : env->zoom * 1.2;
 		env->x = button == 4 ? env->x + (float)(env->width / 2 - x) :
 			env->x - (float)(env->width / 2 - x);
 		env->y = button == 4 ? env->y + (float)(env->heigth / 2 - y) :
@@ -70,6 +70,7 @@ int				mouse_motion_notify(int x, int y, t_env *env)
 	{
 		env->mouse_x = x;
 		env->mouse_y = y;
+
 	}
 	mlx_clear_window(env->mlx, env->win);
 	env->f(env);

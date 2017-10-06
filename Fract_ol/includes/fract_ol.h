@@ -65,10 +65,12 @@ typedef struct		s_env
 	int				mouse_y;
 	float			x;
 	float			y;
+	int				fractale;
 }					t_env;
 
 int					main(int ac, char **av);
 t_env				*init_env(t_env *env);
+void 				init_event(t_env *env);
 void				init_img(t_env *env);
 t_env				*init(char **av, t_env *env);
 t_fract				*init_mandelbrot_fract(t_env *env);
@@ -99,6 +101,7 @@ int					key_hook4(int keycode, t_env *env);
 int					key_hook5(int keycode, t_env *env);
 int					mouse_hook(int button, int x, int y, t_env *env);
 int					mouse_motion_notify(int x, int y, t_env *env);
+void				mouse_moving(t_env *env, int x, int y);
 int					ft_exit(t_env *env);
 void				ft_error(t_env *env, char *str);
 int					check_input(int ac);

@@ -12,14 +12,21 @@
 
 #include "./../includes/fract_ol.h"
 
-t_env		*init_env(t_env *env)
+void 		init_event(t_env *env)
 {
-	env = (t_env*)malloc(sizeof(*env));
-	env->mlx = mlx_init();
 	env->zoom = 1;
 	env->ite = 0;
 	env->dec_y = 0.0;
 	env->dec_x = 0.0;
+	env->x = 0;
+	env->y = 0;
+}
+
+t_env		*init_env(t_env *env)
+{
+	env = (t_env*)malloc(sizeof(*env));
+	env->mlx = mlx_init();
+	init_event(env);
 	return (env);
 }
 

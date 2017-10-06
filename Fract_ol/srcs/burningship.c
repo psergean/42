@@ -62,9 +62,9 @@ void				burningship(t_env *env)
 		y = 0;
 		while (y < env->heigth)
 		{
-			env->fract->c_r = ((float)x / env->fract->zoom_x + env->fract->x1)
+			env->fract->c_r = ((float)(x + env->x) / env->fract->zoom_x + env->fract->x1)
 				/ env->zoom;
-			env->fract->c_i = ((float)y / env->fract->zoom_y + env->fract->y1)
+			env->fract->c_i = ((float)(y + env->y) / env->fract->zoom_y + env->fract->y1)
 				/ env->zoom;
 			env->fract->z_r = 0;
 			env->fract->z_i = 0;

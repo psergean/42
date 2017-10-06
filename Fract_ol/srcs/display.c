@@ -28,5 +28,6 @@ void		display(t_env *env)
 	mlx_string_put(env->mlx, env->win, 10, 180, 0x00FFFFFF, "Zoom : + , -");
 	mlx_string_put(env->mlx, env->win, 10, 200, 0x00FFFFFF, "Reset : r");
 	mlx_string_put(env->mlx, env->win, 10, 220, 0x00FFFFFF, "Colors RGB: 1, 2, 3");
-	mlx_string_put(env->mlx, env->win, 10, 240, 0x00FFFFFF, "Quit : Esc");
+	mlx_string_put(env->mlx, env->win, 10, 240, 0x00FFFFFF, "Moose zoom : scroll");
+	mlx_string_put(env->mlx, env->win, 10, 260, 0x00FFFFFF, "Quit : Esc");
 }

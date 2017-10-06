@@ -49,9 +49,9 @@ int				key_hook3(int keycode, t_env *env)
 	if (keycode == 34 || keycode == 31)
 	{
 		mlx_clear_window(env->mlx, env->win);
-		env->ite = keycode == 34 ? env->ite + 1 : env->ite - 1;
-		if (env->ite > 20)
-			env->ite = 20;
+		env->ite = keycode == 34 ? env->ite + 2 : env->ite - 2;
+		if (env->ite > 60)
+			env->ite = 60;
 		if (env->ite < 0)
 			env->ite = 0;
 	}

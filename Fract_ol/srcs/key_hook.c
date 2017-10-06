@@ -94,6 +94,7 @@ int				key_hook(int keycode, t_env *env)
 	key_hook3(keycode, env);
 	key_hook4(keycode, env);
 	key_hook5(keycode, env);
+	key_hook_colors(keycode, env);
 	env->f(env);
 	mlx_string_put(env->mlx, env->win, 10, 0, 0x00FFFFFF, "Help : h");
 	if (keycode == 4)

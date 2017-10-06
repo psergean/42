@@ -31,9 +31,32 @@ void				colors(t_env *env)
 		env->color = 0x000000;
 	else
 	{
-		r = (env->fract->i * 5) * 2;
-		g = ((255 - (env->fract->i * 10)) * 2);
-		b = ((255 - (env->fract->i * 2)) * 2);
+		r = (env->fract->i * env->r_inc) * 2;
+		g = ((255 - (env->fract->i * env->g_inc)) * 2);
+		b = ((255 - (env->fract->i * env->b_inc)) * 2);
 		env->color = (r << 16) + (g << 8) + b;
 	}
+}
+
+void				key_hook_colors(int keycode, t_env *env)
+{
+	if (keycode == 18)
+	{
+		env->r_inc += 1;
+		if (env->r_inc == 10)
+			env->r_inc = 1;
+	}
+	if (keycode == 19)
+	{
+		env->g_inc += 1;
+		if (env->g_inc == 11)
+			env->g_inc = 1;
+	}
+	if (keycode == 20)
+	{
+		env->b_inc += 1;
+		if (env->b_inc == 10)
+			env->b_inc = 1;
+	}
+	mlx_clear_window(env->mlx, env->win);
 }

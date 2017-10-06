@@ -66,6 +66,9 @@ typedef struct		s_env
 	float			x;
 	float			y;
 	int				fractale;
+	int				r_inc;
+	int				g_inc;
+	int				b_inc;
 }					t_env;
 
 int					main(int ac, char **av);
@@ -99,6 +102,7 @@ int					key_hook2(int keycode, t_env *env);
 int					key_hook3(int keycode, t_env *env);
 int					key_hook4(int keycode, t_env *env);
 int					key_hook5(int keycode, t_env *env);
+void				key_hook_colors(int keycode, t_env *env);
 int					mouse_hook(int button, int x, int y, t_env *env);
 int					mouse_motion_notify(int x, int y, t_env *env);
 void				mouse_moving(t_env *env, int x, int y);

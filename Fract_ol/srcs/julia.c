@@ -27,7 +27,7 @@ t_fract				*init_julia_fract(t_env *env)
 	fract->x2 = 1 + env->dec_x;
 	fract->y1 = -1.2 + env->dec_y;
 	fract->y2 = 1.2 + env->dec_y;
-	fract->zoom_x = env->width / (fract->x2 - fract->x1);
+	fract->zoom_x = env->width  / (fract->x2 - fract->x1);
 	fract->zoom_y = env->heigth / (fract->y2 - fract->y1);
 	fract->ite_max = 200 + env->ite;
 	return (fract);
@@ -38,8 +38,8 @@ void				julia_ite(t_env *env, int x, int y)
 	float			tmp;
 
 	env->fract->i = 0;
-	env->fract->c_r = (env->fract->x1 * -1 - env->fract->x2) - env->mouse_x / env->width + env->fract->x1;
-	env->fract->c_i = (env->fract->y1 * -1 - env->fract->y2) - env->mouse_y / env->heigth + env->fract->y1;
+	// env->fract->c_r = (env->fract->x1 * -1 - env->fract->x2) - env->mouse_x / env->width + env->fract->x1;
+	// env->fract->c_i = (env->fract->y1 * -1 - env->fract->y2) - env->mouse_y / env->heigth + env->fract->y1;
 	while (env->fract->i < env->fract->ite_max && (env->fract->z_r *
 				env->fract->z_r) + (env->fract->z_i * env->fract->z_i) < 4)
 	{

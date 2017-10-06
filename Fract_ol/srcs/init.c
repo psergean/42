@@ -20,6 +20,9 @@ void 		init_event(t_env *env)
 	env->dec_x = 0.0;
 	env->x = 0;
 	env->y = 0;
+	env->r_inc = 5;
+	env->g_inc = 10;
+	env->b_inc = 2;
 }
 
 t_env		*init_env(t_env *env)

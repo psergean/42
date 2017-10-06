@@ -32,8 +32,8 @@ void				colors(t_env *env)
 	else
 	{
 		r = (env->fract->i * 5) * 2;
-		g = ((160 - (env->fract->i * 10)) * 2);
-		b = ((120 - (env->fract->i * 2)) * 2);
+		g = ((255 - (env->fract->i * 10)) * 2);
+		b = ((255 - (env->fract->i * 2)) * 2);
 		env->color = (r << 16) + (g << 8) + b;
 	}
 }

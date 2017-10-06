@@ -38,8 +38,8 @@ void				julia_ite(t_env *env, int x, int y)
 	float			tmp;
 
 	env->fract->i = 0;
-	env->fract->c_r = (env->fract->x1 * -1 - env->fract->x2) - env->mouse_x / env->width + env->fract->x1;
-	env->fract->c_i = (env->fract->y1 * -1 - env->fract->y2) - env->mouse_y / env->heigth + env->fract->y1;
+	// env->fract->c_r = (env->fract->x1 * -1 - env->fract->x2) - env->mouse_x / env->width + env->fract->x1;
+	// env->fract->c_i = (env->fract->y1 * -1 - env->fract->y2) - env->mouse_y / env->heigth + env->fract->y1;
 	while (env->fract->i < env->fract->ite_max && (env->fract->z_r *
 				env->fract->z_r) + (env->fract->z_i * env->fract->z_i) < 4)
 	{

@@ -71,7 +71,6 @@ int				key_hook3(int keycode, t_env *env)
 
 int				key_hook2(int keycode, t_env *env)
 {
-	printf("%d\n", keycode);
 	if (keycode == 37 || keycode == 40)
 	{
 		mlx_clear_window(env->mlx, env->win);

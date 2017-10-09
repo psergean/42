@@ -30,14 +30,20 @@ t_fract				*init_julia_anim_fract(t_env *env)
 void				julia_anim_ite(t_env *env, int x, int y)
 {
 	long double			tmp;
+	long double			square_zr;
+	long double			square_zi;
 
 	env->fract->i = 0;
 	while (env->fract->i < env->fract->ite_max && (env->fract->z_r *
 				env->fract->z_r) + (env->fract->z_i * env->fract->z_i) < 4)
 	{
 		tmp = env->fract->z_r;
-		env->fract->z_r = env->fract->z_r * env->fract->z_r - env->fract->z_i * env->fract->z_i - 0.8 + (0.6 / ((double)env->mouse_x / (double)env->width));
-		env->fract->z_i = 2 * env->fract->z_i * tmp + 0.27015 / ((double)env->mouse_y / (double)env->heigth);
+		square_zr = env->fract->z_r * env->fract->z_r;
+		square_zi = env->fract->z_i * env->fract->z_i;
+		env->fract->z_r = square_zr - square_zi - 0.8 +
+			(0.6 / ((double)env->mouse_x / (double)env->width));
+		env->fract->z_i = 2 * env->fract->z_i * tmp + 0.27015
+			/ ((double)env->mouse_y / (double)env->heigth);
 		env->fract->i++;
 	}
 	put_pixel_to_image(env, x, y);

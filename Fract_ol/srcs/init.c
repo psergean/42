@@ -12,7 +12,7 @@
 
 #include "./../includes/fract_ol.h"
 
-void 		init_event(t_env *env)
+void		init_event(t_env *env)
 {
 	env->ite = 0;
 	env->dec_y = 0.0;
@@ -24,8 +24,6 @@ void 		init_event(t_env *env)
 	env->b_inc = 2;
 	env->fractale = 0;
 	env->zoom = 250;
-	env->x = 1;
-	env->y = 1;
 	env->mouse_x = 500;
 	env->mouse_y = 500;
 }

@@ -14,17 +14,16 @@
 
 int				mouse_hook(int button, int x, int y, t_env *env)
 {
-	// printf("button == %d, (%d:%d), %f\n", button, x, y, env->zoom);
 	if (button == 4 || button == 5)
 	{
 		if (env->zoom >= 10)
 		{
 			env->zoom = button == 4 ? env->zoom * 1.2 : env->zoom / 1.2;
-			env->x = button == 4 ?  env->x + (x / 5) : env->x - (x / 5);
+			env->x = button == 4 ? env->x + (x / 5) : env->x - (x / 5);
 			env->y = button == 4 ? env->y + (y / 5) : env->y - (y / 5);
 			env->x = button == 4 ? env->x * 1.2 : env->x / 1.2;
 			env->y = button == 4 ? env->y * 1.2 : env->y / 1.2;
-			env->ite = button = 4 ? env->ite + 2 : env->ite - 2;
+			env->ite = button == 4 ? env->ite + 2 : env->ite - 2;
 			mlx_clear_window(env->mlx, env->win);
 			env->f(env);
 		}
@@ -42,7 +41,7 @@ int				mouse_hook(int button, int x, int y, t_env *env)
 
 void			mouse_moving(t_env *env, int x, int y)
 {
-	if (x > 0 && x < 500 && y > 0 &&  y < 500)
+	if (x > 0 && x < 500 && y > 0 && y < 500)
 	{
 		env->dec_x -= 0.1;
 		env->dec_y -= 0.1;
@@ -52,7 +51,7 @@ void			mouse_moving(t_env *env, int x, int y)
 		env->dec_x -= 0.1;
 		env->dec_y += 0.1;
 	}
-	if (x > 500 && x < 1000 && y > 0 &&  y < 500)
+	if (x > 500 && x < 1000 && y > 0 && y < 500)
 	{
 		env->dec_x += 0.1;
 		env->dec_y -= 0.1;

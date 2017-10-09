@@ -30,7 +30,8 @@ SRCS = ./srcs/main.c\
 	./srcs/lapin_de_douady.c\
 	./srcs/julia_bis.c\
 	./srcs/mouse_hook.c\
-	./srcs/pixels_and_colors.c
+	./srcs/pixels_and_colors.c\
+	./srcs/julia_animated.c
 
 OBJS = $(SRCS:.c=.o)
 

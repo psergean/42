@@ -14,18 +14,22 @@
 
 int				mouse_hook(int button, int x, int y, t_env *env)
 {
-	printf("button == %d, (%d:%d), %f\n", button, x, y, env->zoom);
+	// printf("button == %d, (%d:%d), %f\n", button, x, y, env->zoom);
 	if (button == 4 || button == 5)
 	{
-		env->zoom = button == 4 ? env->zoom / 1.2 : env->zoom * 1.2;
-		env->x = button == 4 ? env->x + (float)(env->width / 2 - x) :
-			env->x - (float)(env->width / 2 - x);
-		env->y = button == 4 ? env->y + (float)(env->heigth / 2 - y) :
-			env->y - (float)(env->heigth / 2 - y);
-		if (env->zoom < 1)
-			init_event(env);
-		mlx_clear_window(env->mlx, env->win);
-		env->f(env);
+		if (env->zoom >= 10)
+		{
+			env->zoom = button == 4 ? env->zoom * 1.2 : env->zoom / 1.2;
+			env->x = button == 4 ?  env->x + (x / 5) : env->x - (x / 5);
+			env->y = button == 4 ? env->y + (y / 5) : env->y - (y / 5);
+			env->x = button == 4 ? env->x * 1.2 : env->x / 1.2;
+			env->y = button == 4 ? env->y * 1.2 : env->y / 1.2;
+			env->ite = button = 4 ? env->ite + 2 : env->ite - 2;
+			mlx_clear_window(env->mlx, env->win);
+			env->f(env);
+		}
+		if (env->zoom < 10)
+			env->zoom = 10;
 	}
 	if (button == 1 || button == 2)
 		env->fractale = button == 1 ? env->fractale + 1 : env->fractale - 1;
@@ -64,13 +68,12 @@ int				mouse_motion_notify(int x, int y, t_env *env)
 {
 	if (x < 0 || x >= env->width || y < 0 || y >= env->heigth)
 		return (0);
-	if (env->fractale == 1 && env->f != &julia)
+	if (env->fractale == 1 && env->f != &julia_anim)
 		mouse_moving(env, x, y);
-	if (env->fractale == 1 && env->f == &julia)
+	if (env->fractale == 1 && env->f == &julia_anim)
 	{
 		env->mouse_x = x;
 		env->mouse_y = y;
-
 	}
 	mlx_clear_window(env->mlx, env->win);
 	env->f(env);

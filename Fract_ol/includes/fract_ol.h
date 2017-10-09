@@ -27,17 +27,13 @@
 
 typedef struct		s_fract
 {
-	float				c_r;
-	float				c_i;
-	float				z_r;
-	float				z_i;
+	long double	c_r;
+	long double	c_i;
+	long double	z_r;
+	long double	z_i;
 	int					i;
-	float				x1;
-	float				x2;
-	float				y1;
-	float				y2;
-	float				zoom_x;
-	float				zoom_y;
+	long double	x1;
+	long double	y1;
 	int					x;
 	int					y;
 	int					ite_max;
@@ -57,14 +53,14 @@ typedef struct		s_env
 	int				color;
 	t_fract			*fract;
 	void			(*f)(struct s_env *);
-	float			zoom;
+	long double	zoom;
 	int				ite;
 	float			dec_y;
 	float			dec_x;
 	int				mouse_x;
 	int				mouse_y;
-	float			x;
-	float			y;
+	long double	x;
+	long double	y;
 	int				fractale;
 	int				r_inc;
 	int				g_inc;
@@ -94,6 +90,9 @@ void				lapin(t_env *env);
 t_fract				*init_julia_bis_fract(t_env *env);
 void				julia_bis(t_env *env);
 void				julia_bis_ite(t_env *env, int x, int y);
+t_fract				*init_julia_anim_fract(t_env *env);
+void				julia_anim(t_env *env);
+void				julia_anim_ite(t_env *env, int x, int y);
 void				put_pixel_to_image(t_env *env, int x, int y);
 void				colors(t_env *env);
 void				display(t_env *env);

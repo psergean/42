@@ -26,6 +26,12 @@ int				key_hook5(int keycode, t_env *env)
 		init_event(env);
 		env->f = keycode == 11 ? &burningship : &dendrite;
 	}
+	if (keycode == 9)
+	{
+		mlx_clear_window(env->mlx, env->win);
+		init_event(env);
+		env->f = &julia_anim;
+	}
 	return (0);
 }
 
@@ -34,12 +40,12 @@ int				key_hook4(int keycode, t_env *env)
 	if (keycode == 126 || keycode == 125)
 	{
 		mlx_clear_window(env->mlx, env->win);
-		env->dec_y = keycode == 126 ? env->dec_y + 0.1 : env->dec_y - 0.1;
+		env->dec_y = keycode == 126 ? env->dec_y + 0.02 : env->dec_y - 0.02;
 	}
 	if (keycode == 123 || keycode == 124)
 	{
 		mlx_clear_window(env->mlx, env->win);
-		env->dec_x = keycode == 123 ? env->dec_x + 0.1 : env->dec_x - 0.1;
+		env->dec_x = keycode == 123 ? env->dec_x + 0.02 : env->dec_x - 0.02;
 	}
 	return (0);
 }
@@ -75,7 +81,7 @@ int				key_hook2(int keycode, t_env *env)
 	if (keycode == 27 || keycode == 24)
 	{
 		mlx_clear_window(env->mlx, env->win);
-		env->zoom = keycode == 24 ? env->zoom + 0.2 : env->zoom - 0.2;
+		env->zoom = keycode == 24 ? env->zoom * 1.2 : env->zoom / 1.2;
 		if (env->zoom < 1)
 			env->zoom = 1;
 	}

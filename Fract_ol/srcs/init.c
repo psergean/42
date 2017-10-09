@@ -14,7 +14,6 @@
 
 void 		init_event(t_env *env)
 {
-	env->zoom = 1;
 	env->ite = 0;
 	env->dec_y = 0.0;
 	env->dec_x = 0.0;
@@ -23,6 +22,12 @@ void 		init_event(t_env *env)
 	env->r_inc = 5;
 	env->g_inc = 10;
 	env->b_inc = 2;
+	env->fractale = 0;
+	env->zoom = 250;
+	env->x = 1;
+	env->y = 1;
+	env->mouse_x = 500;
+	env->mouse_y = 500;
 }
 
 t_env		*init_env(t_env *env)
@@ -59,6 +64,8 @@ t_env		*init(char **av, t_env *env)
 		env->f = &lapin;
 	else if (ft_strcmp(av[1], "julia_bis") == 0)
 		env->f = &julia_bis;
+	else if (ft_strcmp(av[1], "julia_anim") == 0)
+		env->f = &julia_anim;
 	else
 	{
 		ft_putstr_fd("Error:  I can only reading the fractale\n", 2);

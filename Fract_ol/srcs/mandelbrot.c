@@ -23,19 +23,15 @@ t_fract				*init_mandelbrot_fract(t_env *env)
 	fract->z_r = 0;
 	fract->z_i = 0;
 	fract->i = 0;
-	fract->x1 = -2.1 + env->dec_x;
-	fract->x2 = 0.6 + env->dec_x;
-	fract->y1 = -1.2 + env->dec_y;
-	fract->y2 = 1.2 + env->dec_y;
-	fract->zoom_x = env->width / (fract->x2 - fract->x1);
-	fract->zoom_y = env->heigth / (fract->y2 - fract->y1);
+	fract->x1 = -2 + env->dec_x;
+	fract->y1 = -2 + env->dec_y;
 	fract->ite_max = 120 + env->ite;
 	return (fract);
 }
 
 void				mandelbrot_ite(t_env *env, int x, int y)
 {
-	float			tmp;
+	long double			tmp;
 
 	env->fract->i = 0;
 	while (env->fract->i < env->fract->ite_max && (env->fract->z_r *
@@ -55,20 +51,20 @@ void				mandelbrot(t_env *env)
 	int				x;
 	int				y;
 
-	x = 0;
+	x = env->x;
 	env->fract = init_mandelbrot_fract(env);
-	while (x < env->width)
+	while (x < env->width + env->x)
 	{
-		y = 0;
-		while (y < env->heigth)
+		y = env->y;
+		while (y < env->heigth + env->y)
 		{
-			env->fract->c_r = ((float)(x + env->x) / env->fract->zoom_x +
-					env->fract->x1) / env->zoom;
-			env->fract->c_i = ((float)(y + env->y) / env->fract->zoom_y +
-					env->fract->y1) / env->zoom;
+			env->fract->c_r = ((double)(x) / env->zoom +
+					env->fract->x1);
+			env->fract->c_i = ((double)(y) / env->zoom +
+					env->fract->y1);
 			env->fract->z_r = 0;
 			env->fract->z_i = 0;
-			mandelbrot_ite(env, x, y);
+			mandelbrot_ite(env, x - env->x, y - env->y);
 			y++;
 		}
 		x++;

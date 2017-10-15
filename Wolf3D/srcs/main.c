@@ -21,13 +21,7 @@ int			main(int ac, char **av)
 		return (0);
 	if (!env)
 		env = init(av, env);
-	mlx_string_put(env->mlx, env->win, 10, 0, 0x00FFFFFF, "Help : h");
-	mlx_key_hook(env->win, key_hook, env);
-	mlx_mouse_hook(env->win, mouse_hook, env);
-	mlx_hook(env->win, MOTION_NOTIFY, MOTION_MASK_PTR,
-			mouse_motion_notify, env);
-	mlx_hook(env->win, 17, (1L << 17), ft_exit, env);
-	mlx_loop(env->mlx);
-	free(env);
+	mlx_management(env);
+	free_malloc(env);
 	return (0);
 }

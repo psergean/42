@@ -10,7 +10,7 @@
 #                                                                              #
 # **************************************************************************** #
 
-NAME = fractol
+NAME = wolf3D
 
 FLAGS = -Wall -Wextra -Werror
 
@@ -23,14 +23,11 @@ SRCS = ./srcs/main.c\
 	./srcs/key_hook.c\
 	./srcs/display.c\
 	./srcs/exit_error.c\
-	./srcs/mandelbrot.c\
-	./srcs/julia.c\
-	./srcs/burningship.c\
-	./srcs/dendrite.c\
-	./srcs/lapin_de_douady.c\
-	./srcs/julia_bis.c\
 	./srcs/mouse_hook.c\
-	./srcs/pixels_and_colors.c
+	./srcs/pixels_and_colors.c\
+	./srcs/mlx_management.c\
+	./srcs/read_map.c\
+	./srcs/raycasting.c
 
 OBJS = $(SRCS:.c=.o)
 
@@ -51,12 +48,12 @@ $(NAME):$(OBJS)
 
 clean:
 	rm -rf $(OBJS)
-	rm -rf ./includes/fract_ol.h.gch
+	rm -rf ./includes/wolf3D.h.gch
 	make -C $(LIBFT_PATH) clean
 
 fclean: clean
 	rm -rf $(NAME)
-	rm -rf ./includes/fdf.h.gch
+	rm -rf ./includes/wolf3D.h.gch
 	make -C $(LIBFT_PATH) fclean
 
 re: fclean all

@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   init.c                                             :+:      :+:    :+:   */
+/*   read_map.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: psergean <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -12,41 +12,34 @@
 
 #include "./../includes/wolf3D.h"
 
-// void 		init_event(t_env *env)
-// {
-// }
-
-void		init_coord(t_env *env, int x, int y, char *z, int i)
+void        read_map(t_env *env)
 {
-	t_coord		*coord;
+  int     i;
+  int     x;
+  int     y;
+  char    *map;
+  char    **map_split;
 
-	coord = (t_coord*)ft_memalloc(sizeof(coord));
-	coord->x = x;
-	coord->y = y;
-	coord->z = ft_atoi(z);
-	env->coord[i] = *coord;
-	free(coord);
-}
-
-t_env		*init_env(t_env *env)
-{
-	env = (t_env*)ft_memalloc(sizeof(*env));
-	// init_event(env);
-	return (env);
-}
-
-t_env		*init(char **av, t_env *env)
-{
-	env = init_env(env);
-	init_img(env);
-	if (ft_strcmp(av[1], "map") == 0)
-	{
-		open("./map/map", O_DIRECTORY);
-		env->fd = open("./map/map", O_RDONLY);
-		read_map(env);
-		close(env->fd);
-	}
-	else
-		ft_error(env, "invalid map : i only can read map.\n");
-	return (env);
+  i = 0;
+  y = 1;
+  env->coord = (t_coord*)ft_memalloc(sizeof(t_coord) * 576 + 1);
+  while(get_next_line(env->fd, &map) == 1)
+  {
+    map_split = ft_strsplit(map, ',');
+    x = 0;
+    while(map_split[x] != '\0')
+    {
+      // printf("%c", map_split[x][0]);
+      init_coord(env, x, y , map_split[x], i);
+      // printf("%d ", env->coord[i].z);
+      i++;
+      x++;
+    }
+    // printf("\n");
+    y++;
+    free_tab(map_split);
+    // printf("%s\n", map);
+    free(map);
+  }
+  // printf("i = %d\n", i);
 }

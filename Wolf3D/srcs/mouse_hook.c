@@ -10,11 +10,11 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "./../includes/fract_ol.h"
+#include "./../includes/wolf3D.h"
 
 int				mouse_hook(int button, int x, int y, t_env *env)
 {
-	printf("button == %d, (%d:%d), %f\n", button, x, y, env->zoom);
+	printf("button == %d, (%d:%d), %d\n", button, x, y, env->width);
 	return (0);
 }
 
@@ -23,7 +23,6 @@ int				mouse_motion_notify(int x, int y, t_env *env)
 	if (x < 0 || x >= env->width || y < 0 || y >= env->heigth)
 		return (0);
 	mlx_clear_window(env->mlx, env->win);
-	env->f(env);
 	mlx_string_put(env->mlx, env->win, 10, 0, 0x00FFFFFF, "Help : h");
 	return (1);
 }

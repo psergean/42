@@ -1,36 +1,46 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   exit_error.c                                       :+:      :+:    :+:   */
+/*   raycasting.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: psergean <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/09/14 13:37:51 by psergean          #+#    #+#             */
-/*   Updated: 2017/10/04 23:39:18 by psergean         ###   ########.fr       */
+/*   Created: 2017/09/14 13:02:36 by psergean          #+#    #+#             */
+/*   Updated: 2017/10/04 23:53:56 by psergean         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "./../includes/wolf3D.h"
 
-int			ft_exit(t_env *env)
+
+void         calc_pos_and_dir(t_calc *calc)
 {
-	free(env);
-	exit(0);
-	return (0);
+  
 }
 
-void		ft_error(t_env *env, char *str)
+t_calc       *init_calc(t_calc *calc)
 {
-	ft_putstr_fd(str, 2);
-	ft_exit(env);
+  calc->posX = 22;
+  calc->posY = 12;
+  calc->dirX = -1;
+  calc->dirY = 0;
+  calc->planeX = 0;
+  calc->planeY = 0.66;
+  return (calc);
 }
 
-int			check_input(int ac)
+void         raycasting(t_env *env)
 {
-	if (ac != 2)
-	{
-		ft_putstr_fd("Usage: ./wolf3D valid_map.\n", 2);
-		return (0);
-	}
-	return (1);
+  t_calc    *calc;
+  int       x;
+
+  calc = (t_calc*)ft_memalloc(sizeof(*calc));
+  init_calc(calc);
+  x = 0;
+  while (x < env->width)
+  {
+    calc_pos_and_dir(calc);
+    x++;
+  }
+  free(calc);
 }

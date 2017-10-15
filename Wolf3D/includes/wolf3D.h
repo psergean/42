@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fract_ol.h                                         :+:      :+:    :+:   */
+/*   wolf3D.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: psergean <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -10,12 +10,13 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FRACT_OL_H
-# define FRACT_OL_H
+#ifndef WOLF3D_H
+# define WOLF3D_H
 
 # include "./../minilibx_macos/mlx.h"
 # include "./../libft/includes/libft.h"
 # include "./../libft/includes/get_next_line.h"
+# include "./../includes/keypress.h"
 # include <sys/types.h>
 # include <sys/stat.h>
 # include <fcntl.h>
@@ -25,23 +26,45 @@
 # define MOTION_MASK_PTR (1L << 6)
 # define MOTION_NOTIFY 6
 
-typedef struct		s_fract
+typedef struct    s_coord
 {
-	float				c_r;
-	float				c_i;
-	float				z_r;
-	float				z_i;
-	int					i;
-	float				x1;
-	float				x2;
-	float				y1;
-	float				y2;
-	float				zoom_x;
-	float				zoom_y;
-	int					x;
-	int					y;
-	int					ite_max;
-}					t_fract;
+  int             x;
+  int             y;
+  int             z;
+}                 t_coord;
+
+
+typedef struct    s_color
+{
+  unsigned int    red;
+  unsigned int    green;
+  unsigned int    blue;
+}                 t_color;
+
+typedef struct    s_calc
+{
+  long double     posX;
+  long double     posY;
+  long double     dirX;
+  long double     dirY;
+  long double     planeX;
+  long double     planeY;
+  long double     cameraX;
+  long double     rayposX;
+  long double     rayposY;
+  long double     raydirX;
+  long double     raydirY;
+  int             mapX;
+  int             mapY;
+  long double     sideDistX;
+  long double     sideDistY;
+  long double     deltaDistX;
+  long double     deltaDistY;
+  long double     perpWallDist;
+  int             step x;
+  int             step y;
+  int             hit;
+}                 t_calc;
 
 typedef struct		s_env
 {
@@ -54,58 +77,44 @@ typedef struct		s_env
 	int				bpp;
 	int				size_line;
 	int				endian;
-	int				color;
-	t_fract			*fract;
+  int       color;
 	void			(*f)(struct s_env *);
-	float			zoom;
-	int				ite;
-	float			dec_y;
-	float			dec_x;
-	int				mouse_x;
-	int				mouse_y;
-	float			x;
-	float			y;
-	int				fractale;
-	int				r_inc;
-	int				g_inc;
-	int				b_inc;
+  int       fd;
+  t_coord   *coord;
 }					t_env;
 
 int					main(int ac, char **av);
+
 t_env				*init_env(t_env *env);
-void 				init_event(t_env *env);
+// void 				init_event(t_env *env);
+void	      init_coord(t_env *env, int x, int y, char *z, int i);
 void				init_img(t_env *env);
 t_env				*init(char **av, t_env *env);
-t_fract				*init_mandelbrot_fract(t_env *env);
-void				mandelbrot(t_env *env);
-void				mandetlbrot_ite(t_env *env, int x, int y);
-t_fract				*init_julia_fract(t_env *env);
-void				julia(t_env *env);
-void				julia_ite(t_env *env, int x, int y);
-t_fract				*init_burningship_fract(t_env *env);
-void				burningship(t_env *env);
-void				burningship_ite(t_env *env, int x, int y);
-t_fract				*init_dendrite_fract(t_env *env);
-void				dendrite_ite(t_env *env, int x, int y);
-void				dendrite(t_env *env);
-t_fract				*init_lapin_fract(t_env *env);
-void				lapin_ite(t_env *env, int x, int y);
-void				lapin(t_env *env);
-t_fract				*init_julia_bis_fract(t_env *env);
-void				julia_bis(t_env *env);
-void				julia_bis_ite(t_env *env, int x, int y);
+
+void        read_map(t_env *env);
+
+void        raycasting(t_env *env);
+t_calc      *init_calc(t_calc *calc);
+void        calc_pos_and_dir(t_calc *calc);
+
 void				put_pixel_to_image(t_env *env, int x, int y);
 void				colors(t_env *env);
+
 void				display(t_env *env);
+
 int					key_hook(int keycode, t_env *env);
 int					key_hook2(int keycode, t_env *env);
 int					key_hook3(int keycode, t_env *env);
 int					key_hook4(int keycode, t_env *env);
-int					key_hook5(int keycode, t_env *env);
 void				key_hook_colors(int keycode, t_env *env);
+
 int					mouse_hook(int button, int x, int y, t_env *env);
 int					mouse_motion_notify(int x, int y, t_env *env);
-void				mouse_moving(t_env *env, int x, int y);
+
+void 		    mlx_management(t_env *env);
+void        free_malloc(t_env *env);
+void			  free_tab(char **tab);
+void	   		free_coord(t_env *env);
 int					ft_exit(t_env *env);
 void				ft_error(t_env *env, char *str);
 int					check_input(int ac);

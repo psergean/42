@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "./../includes/fract_ol.h"
+#include "./../includes/wolf3D.h"
 
 void				put_pixel_to_image(t_env *env, int x, int y)
 {
@@ -27,36 +27,22 @@ void				colors(t_env *env)
 	int				g;
 	int				b;
 
-	if (env->fract->i == env->fract->ite_max)
+	r = 0;
+	if (r == 23)
 		env->color = 0x000000;
 	else
 	{
-		r = (env->fract->i * env->r_inc) * 2;
-		g = ((255 - (env->fract->i * env->g_inc)) * 2);
-		b = ((255 - (env->fract->i * env->b_inc)) * 2);
+		r = 255;
+		g = 255;
+		b = 255;
 		env->color = (r << 16) + (g << 8) + b;
 	}
 }
 
 void				key_hook_colors(int keycode, t_env *env)
 {
-	if (keycode == 18)
+	if (keycode == 27)
 	{
-		env->r_inc += 1;
-		if (env->r_inc == 10)
-			env->r_inc = 1;
+		mlx_clear_window(env->mlx, env->win);
 	}
-	if (keycode == 19)
-	{
-		env->g_inc += 1;
-		if (env->g_inc == 11)
-			env->g_inc = 1;
-	}
-	if (keycode == 20)
-	{
-		env->b_inc += 1;
-		if (env->b_inc == 10)
-			env->b_inc = 1;
-	}
-	mlx_clear_window(env->mlx, env->win);
 }

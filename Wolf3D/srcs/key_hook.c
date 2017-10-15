@@ -14,11 +14,11 @@
 
 int				key_hook4(int keycode, t_env *env)
 {
-	if (keycode == 126 || keycode == 125)
+	if (keycode == UP || keycode == DOWN)
 	{
 		mlx_clear_window(env->mlx, env->win);
 	}
-	if (keycode == 123 || keycode == 124)
+	if (keycode == LEFT || keycode == RIGTH)
 	{
 		mlx_clear_window(env->mlx, env->win);
 	}
@@ -30,7 +30,7 @@ int				key_hook3(int keycode, t_env *env)
 	if (keycode == 15)
 	{
 		mlx_clear_window(env->mlx, env->win);
-		init_event(env);
+		// init_event(env);
 	}
 	return (0);
 }
@@ -41,16 +41,13 @@ int				key_hook2(int keycode, t_env *env)
 	if (keycode == 27 || keycode == 24)
 	{
 		mlx_clear_window(env->mlx, env->win);
-		env->zoom = keycode == 24 ? env->zoom + 0.2 : env->zoom - 0.2;
-		if (env->zoom < 1)
-			env->zoom = 1;
 	}
 	return (0);
 }
 
 int				key_hook(int keycode, t_env *env)
 {
-	if (keycode == 53)
+	if (keycode == ESC)
 	{
 		mlx_destroy_window(env->mlx, env->win);
 		free(env);
@@ -64,7 +61,6 @@ int				key_hook(int keycode, t_env *env)
 	if (keycode == 4)
 	{
 		mlx_clear_window(env->mlx, env->win);
-		env->f(env);
 		display(env);
 	}
 	return (0);

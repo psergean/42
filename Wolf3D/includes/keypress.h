@@ -1,36 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   exit_error.c                                       :+:      :+:    :+:   */
+/*   keypress.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: psergean <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/09/14 13:37:51 by psergean          #+#    #+#             */
-/*   Updated: 2017/10/04 23:39:18 by psergean         ###   ########.fr       */
+/*   Created: 2017/09/14 12:45:22 by psergean          #+#    #+#             */
+/*   Updated: 2017/10/05 02:00:51 by psergean         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "./../includes/wolf3D.h"
+#ifndef KEYPRESS_H
+# define KEYPRESS_H
 
-int			ft_exit(t_env *env)
-{
-	free(env);
-	exit(0);
-	return (0);
-}
+# define UP 126
+# define DOWN 125
+# define LEFT 123
+# define RIGTH 124
 
-void		ft_error(t_env *env, char *str)
-{
-	ft_putstr_fd(str, 2);
-	ft_exit(env);
-}
+# define ESC 53
 
-int			check_input(int ac)
-{
-	if (ac != 2)
-	{
-		ft_putstr_fd("Usage: ./wolf3D valid_map.\n", 2);
-		return (0);
-	}
-	return (1);
-}
+#endif

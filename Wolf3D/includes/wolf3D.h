@@ -26,14 +26,6 @@
 # define MOTION_MASK_PTR (1L << 6)
 # define MOTION_NOTIFY 6
 
-typedef struct    s_coord
-{
-  int             x;
-  int             y;
-  int             z;
-}                 t_coord;
-
-
 typedef struct    s_color
 {
   unsigned int    red;
@@ -61,9 +53,10 @@ typedef struct    s_calc
   long double     deltaDistX;
   long double     deltaDistY;
   long double     perpWallDist;
-  int             step x;
-  int             step y;
+  int             stepX;
+  int             stepY;
   int             hit;
+  int             side;
 }                 t_calc;
 
 typedef struct		s_env
@@ -80,14 +73,13 @@ typedef struct		s_env
   int       color;
 	void			(*f)(struct s_env *);
   int       fd;
-  t_coord   *coord;
+  int       **map;
 }					t_env;
 
 int					main(int ac, char **av);
 
 t_env				*init_env(t_env *env);
 // void 				init_event(t_env *env);
-void	      init_coord(t_env *env, int x, int y, char *z, int i);
 void				init_img(t_env *env);
 t_env				*init(char **av, t_env *env);
 
@@ -95,7 +87,10 @@ void        read_map(t_env *env);
 
 void        raycasting(t_env *env);
 t_calc      *init_calc(t_calc *calc);
-void        calc_pos_and_dir(t_calc *calc);
+void        calc_pos_and_dir(t_calc *calc, t_env *env, int x);
+void        calc_step_and_init_dist(t_calc *calc);
+void        calc_if_hit_wall(t_calc *calc, t_env *env);
+void        draw(t_calc *calc, t_env *env, int x);
 
 void				put_pixel_to_image(t_env *env, int x, int y);
 void				colors(t_env *env);
@@ -113,8 +108,8 @@ int					mouse_motion_notify(int x, int y, t_env *env);
 
 void 		    mlx_management(t_env *env);
 void        free_malloc(t_env *env);
-void			  free_tab(char **tab);
-void	   		free_coord(t_env *env);
+void			  free_tab_char(char **tab);
+void			  free_tab_int(int **tab);
 int					ft_exit(t_env *env);
 void				ft_error(t_env *env, char *str);
 int					check_input(int ac);

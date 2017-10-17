@@ -16,18 +16,6 @@
 // {
 // }
 
-void		init_coord(t_env *env, int x, int y, char *z, int i)
-{
-	t_coord		*coord;
-
-	coord = (t_coord*)ft_memalloc(sizeof(coord));
-	coord->x = x;
-	coord->y = y;
-	coord->z = ft_atoi(z);
-	env->coord[i] = *coord;
-	free(coord);
-}
-
 t_env		*init_env(t_env *env)
 {
 	env = (t_env*)ft_memalloc(sizeof(*env));

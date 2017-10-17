@@ -27,7 +27,8 @@ SRCS = ./srcs/main.c\
 	./srcs/pixels_and_colors.c\
 	./srcs/mlx_management.c\
 	./srcs/read_map.c\
-	./srcs/raycasting.c
+	./srcs/raycasting.c\
+	./srcs/free_malloc.c
 
 OBJS = $(SRCS:.c=.o)
 

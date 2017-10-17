@@ -23,36 +23,20 @@ void		init_img(t_env *env)
 			&(env->size_line), &(env->endian));
 }
 
+int			loop_hook(t_env *env)
+{
+	raycasting(env);
+	mlx_put_image_to_window(env->mlx, env->win, env->img, 0, 0);
+	return (0);
+}
+
 void 		mlx_management(t_env *env)
 {
   mlx_key_hook(env->win, key_hook, env);
   mlx_mouse_hook(env->win, mouse_hook, env);
   mlx_hook(env->win, MOTION_NOTIFY, MOTION_MASK_PTR,
       mouse_motion_notify, env);
+	mlx_loop_hook(env->mlx, loop_hook, env);
   mlx_hook(env->win, 17, (1L << 17), ft_exit, env);
   mlx_loop(env->mlx);
-}
-
-void			free_coord(t_env *env)
-{
-  free(env->coord);
-}
-
-void			free_tab(char **tab)
-{
-	int		i;
-
-	i = 0;
-	while (tab[i] != NULL)
-	{
-		free(tab[i]);
-		i++;
-	}
-	free(tab);
-}
-
-void   free_malloc(t_env *env)
-{
-  free_coord(env);
-  free(env);
 }

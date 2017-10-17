@@ -1,4 +1,4 @@
-/* ************************************************************************** */
+ /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   read_map.c                                         :+:      :+:    :+:   */
@@ -14,32 +14,27 @@
 
 void        read_map(t_env *env)
 {
-  int     i;
   int     x;
   int     y;
-  char    *map;
-  char    **map_split;
+  char    *line;
+  char    **map;
 
-  i = 0;
-  y = 1;
-  env->coord = (t_coord*)ft_memalloc(sizeof(t_coord) * 576 + 1);
-  while(get_next_line(env->fd, &map) == 1)
+  y = 0;
+  env->map = (int**)ft_memalloc(sizeof(int *) * 23);
+  while(get_next_line(env->fd, &line) == 1)
   {
-    map_split = ft_strsplit(map, ',');
+    env->map[y] = (int*)ft_memalloc(sizeof(int) * 23 + 1);
+    map = ft_strsplit(line, ',');
     x = 0;
-    while(map_split[x] != '\0')
+    while(map[x] != '\0')
     {
-      // printf("%c", map_split[x][0]);
-      init_coord(env, x, y , map_split[x], i);
-      // printf("%d ", env->coord[i].z);
-      i++;
+      env->map[y][x] = ft_atoi(map[x]);
+      printf("%d ", env->map[y][x]);
       x++;
     }
-    // printf("\n");
+    printf("\n");
     y++;
-    free_tab(map_split);
-    // printf("%s\n", map);
-    free(map);
+    free_tab_char(map);
+    free(line);
   }
-  // printf("i = %d\n", i);
 }

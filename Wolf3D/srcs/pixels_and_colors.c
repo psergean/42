@@ -17,7 +17,6 @@ void				put_pixel_to_image(t_env *env, int x, int y)
 	int				i;
 
 	i = (x * (env->bpp / 8)) + (y * env->size_line);
-	// colors(env, calc);
 	ft_memcpy(env->pxl + i, &env->color, 4);
 }
 
@@ -31,17 +30,13 @@ int				colors(t_env *env, t_calc *calc)
 		}
 		if (calc->stepY == 1)
 		{
-			return (env->color = BEIGE);
+			return (env->color = SALMON);
 		}
 	}
 	if (calc->stepX == -1)
-	{
 		return (env->color = TAN);
-	}
 	else
-	{
-		return (env->color = env->color = DARKSALMON);
-	}
+		return (env->color = DARKSALMON);
 }
 
 void          draw(t_calc *calc, t_env *env, int x, int drawstart, int drawend)
@@ -63,15 +58,7 @@ void          draw(t_calc *calc, t_env *env, int x, int drawstart, int drawend)
 	y--;
 	while(y++ < env->heigth)
 	{
-		env->color = SALMON;
+		env->color = BEIGE;
 		put_pixel_to_image(env, x, y);
-	}
-}
-
-void				key_hook_colors(int keycode, t_env *env)
-{
-	if (keycode == 27)
-	{
-		mlx_clear_window(env->mlx, env->win);
 	}
 }

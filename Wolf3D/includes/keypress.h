@@ -19,5 +19,6 @@
 # define RIGTH 124
 
 # define ESC 53
+# define KEY_R 15
 
 #endif

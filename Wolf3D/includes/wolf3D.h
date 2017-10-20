@@ -69,21 +69,20 @@ typedef struct    s_calc
 
 typedef struct		s_env
 {
-	void			*mlx;
-	void			*win;
-	void			*img;
-	int				width;
-	int				heigth;
-	char			*pxl;
-	int				bpp;
-	int				size_line;
-	int				endian;
-  int       color;
-	void			(*f)(struct s_env *);
-  int       fd;
-  int       **map;
-  t_cmd     *cmd;
-}					t_env;
+	void			      *mlx;
+	void			      *win;
+	void			      *img;
+	int				      width;
+	int				      heigth;
+	char			      *pxl;
+	int				      bpp;
+	int			       	size_line;
+	int				      endian;
+  int             color;
+  int             fd;
+  int             **map;
+  t_cmd           *cmd;
+}					        t_env;
 
 int					main(int ac, char **av);
 
@@ -110,8 +109,7 @@ void				display(t_env *env);
 int					key_hook(int keycode, t_env *env);
 int					key_hook2(int keycode, t_env *env);
 int					key_hook3(int keycode, t_env *env);
-int					key_hook4(int keycode, t_env *env);
-void				key_hook_colors(int keycode, t_env *env);
+int				  key_hook4(int keycode, t_env *env);
 
 int					mouse_hook(int button, int x, int y, t_env *env);
 int					mouse_motion_notify(int x, int y, t_env *env);

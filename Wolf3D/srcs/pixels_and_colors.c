@@ -27,20 +27,20 @@ int				colors(t_env *env, t_calc *calc)
 	{
 		if (calc->stepY == -1)
 		{
-			return (env->color = TOMATO);
+			return (env->color = LIGTHSALMON);
 		}
 		if (calc->stepY == 1)
 		{
-			return (env->color = GREENYELLOW);
+			return (env->color = BEIGE);
 		}
 	}
 	if (calc->stepX == -1)
 	{
-		return (env->color = PALETURQUOISE);
+		return (env->color = TAN);
 	}
 	else
 	{
-		return (env->color = env->color = PURPLE);
+		return (env->color = env->color = DARKSALMON);
 	}
 }
 
@@ -51,7 +51,7 @@ void          draw(t_calc *calc, t_env *env, int x, int drawstart, int drawend)
 	y = -1;
 	while(++y < drawstart)
 	{
-		env->color = WHITE;
+		env->color = DARKSLATE;
 		put_pixel_to_image(env, x, y);
 	}
 	y--;
@@ -63,7 +63,7 @@ void          draw(t_calc *calc, t_env *env, int x, int drawstart, int drawend)
 	y--;
 	while(y++ < env->heigth)
 	{
-		env->color = LIGTHSALMON;
+		env->color = SALMON;
 		put_pixel_to_image(env, x, y);
 	}
 }

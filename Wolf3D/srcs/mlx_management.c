@@ -32,11 +32,11 @@ int			loop_hook(t_env *env)
 
 void 		mlx_event_management(t_env *env)
 {
+	mlx_loop_hook(env->mlx, loop_hook, env);
   mlx_key_hook(env->win, key_hook, env);
   mlx_mouse_hook(env->win, mouse_hook, env);
   mlx_hook(env->win, MOTION_NOTIFY, MOTION_MASK_PTR,
       mouse_motion_notify, env);
-	mlx_loop_hook(env->mlx, loop_hook, env);
   mlx_hook(env->win, 17, (1L << 17), ft_exit, env);
   mlx_loop(env->mlx);
 }

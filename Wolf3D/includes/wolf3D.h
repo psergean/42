@@ -17,6 +17,7 @@
 # include "./../libft/includes/libft.h"
 # include "./../libft/includes/get_next_line.h"
 # include "./../includes/keypress.h"
+# include "./../includes/colors.h"
 # include <sys/types.h>
 # include <sys/stat.h>
 # include <fcntl.h>
@@ -26,12 +27,19 @@
 # define MOTION_MASK_PTR (1L << 6)
 # define MOTION_NOTIFY 6
 
-typedef struct    s_color
+typedef struct    s_cmd
 {
-  unsigned int    red;
-  unsigned int    green;
-  unsigned int    blue;
-}                 t_color;
+  long double     posX;
+  long double     posY;
+  long double     dirX;
+  long double     dirY;
+  long double     oldDirX;
+  long double     planeX;
+  long double     planeY;
+  long double     oldPlaneX;
+  long double     movespeed;
+  long double     rotspeed;
+}                 t_cmd;
 
 typedef struct    s_calc
 {
@@ -74,26 +82,28 @@ typedef struct		s_env
 	void			(*f)(struct s_env *);
   int       fd;
   int       **map;
+  t_cmd     *cmd;
 }					t_env;
 
 int					main(int ac, char **av);
 
 t_env				*init_env(t_env *env);
-// void 				init_event(t_env *env);
 void				init_img(t_env *env);
 t_env				*init(char **av, t_env *env);
+void 		     init_command(t_env *env);
 
 void        read_map(t_env *env);
 
 void        raycasting(t_env *env);
-t_calc      *init_calc(t_calc *calc);
 void        calc_pos_and_dir(t_calc *calc, t_env *env, int x);
 void        calc_step_and_init_dist(t_calc *calc);
 void        calc_if_hit_wall(t_calc *calc, t_env *env);
-void        draw(t_calc *calc, t_env *env, int x);
+void        calc_draw_start_end(t_calc *calc, t_env *env, int x);
+void        draw(t_calc *calc, t_env *env, int x, int drawstart, int drawend);
+int			    loop_hook(t_env *env);
 
 void				put_pixel_to_image(t_env *env, int x, int y);
-void				colors(t_env *env);
+int				  colors(t_env *env, t_calc *calc);
 
 void				display(t_env *env);
 
@@ -106,7 +116,7 @@ void				key_hook_colors(int keycode, t_env *env);
 int					mouse_hook(int button, int x, int y, t_env *env);
 int					mouse_motion_notify(int x, int y, t_env *env);
 
-void 		    mlx_management(t_env *env);
+void 		    mlx_event_management(t_env *env);
 void        free_malloc(t_env *env);
 void			  free_tab_char(char **tab);
 void			  free_tab_int(int **tab);

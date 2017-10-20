@@ -41,5 +41,6 @@ void			free_tab_char(char **tab)
 void   free_malloc(t_env *env)
 {
 	free_tab_int(env->map);
+	free(env->cmd);
   free(env);
 }

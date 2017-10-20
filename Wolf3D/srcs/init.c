@@ -12,14 +12,23 @@
 
 #include "./../includes/wolf3D.h"
 
-// void 		init_event(t_env *env)
-// {
-// }
+void 		init_command(t_env *env)
+{
+	env->cmd->posX = 22;
+	env->cmd->posY = 4;
+	env->cmd->dirX = -1;
+	env->cmd->dirY = 0;
+	env->cmd->planeX = 0;
+	env->cmd->planeY = 0.66;
+	env->cmd->movespeed = 0.50;
+	env->cmd->rotspeed = 0.50;
+}
 
 t_env		*init_env(t_env *env)
 {
 	env = (t_env*)ft_memalloc(sizeof(*env));
-	// init_event(env);
+	env->cmd = (t_cmd*)ft_memalloc(sizeof(t_cmd));
+	init_command(env);
 	return (env);
 }
 

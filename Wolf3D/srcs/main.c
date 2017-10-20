@@ -21,7 +21,7 @@ int			main(int ac, char **av)
 		return (0);
 	if (!env)
 		env = init(av, env);
-	mlx_management(env);
+	mlx_event_management(env);
 	free_malloc(env);
 	return (0);
 }

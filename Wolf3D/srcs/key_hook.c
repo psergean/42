@@ -14,13 +14,37 @@
 
 int				key_hook4(int keycode, t_env *env)
 {
-	if (keycode == UP || keycode == DOWN)
+	if (keycode == UP)
 	{
-		mlx_clear_window(env->mlx, env->win);
+		if (env->map[(int)env->cmd->posY][(int)(env->cmd->posX + env->cmd->dirX * env->cmd->movespeed)] == 0)
+			env->cmd->posX += env->cmd->dirX * env->cmd->movespeed;
+		if (env->map[(int)(env->cmd->posY + env->cmd->dirY * env->cmd->movespeed)][(int)env->cmd->posX] == 0)
+			env->cmd->posY += env->cmd->dirY * env->cmd->movespeed;
 	}
-	if (keycode == LEFT || keycode == RIGTH)
+	if (keycode == DOWN)
 	{
-		mlx_clear_window(env->mlx, env->win);
+		if (env->map[(int)env->cmd->posY][(int)(env->cmd->posX + env->cmd->dirX * env->cmd->movespeed)] == 0)
+			env->cmd->posX -= env->cmd->dirX * env->cmd->movespeed;
+		if (env->map[(int)(env->cmd->posY + env->cmd->dirY * env->cmd->movespeed)][(int)env->cmd->posX] == 0)
+			env->cmd->posY -= env->cmd->dirY * env->cmd->movespeed;
+	}
+	if (keycode == RIGTH)
+	{
+		env->cmd->oldDirX = env->cmd->dirX;
+		env->cmd->dirX = env->cmd->dirX * cos(-(env->cmd->rotspeed)) - env->cmd->dirY * sin(-(env->cmd->rotspeed));
+		env->cmd->dirY = env->cmd->oldDirX * sin(-(env->cmd->rotspeed)) + env->cmd->dirY * cos(-(env->cmd->rotspeed));
+		env->cmd->oldPlaneX = env->cmd->planeX;
+		env->cmd->planeX = env->cmd->planeX * cos(-(env->cmd->rotspeed)) - env->cmd->planeY * sin(-(env->cmd->rotspeed));
+		env->cmd->planeY = env->cmd->oldPlaneX * sin(-(env->cmd->rotspeed)) + env->cmd->planeY * cos(-(env->cmd->rotspeed));
+	}
+	if (keycode == LEFT)
+	{
+		env->cmd->oldDirX = env->cmd->dirX;
+		env->cmd->dirX = env->cmd->dirX * cos((env->cmd->rotspeed)) - env->cmd->dirY * sin((env->cmd->rotspeed));
+		env->cmd->dirY = env->cmd->oldDirX * sin((env->cmd->rotspeed)) + env->cmd->dirY * cos((env->cmd->rotspeed));
+		env->cmd->oldPlaneX = env->cmd->planeX;
+		env->cmd->planeX = env->cmd->planeX * cos((env->cmd->rotspeed)) - env->cmd->planeY * sin((env->cmd->rotspeed));
+		env->cmd->planeY = env->cmd->oldPlaneX * sin((env->cmd->rotspeed)) + env->cmd->planeY * cos((env->cmd->rotspeed));
 	}
 	return (0);
 }

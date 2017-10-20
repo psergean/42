@@ -30,7 +30,7 @@ int			loop_hook(t_env *env)
 	return (0);
 }
 
-void 		mlx_management(t_env *env)
+void 		mlx_event_management(t_env *env)
 {
   mlx_key_hook(env->win, key_hook, env);
   mlx_mouse_hook(env->win, mouse_hook, env);

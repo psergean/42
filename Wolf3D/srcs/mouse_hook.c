@@ -22,6 +22,6 @@ int				mouse_motion_notify(int x, int y, t_env *env)
 {
 	if (x < 0 || x >= env->width || y < 0 || y >= env->heigth)
 		return (0);
-	mlx_clear_window(env->mlx, env->win);
+	// mlx_clear_window(env->mlx, env->win);
 	return (1);
 }

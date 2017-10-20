@@ -17,25 +17,54 @@ void				put_pixel_to_image(t_env *env, int x, int y)
 	int				i;
 
 	i = (x * (env->bpp / 8)) + (y * env->size_line);
-	colors(env);
+	// colors(env, calc);
 	ft_memcpy(env->pxl + i, &env->color, 4);
 }
 
-void				colors(t_env *env)
+int				colors(t_env *env, t_calc *calc)
 {
-	int				r;
-	int				g;
-	int				b;
-
-	r = 0;
-	if (r == 23)
-		env->color = 0x000000;
+	if (calc->side == 1)
+	{
+		if (calc->stepY == -1)
+		{
+			return (env->color = TOMATO);
+		}
+		if (calc->stepY == 1)
+		{
+			return (env->color = GREENYELLOW);
+		}
+	}
+	if (calc->stepX == -1)
+	{
+		return (env->color = PALETURQUOISE);
+	}
 	else
 	{
-		r = 48;
-		g = 205;
-		b = 115;
-		env->color = (r << 16) + (g << 8) + b;
+		return (env->color = env->color = PURPLE);
+	}
+}
+
+void          draw(t_calc *calc, t_env *env, int x, int drawstart, int drawend)
+{
+	int		y;
+
+	y = -1;
+	while(++y < drawstart)
+	{
+		env->color = WHITE;
+		put_pixel_to_image(env, x, y);
+	}
+	y--;
+	while(++y <= drawend && y < env->heigth)
+	{
+		colors(env, calc);
+		put_pixel_to_image(env, x, y);
+	}
+	y--;
+	while(y++ < env->heigth)
+	{
+		env->color = LIGTHSALMON;
+		put_pixel_to_image(env, x, y);
 	}
 }
 

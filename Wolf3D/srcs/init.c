@@ -20,8 +20,8 @@ void 		init_command(t_env *env)
 	env->cmd->dirY = 0;
 	env->cmd->planeX = 0;
 	env->cmd->planeY = 0.66;
-	env->cmd->movespeed = 0.50;
-	env->cmd->rotspeed = 0.50;
+	env->cmd->movespeed = 0.10;
+	env->cmd->rotspeed = 0.10;
 }
 
 t_env		*init_env(t_env *env)

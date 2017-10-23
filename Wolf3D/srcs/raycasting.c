@@ -18,12 +18,12 @@ void          calc_draw_start_end(t_calc *calc, t_env *env, int x)
   int         drawstart;
   int         drawend;
 
-  if (calc->side == 0)
-    calc->perpWallDist = (calc->mapX - calc->rayposX +
-      (1 - calc->stepX) / 2) / calc->raydirX;
-  else
-    calc->perpWallDist = (calc->mapY - calc->rayposY +
-      (1 - calc->stepY) / 2) / calc->raydirY;
+  // if (calc->side == 0)
+  //   calc->perpWallDist = (calc->mapX - calc->rayposX +
+  //     (1 - calc->stepX) / 2) / calc->raydirX;
+  // else
+  //   calc->perpWallDist = (calc->mapY - calc->rayposY +
+  //     (1 - calc->stepY) / 2) / calc->raydirY;
   lineHeigth = (int)(env->heigth / calc->perpWallDist);
   drawstart = -lineHeigth / 2 + env->heigth / 2;
   if (drawstart < 0)
@@ -51,7 +51,15 @@ void          calc_if_hit_wall(t_calc *calc, t_env *env)
       calc->side = 1;
     }
     if (env->map[calc->mapY][calc->mapX] > 0)
+    {
       calc->hit = 1;
+      if (calc->side == 0)
+        calc->perpWallDist = (calc->mapX - calc->rayposX +
+          (1 - calc->stepX) / 2) / calc->raydirX;
+      else
+        calc->perpWallDist = (calc->mapY - calc->rayposY +
+          (1 - calc->stepY) / 2) / calc->raydirY;
+    }
   }
 }
 

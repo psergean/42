@@ -14,6 +14,7 @@
 
 int				key_hook2(int keycode, t_env *env)
 {
+	long double		tmp;
 	if (keycode == UP)
 	{
 		if (env->map[(int)env->cmd->posY][(int)(env->cmd->posX
@@ -27,10 +28,21 @@ int				key_hook2(int keycode, t_env *env)
 	{
 		if (env->map[(int)env->cmd->posY][(int)(env->cmd->posX
 			+ env->cmd->dirX * env->cmd->movespeed)] == 0)
+		{
+			tmp = env->cmd->posX;
 			env->cmd->posX -= env->cmd->dirX * env->cmd->movespeed;
+			if (env->map[(int)env->cmd->posY][(int)env->cmd->posX] > 0)
+				env->cmd->posX = tmp;
+		}
 		if (env->map[(int)(env->cmd->posY + env->cmd->dirY
 			* env->cmd->movespeed)][(int)env->cmd->posX] == 0)
+		{
+			tmp = env->cmd->posY;
 			env->cmd->posY -= env->cmd->dirY * env->cmd->movespeed;
+			if (env->map[(int)env->cmd->posY][(int)env->cmd->posX] > 0)
+				env->cmd->posY = tmp;
+		}
+		printf("env->map[%d][%d]\n", (int)env->cmd->posY, (int)env->cmd->posX);
 	}
 	return (0);
 }

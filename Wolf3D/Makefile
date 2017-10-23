@@ -50,11 +50,13 @@ $(NAME):$(OBJS)
 clean:
 	rm -rf $(OBJS)
 	rm -rf ./includes/wolf3D.h.gch
+	rm -rf ./wolf3D.dSYM
 	make -C $(LIBFT_PATH) clean
 
 fclean: clean
 	rm -rf $(NAME)
 	rm -rf ./includes/wolf3D.h.gch
+	rm -rf ./wolf3D.dSYM
 	make -C $(LIBFT_PATH) fclean
 
 re: fclean all

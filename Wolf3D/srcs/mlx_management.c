@@ -25,6 +25,7 @@ void		init_img(t_env *env)
 
 int			loop_hook(t_env *env)
 {
+	mlx_clear_window(env->mlx, env->win);
 	raycasting(env);
 	mlx_put_image_to_window(env->mlx, env->win, env->img, 0, 0);
 	return (0);
@@ -32,11 +33,12 @@ int			loop_hook(t_env *env)
 
 void 		mlx_event_management(t_env *env)
 {
-	mlx_loop_hook(env->mlx, loop_hook, env);
   mlx_key_hook(env->win, key_hook, env);
-  mlx_mouse_hook(env->win, mouse_hook, env);
-  mlx_hook(env->win, MOTION_NOTIFY, MOTION_MASK_PTR,
-      mouse_motion_notify, env);
-  mlx_hook(env->win, 17, (1L << 17), ft_exit, env);
+	mlx_hook(env->win, KEY_PRESS, KEY_PRESS_MASK, key_hook, env);
+	mlx_hook(env->win, MOTION_NOTIFY, PTR_MOTION_MASK,
+		mouse_motion_notify, env);
+	mlx_hook(env->win, DESTROY_NOTIFY, STRUCT_NOTIFY_MASK, ft_exit, env);
+	mlx_mouse_hook(env->win, mouse_hook, env);
+	mlx_loop_hook(env->mlx, loop_hook, env);
   mlx_loop(env->mlx);
 }

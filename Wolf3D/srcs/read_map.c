@@ -20,10 +20,10 @@ void        read_map(t_env *env)
   char    **map;
 
   y = 0;
-  env->map = (int**)ft_memalloc(sizeof(int *) * 23);
+  env->map = (int**)ft_memalloc(sizeof(int *) * 24);
   while(get_next_line(env->fd, &line) == 1)
   {
-    env->map[y] = (int*)ft_memalloc(sizeof(int) * 23 + 1);
+    env->map[y] = (int*)ft_memalloc(sizeof(int) * 24);
     map = ft_strsplit(line, ',');
     x = 0;
     while(map[x] != '\0')

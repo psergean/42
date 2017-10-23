@@ -18,6 +18,9 @@ void				put_pixel_to_image(t_env *env, int x, int y)
 
 	i = (x * (env->bpp / 8)) + (y * env->size_line);
 	ft_memcpy(env->pxl + i, &env->color, 4);
+	// env->pxl[i] = env->color;
+	// env->pxl[++i] = env->color >> 8;
+	// env->pxl[++i] = env->color >> 16;
 }
 
 int				colors(t_env *env, t_calc *calc)

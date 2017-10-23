@@ -24,9 +24,12 @@
 # include <stdlib.h>
 # include <stdio.h>
 # include <math.h>
-# define MOTION_MASK_PTR (1L << 6)
+# define PTR_MOTION_MASK (1L << 6)
 # define MOTION_NOTIFY 6
-
+# define KEY_PRESS_MASK (1L << 0)
+# define KEY_PRESS 2
+# define STRUCT_NOTIFY_MASK (1L << 17)
+# define DESTROY_NOTIFY 17
 typedef struct    s_cmd
 {
   long double     posX;
@@ -89,7 +92,7 @@ int					main(int ac, char **av);
 t_env				*init_env(t_env *env);
 void				init_img(t_env *env);
 t_env				*init(char **av, t_env *env);
-void 		     init_command(t_env *env);
+void 		    init_command(t_env *env);
 
 void        read_map(t_env *env);
 

@@ -17,10 +17,12 @@ void				put_pixel_to_image(t_env *env, int x, int y)
 	int				i;
 
 	i = (x * (env->bpp / 8)) + (y * env->size_line);
-	ft_memcpy(env->pxl + i, &env->color, 4);
+	if (!(ft_memcpy(env->pxl + i, &env->color, 4)))
+		return ;
 	// env->pxl[i] = env->color;
 	// env->pxl[++i] = env->color >> 8;
 	// env->pxl[++i] = env->color >> 16;
+	// printf("env->bpp = %d\n", i);
 }
 
 int				colors(t_env *env, t_calc *calc)

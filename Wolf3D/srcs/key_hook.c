@@ -27,7 +27,7 @@ int				key_hook2(int keycode, t_env *env)
 	if (keycode == DOWN)
 	{
 		if (env->map[(int)env->cmd->posY][(int)(env->cmd->posX
-			+ env->cmd->dirX * env->cmd->movespeed)] == 0)
+			+ env->cmd->dirX * env->cmd->movespeed)] >= 0)
 		{
 			tmp = env->cmd->posX;
 			env->cmd->posX -= env->cmd->dirX * env->cmd->movespeed;
@@ -35,14 +35,14 @@ int				key_hook2(int keycode, t_env *env)
 				env->cmd->posX = tmp;
 		}
 		if (env->map[(int)(env->cmd->posY + env->cmd->dirY
-			* env->cmd->movespeed)][(int)env->cmd->posX] == 0)
+			* env->cmd->movespeed)][(int)env->cmd->posX] >= 0)
 		{
 			tmp = env->cmd->posY;
 			env->cmd->posY -= env->cmd->dirY * env->cmd->movespeed;
 			if (env->map[(int)env->cmd->posY][(int)env->cmd->posX] > 0)
 				env->cmd->posY = tmp;
 		}
-		printf("env->map[%d][%d]\n", (int)env->cmd->posY, (int)env->cmd->posX);
+		// printf("env->map[%d][%d]\n", (int)env->cmd->posY, (int)env->cmd->posX);
 	}
 	return (0);
 }
@@ -85,7 +85,7 @@ int				key_hook4(int keycode, t_env *env)
 
 int				key_hook(int keycode, t_env *env)
 {
-	printf("%d\n", keycode);
+	// printf("%d\n", keycode);
 	if (keycode == ESC)
 	{
 		mlx_destroy_window(env->mlx, env->win);

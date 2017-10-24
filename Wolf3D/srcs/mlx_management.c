@@ -19,8 +19,9 @@ void		init_img(t_env *env)
 	env->mlx = mlx_init();
 	env->win = mlx_new_window(env->mlx, env->width, env->heigth, "Wolf3D");
 	env->img = mlx_new_image(env->mlx, env->width, env->heigth);
-	env->pxl = mlx_get_data_addr(env->img, &(env->bpp),
-			&(env->size_line), &(env->endian));
+	if (!(env->pxl = mlx_get_data_addr(env->img, &(env->bpp),
+			&(env->size_line), &(env->endian))))
+			return ;
 }
 
 int			loop_hook(t_env *env)

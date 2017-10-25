@@ -12,35 +12,33 @@
 
 #include "./../includes/wolf3D.h"
 
-void				put_pixel_to_image(t_env *env, int x, int y)
+int				put_pixel_to_image(t_env *env, int x, int y)
 {
 	int				i;
 
 	i = (x * (env->bpp / 8)) + (y * env->size_line);
-	if (!(ft_memcpy(env->pxl + i, &env->color, 5)))
-		return ;
-	// env->pxl[i] = env->color;
-	// env->pxl[++i] = env->color >> 8;
-	// env->pxl[++i] = env->color >> 16;
+	if (!(ft_memcpy(env->pxl + i, &env->color, 4)))
+		return (-1);
+	return (1);
 }
 
-int				colors(t_env *env, t_calc *calc)
+unsigned int				colors(t_env *env, t_calc *calc)
 {
 	if (calc->side == 1)
 	{
 		if (calc->stepY == -1)
 		{
-			return (env->color = LIGTHSALMON);
+			return (env->color = (unsigned int)LIGTHSALMON);
 		}
 		if (calc->stepY == 1)
 		{
-			return (env->color = SALMON);
+			return (env->color = (unsigned int)SALMON);
 		}
 	}
 	if (calc->stepX == -1)
-		return (env->color = TAN);
+		return (env->color = (unsigned int)TAN);
 	else
-		return (env->color = DARKSALMON);
+		return (env->color = (unsigned int)DARKSALMON);
 }
 
 void          draw(t_calc *calc, t_env *env, int x, int drawstart, int drawend)
@@ -50,7 +48,7 @@ void          draw(t_calc *calc, t_env *env, int x, int drawstart, int drawend)
 	y = -1;
 	while(++y < drawstart)
 	{
-		env->color = DARKSLATE;
+		env->color = (unsigned int)DARKSLATE;
 		put_pixel_to_image(env, x, y);
 	}
 	y--;
@@ -60,9 +58,10 @@ void          draw(t_calc *calc, t_env *env, int x, int drawstart, int drawend)
 		put_pixel_to_image(env, x, y);
 	}
 	y--;
-	while(y++ < env->heigth)
+	while(++y < env->heigth)
 	{
-		env->color = BEIGE;
+		env->color = (unsigned int)BEIGE;
 		put_pixel_to_image(env, x, y);
 	}
+	// printf("x = %d, y = %d\n", x, y);
 }

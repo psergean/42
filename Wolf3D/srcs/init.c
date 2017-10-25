@@ -14,8 +14,8 @@
 
 void 		init_command(t_env *env)
 {
-	env->cmd->posX = 22;
-	env->cmd->posY = 4;
+	env->cmd->posX = 7;
+	env->cmd->posY = 2;
 	env->cmd->dirX = -1;
 	env->cmd->dirY = 0;
 	env->cmd->planeX = 0;
@@ -26,8 +26,13 @@ void 		init_command(t_env *env)
 
 t_env		*init_env(t_env *env)
 {
-	env = (t_env*)ft_memalloc(sizeof(*env));
-	env->cmd = (t_cmd*)ft_memalloc(sizeof(t_cmd));
+	if (!(env = (t_env*)ft_memalloc(sizeof(*env))))
+	{
+		ft_putstr_fd("Malloc Error: Faillure on memory allocation.\n", 2);
+		exit(0);
+	}
+	if (!(env->cmd = (t_cmd*)ft_memalloc(sizeof(t_cmd))))
+		ft_error(env, "Malloc Error: Failure on memory allocation.\n");
 	init_command(env);
 	return (env);
 }
@@ -44,6 +49,6 @@ t_env		*init(char **av, t_env *env)
 		close(env->fd);
 	}
 	else
-		ft_error(env, "invalid map : i only can read map.\n");
+		ft_error(env, "Invalid argument : usage: <./wolf3D map>\n");
 	return (env);
 }

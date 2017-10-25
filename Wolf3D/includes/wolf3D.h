@@ -30,6 +30,7 @@
 # define KEY_PRESS 2
 # define STRUCT_NOTIFY_MASK (1L << 17)
 # define DESTROY_NOTIFY 17
+
 typedef struct    s_cmd
 {
   long double     posX;
@@ -81,7 +82,7 @@ typedef struct		s_env
 	int				      bpp;
 	int			       	size_line;
 	int				      endian;
-  int             color;
+  unsigned int    color;
   int             fd;
   int             **map;
   t_cmd           *cmd;
@@ -97,15 +98,15 @@ void 		    init_command(t_env *env);
 void        read_map(t_env *env);
 
 void        raycasting(t_env *env);
-void        calc_pos_and_dir(t_calc *calc, t_env *env, int x);
+t_calc      *calc_pos_and_dir(t_calc *calc, t_env *env, int x);
 void        calc_step_and_init_dist(t_calc *calc);
 void        calc_if_hit_wall(t_calc *calc, t_env *env);
 void        calc_draw_start_end(t_calc *calc, t_env *env, int x);
 void        draw(t_calc *calc, t_env *env, int x, int drawstart, int drawend);
 int			    loop_hook(t_env *env);
 
-void				put_pixel_to_image(t_env *env, int x, int y);
-int				  colors(t_env *env, t_calc *calc);
+int				  put_pixel_to_image(t_env *env, int x, int y);
+unsigned int				  colors(t_env *env, t_calc *calc);
 
 void				display(t_env *env);
 

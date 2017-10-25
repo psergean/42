@@ -45,7 +45,7 @@ all: $(NAME)
 $(NAME):$(OBJS)
 	make -C $(LIBFT_PATH)
 	make -C $(MLX_PATH)
-	$(CC) $(FLAGS) -o $(NAME) $(SRCS) -I $(INC) $(FLAGS_MLX) $(LIBFT)
+	$(CC) $(FLAGS) -o $(NAME) $(SRCS) -I $(INC) $(FLAGS_MLX) $(LIBFT) -fsanitize=address
 
 clean:
 	rm -rf $(OBJS)

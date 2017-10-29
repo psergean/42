@@ -6,22 +6,22 @@
 /*   By: psergean <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/14 13:02:36 by psergean          #+#    #+#             */
-/*   Updated: 2017/10/04 23:53:56 by psergean         ###   ########.fr       */
+/*   Updated: 2017/10/29 14:45:58 by psergean         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "./../includes/wolf3D.h"
+#include "./../includes/wolf3d.h"
 
-void 		init_command(t_env *env)
+void		init_command(t_env *env)
 {
-	env->cmd->posX = 7;
-	env->cmd->posY = 2;
-	if (env->map[(int)env->cmd->posY][(int)env->cmd->posX] != 0)
+	env->cmd->posx = 2;
+	env->cmd->posy = 2;
+	if (env->map[(int)env->cmd->posy][(int)env->cmd->posx] != 0)
 		return (ft_error(env, "Error map: Spawn is in a wall."));
-	env->cmd->dirX = -1;
-	env->cmd->dirY = 0;
-	env->cmd->planeX = 0;
-	env->cmd->planeY = 0.66;
+	env->cmd->dirx = -1;
+	env->cmd->diry = 0;
+	env->cmd->planex = 0;
+	env->cmd->planey = 0.66;
 	env->cmd->movespeed = 0.1;
 	env->cmd->rotspeed = 0.1;
 }

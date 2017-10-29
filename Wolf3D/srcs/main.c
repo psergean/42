@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "./../includes/wolf3D.h"
+#include "./../includes/wolf3d.h"
 
 int			main(int ac, char **av)
 {

@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   free_malloc.c                                   :+:      :+:    :+:   */
+/*   free_malloc.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: psergean <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/14 13:02:36 by psergean          #+#    #+#             */
-/*   Updated: 2017/10/04 23:53:56 by psergean         ###   ########.fr       */
+/*   Updated: 2017/10/29 14:45:14 by psergean         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "./../includes/wolf3D.h"
+#include "./../includes/wolf3d.h"
 
 void			free_tab_int(int **tab)
 {
@@ -38,9 +38,9 @@ void			free_tab_char(char **tab)
 	free(tab);
 }
 
-void   free_malloc(t_env *env)
+void			free_malloc(t_env *env)
 {
 	free_tab_int(env->map);
 	free(env->cmd);
-  free(env);
+	free(env);
 }

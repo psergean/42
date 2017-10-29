@@ -6,57 +6,60 @@
 /*   By: psergean <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/14 13:02:36 by psergean          #+#    #+#             */
-/*   Updated: 2017/10/04 23:53:56 by psergean         ###   ########.fr       */
+/*   Updated: 2017/10/29 14:43:21 by psergean         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "./../includes/wolf3D.h"
+#include "./../includes/wolf3d.h"
 
-void         calc_floor_dir(t_calc *calc, t_floor *Floor)
+void			calc_floor_dir(t_calc *calc, t_floor *floorcast)
 {
-  if (calc->side == 0 && calc->raydirX > 0)
-  {
-    Floor->floorwallX = calc->mapX;
-    Floor->floorwallY = calc->mapY + calc->wallx;
-  }
-  else if (calc->side == 0 && calc->raydirX < 0)
-  {
-    Floor->floorwallX = calc->mapX + 1.0;
-    Floor->floorwallY = calc->mapY + calc->wallx;
-  }
-  else if (calc->side == 1 && calc->raydirY > 0)
-  {
-    Floor->floorwallX = calc->mapX + calc->wallx;
-    Floor->floorwallY = calc->mapY;
-  }
-  else
-  {
-    Floor->floorwallX = calc->mapX + calc->wallx;
-    Floor->floorwallY = calc->mapY + 1.0;
-  }
-  Floor->distwall = calc->perpWallDist;
+	if (calc->side == 0 && calc->raydirx > 0)
+	{
+		floorcast->floorwallx = calc->mapx;
+		floorcast->floorwally = calc->mapy + calc->wallx;
+	}
+	else if (calc->side == 0 && calc->raydirx < 0)
+	{
+		floorcast->floorwallx = calc->mapx + 1.0;
+		floorcast->floorwally = calc->mapy + calc->wallx;
+	}
+	else if (calc->side == 1 && calc->raydiry > 0)
+	{
+		floorcast->floorwallx = calc->mapx + calc->wallx;
+		floorcast->floorwally = calc->mapy;
+	}
+	else
+	{
+		floorcast->floorwallx = calc->mapx + calc->wallx;
+		floorcast->floorwally = calc->mapy + 1.0;
+	}
+	floorcast->distwall = calc->perpwalldist;
 }
 
-void         calc_floor(t_calc *calc, t_env *env)
+void			calc_floor(t_calc *calc, t_env *env)
 {
-  t_floor       *Floor;
+	t_floor			*floorcast;
 
-  if (!(Floor = (t_floor*)ft_memalloc(sizeof(*Floor))))
-    return (ft_error(env, "Error floor: failure on memory allocation.\n"));
-  calc_floor_dir(calc, Floor);
-  while(++env->y < env->heigth)
-  {
-    Floor->currentdist = env->heigth / (2.0 * env->y - env->heigth);
-    Floor->weigth = Floor->currentdist / Floor->distwall;
-    Floor->currentfloorX = Floor->weigth * Floor->floorwallX + (1.0 - Floor->weigth) * calc->posX;
-    Floor->currentfloorY = Floor->weigth * Floor->floorwallY + (1.0 - Floor->weigth) * calc->posY;
-    Floor->textX = (int)(Floor->currentfloorX * 64) % 64;
-    Floor->textY = (int)(Floor->currentfloorY * 64) % 64;
-    env->id = 8;
-    draw_texture(env, env->x, env->y - 1, texture_colors(env, Floor->textX, Floor->textY));
-    env->id = 7;
-    draw_texture(env, env->x, (env->heigth - 1 - env->y), texture_colors(env, Floor->textX, Floor->textY));
-    // env->y++;
-  }
-  free(Floor);
+	if (!(floorcast = (t_floor*)ft_memalloc(sizeof(*floorcast))))
+		return (ft_error(env, "Error floor: failure on memory allocation.\n"));
+	calc_floor_dir(calc, floorcast);
+	while (++env->y < env->heigth)
+	{
+		floorcast->currentdist = env->heigth / (2.0 * env->y - env->heigth);
+		floorcast->weigth = floorcast->currentdist / floorcast->distwall;
+		floorcast->currentfloorx = floorcast->weigth * floorcast->floorwallx
+			+ (1.0 - floorcast->weigth) * calc->posx;
+		floorcast->currentfloory = floorcast->weigth * floorcast->floorwally
+			+ (1.0 - floorcast->weigth) * calc->posy;
+		floorcast->textx = (int)(floorcast->currentfloorx * 64) % 64;
+		floorcast->texty = (int)(floorcast->currentfloory * 64) % 64;
+		env->id = 8;
+		draw_texture(env, env->x, env->y - 1,
+				texture_colors(env, floorcast->textx, floorcast->texty));
+		env->id = 7;
+		draw_texture(env, env->x, (env->heigth - 1 - env->y),
+				texture_colors(env, floorcast->textx, floorcast->texty));
+	}
+	free(floorcast);
 }

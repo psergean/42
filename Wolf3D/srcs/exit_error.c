@@ -6,11 +6,11 @@
 /*   By: psergean <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/14 13:37:51 by psergean          #+#    #+#             */
-/*   Updated: 2017/10/04 23:39:18 by psergean         ###   ########.fr       */
+/*   Updated: 2017/10/29 14:13:09 by psergean         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "./../includes/wolf3D.h"
+#include "./../includes/wolf3d.h"
 
 int			ft_exit(t_env *env)
 {
@@ -22,8 +22,6 @@ int			ft_exit(t_env *env)
 
 void		ft_error(t_env *env, char *str)
 {
-	printf("x = %d, y = %d\n", env->x, env->y);
-	printf("nbx = %d, nby = %d\n", env->nb_x, env->nb_y);
 	ft_putstr_fd(str, 2);
 	ft_exit(env);
 }

@@ -21,9 +21,7 @@ CC = gcc
 SRCS = ./srcs/main.c\
 	./srcs/init.c\
 	./srcs/key_hook.c\
-	./srcs/display.c\
 	./srcs/exit_error.c\
-	./srcs/mouse_hook.c\
 	./srcs/pixels_and_colors.c\
 	./srcs/mlx_management.c\
 	./srcs/read_map.c\
@@ -47,7 +45,7 @@ all: $(NAME)
 $(NAME):$(OBJS)
 	make -C $(LIBFT_PATH)
 	make -C $(MLX_PATH)
-	$(CC) $(FLAGS) -o $(NAME) $(SRCS) -I $(INC) $(FLAGS_MLX) $(LIBFT) 
+	$(CC) $(FLAGS) -o $(NAME) $(SRCS) -I $(INC) $(FLAGS_MLX) $(LIBFT)
 
 clean:
 	rm -rf $(OBJS)

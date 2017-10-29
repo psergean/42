@@ -6,11 +6,11 @@
 /*   By: psergean <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/14 13:02:36 by psergean          #+#    #+#             */
-/*   Updated: 2017/10/04 23:53:56 by psergean         ###   ########.fr       */
+/*   Updated: 2017/10/29 14:46:54 by psergean         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "./../includes/wolf3D.h"
+#include "./../includes/wolf3d.h"
 
 void		init_img(t_env *env)
 {
@@ -31,14 +31,11 @@ int			loop_hook(t_env *env)
 	return (0);
 }
 
-void 		mlx_event_management(t_env *env)
+void		mlx_event_management(t_env *env)
 {
-  mlx_key_hook(env->win, key_hook, env);
+	mlx_key_hook(env->win, key_hook, env);
 	mlx_hook(env->win, KEY_PRESS, KEY_PRESS_MASK, key_hook, env);
-	mlx_hook(env->win, MOTION_NOTIFY, PTR_MOTION_MASK,
-		mouse_motion_notify, env);
 	mlx_hook(env->win, DESTROY_NOTIFY, STRUCT_NOTIFY_MASK, ft_exit, env);
-	mlx_mouse_hook(env->win, mouse_hook, env);
 	mlx_loop_hook(env->mlx, loop_hook, env);
-  mlx_loop(env->mlx);
+	mlx_loop(env->mlx);
 }

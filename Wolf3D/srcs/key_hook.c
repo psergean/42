@@ -14,35 +14,22 @@
 
 int				key_hook2(int keycode, t_env *env)
 {
-	long double		tmp;
 	if (keycode == UP)
 	{
 		if (env->map[(int)env->cmd->posY][(int)(env->cmd->posX
-			+ env->cmd->dirX * env->cmd->movespeed)] == 0)
-			env->cmd->posX += env->cmd->dirX * env->cmd->movespeed;
-		if (env->map[(int)(env->cmd->posY + env->cmd->dirY *
-			env->cmd->movespeed)][(int)env->cmd->posX] == 0)
-			env->cmd->posY += env->cmd->dirY * env->cmd->movespeed;
-	}
-	if (keycode == DOWN)
-	{
-		if (env->map[(int)env->cmd->posY][(int)(env->cmd->posX
-			+ env->cmd->dirX * env->cmd->movespeed)] >= 0)
+			+ env->cmd->dirX * (env->cmd->movespeed + 0.1))] == 0)
 		{
-			tmp = env->cmd->posX;
-			env->cmd->posX -= env->cmd->dirX * env->cmd->movespeed;
+			env->cmd->posX += env->cmd->dirX * env->cmd->movespeed;
 			if (env->map[(int)env->cmd->posY][(int)env->cmd->posX] > 0)
-				env->cmd->posX = tmp;
+				env->cmd->posX -= env->cmd->dirX * (env->cmd->movespeed + 0.1);
 		}
 		if (env->map[(int)(env->cmd->posY + env->cmd->dirY
-			* env->cmd->movespeed)][(int)env->cmd->posX] >= 0)
+			* (env->cmd->movespeed + 0.1))][(int)env->cmd->posX] == 0)
 		{
-			tmp = env->cmd->posY;
-			env->cmd->posY -= env->cmd->dirY * env->cmd->movespeed;
+			env->cmd->posY += env->cmd->dirY * env->cmd->movespeed;
 			if (env->map[(int)env->cmd->posY][(int)env->cmd->posX] > 0)
-				env->cmd->posY = tmp;
+				env->cmd->posY -= env->cmd->dirX * (env->cmd->movespeed + 0.1);
 		}
-		// printf("env->map[%d][%d]\n", (int)env->cmd->posY, (int)env->cmd->posX);
 	}
 	return (0);
 }
@@ -83,9 +70,30 @@ int				key_hook4(int keycode, t_env *env)
 	return (0);
 }
 
+int				key_hook5(int keycode, t_env *env)
+{
+	if (keycode == DOWN)
+	{
+		if (env->map[(int)env->cmd->posY][(int)(env->cmd->posX
+			- env->cmd->dirX * (env->cmd->movespeed + 0.1))] == 0)
+		{
+			env->cmd->posX -= env->cmd->dirX * env->cmd->movespeed;
+			if (env->map[(int)env->cmd->posY][(int)env->cmd->posX] > 0)
+				env->cmd->posX += env->cmd->dirX * (env->cmd->movespeed + 0.1);
+		}
+		if (env->map[(int)(env->cmd->posY - env->cmd->dirY
+			* (env->cmd->movespeed + 0.1))][(int)env->cmd->posX] == 0)
+		{
+			env->cmd->posY -= env->cmd->dirY * env->cmd->movespeed;
+			if (env->map[(int)env->cmd->posY][(int)env->cmd->posX] > 0)
+				env->cmd->posY += env->cmd->dirX * (env->cmd->movespeed + 0.1);
+		}
+	}
+	return (0);
+}
+
 int				key_hook(int keycode, t_env *env)
 {
-	// printf("%d\n", keycode);
 	if (keycode == ESC)
 	{
 		mlx_destroy_window(env->mlx, env->win);
@@ -97,5 +105,6 @@ int				key_hook(int keycode, t_env *env)
 	key_hook2(keycode, env);
 	key_hook3(keycode, env);
 	key_hook4(keycode, env);
+	key_hook5(keycode, env);
 	return (0);
 }

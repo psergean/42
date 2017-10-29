@@ -17,8 +17,8 @@ int			main(int ac, char **av)
 	t_env	*env;
 
 	env = NULL;
-	if (!check_input(ac))
-		return (0);
+	if (check_input(ac) == -1)
+		return (-1);
 	if (!env)
 		env = init(av, env);
 	mlx_event_management(env);

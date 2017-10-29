@@ -16,12 +16,14 @@ void 		init_command(t_env *env)
 {
 	env->cmd->posX = 7;
 	env->cmd->posY = 2;
+	if (env->map[(int)env->cmd->posY][(int)env->cmd->posX] != 0)
+		return (ft_error(env, "Error map: Spawn is in a wall."));
 	env->cmd->dirX = -1;
 	env->cmd->dirY = 0;
 	env->cmd->planeX = 0;
 	env->cmd->planeY = 0.66;
-	env->cmd->movespeed = 0.10;
-	env->cmd->rotspeed = 0.10;
+	env->cmd->movespeed = 0.1;
+	env->cmd->rotspeed = 0.1;
 }
 
 t_env		*init_env(t_env *env)
@@ -33,7 +35,6 @@ t_env		*init_env(t_env *env)
 	}
 	if (!(env->cmd = (t_cmd*)ft_memalloc(sizeof(t_cmd))))
 		ft_error(env, "Malloc Error: Failure on memory allocation.\n");
-	init_command(env);
 	return (env);
 }
 
@@ -41,11 +42,17 @@ t_env		*init(char **av, t_env *env)
 {
 	env = init_env(env);
 	init_img(env);
+	texture(env);
 	if (ft_strcmp(av[1], "map") == 0)
 	{
+		env->file = ft_strnew(0);
 		open("./map/map", O_DIRECTORY);
-		env->fd = open("./map/map", O_RDONLY);
+		if ((env->fd = open("./map/map", O_RDONLY)) == -1)
+			ft_error(env, "BAD ACCES : file can't be open.");
+		read_file(env);
+		init_max(env);
 		read_map(env);
+		init_command(env);
 		close(env->fd);
 	}
 	else

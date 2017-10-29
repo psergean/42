@@ -28,7 +28,9 @@ SRCS = ./srcs/main.c\
 	./srcs/mlx_management.c\
 	./srcs/read_map.c\
 	./srcs/raycasting.c\
-	./srcs/free_malloc.c
+	./srcs/free_malloc.c\
+	./srcs/texture.c\
+	./srcs/floor.c
 
 OBJS = $(SRCS:.c=.o)
 
@@ -45,7 +47,7 @@ all: $(NAME)
 $(NAME):$(OBJS)
 	make -C $(LIBFT_PATH)
 	make -C $(MLX_PATH)
-	$(CC) $(FLAGS) -o $(NAME) $(SRCS) -I $(INC) $(FLAGS_MLX) $(LIBFT) -fsanitize=address
+	$(CC) $(FLAGS) -o $(NAME) $(SRCS) -I $(INC) $(FLAGS_MLX) $(LIBFT) 
 
 clean:
 	rm -rf $(OBJS)

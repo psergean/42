@@ -12,18 +12,16 @@
 
 #include "./../includes/wolf3D.h"
 
-void          calc_draw_start_end(t_calc *calc, t_env *env, int x)
+void          calc_draw_start_end(t_calc *calc, t_env *env)
 {
   int         lineHeigth;
   int         drawstart;
   int         drawend;
 
   if (calc->side == 0)
-    calc->perpWallDist = (calc->mapX - calc->rayposX +
-      (1 - calc->stepX) / 2) / calc->raydirX;
+    calc->perpWallDist = fabs((calc->mapX - calc->rayposX + (1 - calc->stepX) / 2) / calc->raydirX);
   else
-    calc->perpWallDist = (calc->mapY - calc->rayposY +
-      (1 - calc->stepY) / 2) / calc->raydirY;
+    calc->perpWallDist = fabs((calc->mapY - calc->rayposY + (1 - calc->stepY) / 2) / calc->raydirY);
   lineHeigth = (int)(env->heigth / calc->perpWallDist);
   drawstart = -lineHeigth / 2 + env->heigth / 2;
   if (drawstart < 0)
@@ -31,11 +29,12 @@ void          calc_draw_start_end(t_calc *calc, t_env *env, int x)
   drawend = lineHeigth / 2 + env->heigth / 2;
   if (drawend >= env->heigth)
     drawend = env->heigth - 1;
-  draw(calc, env, x, drawstart, drawend);
+  draw(calc, env, drawstart);
 }
 
-void          calc_if_hit_wall(t_calc *calc, t_env *env)
+t_calc          *calc_if_hit_wall(t_calc *calc, t_env *env)
 {
+  calc->hit = 0;
   while (calc->hit == 0)
   {
     if (calc->sideDistX < calc->sideDistY)
@@ -51,21 +50,13 @@ void          calc_if_hit_wall(t_calc *calc, t_env *env)
       calc->side = 1;
     }
     if (env->map[calc->mapY][calc->mapX] > 0)
-    {
       calc->hit = 1;
-      // if (calc->side == 0)
-      //   calc->perpWallDist = (calc->mapX - calc->rayposX +
-      //     (1 - calc->stepX) / 2) / calc->raydirX;
-      // else
-      //   calc->perpWallDist = (calc->mapY - calc->rayposY +
-      //     (1 - calc->stepY) / 2) / calc->raydirY;
-    }
   }
+  return (calc);
 }
 
-void         calc_step_and_init_dist(t_calc *calc)
+t_calc        *calc_step_and_init_dist(t_calc *calc)
 {
-  calc->hit = 0;
   if (calc->raydirX < 0)
   {
     calc->stepX = -1;
@@ -74,7 +65,7 @@ void         calc_step_and_init_dist(t_calc *calc)
   else
   {
     calc->stepX = 1;
-    calc->sideDistX = (calc->mapX + 1 - calc->rayposX) * calc->deltaDistX;
+    calc->sideDistX = (calc->mapX + 1.0 - calc->rayposX) * calc->deltaDistX;
   }
   if (calc->raydirY < 0)
   {
@@ -84,25 +75,26 @@ void         calc_step_and_init_dist(t_calc *calc)
   else
   {
     calc->stepY = 1;
-    calc->sideDistY = (calc->mapY + 1 - calc->rayposY) * calc->deltaDistY;
+    calc->sideDistY = (calc->mapY + 1.0 - calc->rayposY) * calc->deltaDistY;
   }
+  return (calc);
 }
 
-t_calc         *calc_pos_and_dir(t_calc *calc, t_env *env, int x)
+t_calc         *calc_pos_and_dir(t_calc *calc, t_env *env)
 {
   if (calc)
   {
-    calc->cameraX = 2 * x / (double)env->width - 1;
+    calc->cameraX = 2 * env->x / (double)(env->width) - 1;
     calc->rayposX = calc->posX;
     calc->rayposY = calc->posY;
     calc->raydirX = calc->dirX + calc->planeX * calc->cameraX;
     calc->raydirY = calc->dirY + calc->planeY * calc->cameraX;
     calc->mapX = (int)calc->rayposX;
     calc->mapY = (int)calc->rayposY;
-    calc->deltaDistX = sqrt(1 + (calc->raydirY * calc->raydirY)
-      / (calc->raydirX * calc->raydirX));
-      calc->deltaDistY = sqrt(1 + (calc->raydirX * calc->raydirX)
-      / (calc->raydirY * calc->raydirY));
+    calc->deltaDistX = sqrt(1 + pow(calc->raydirY, 2)
+      / pow(calc->raydirX, 2));
+    calc->deltaDistY = sqrt(1 + pow(calc->raydirX, 2)
+      / pow(calc->raydirY, 2));
   }
   return (calc);
 }
@@ -110,7 +102,6 @@ t_calc         *calc_pos_and_dir(t_calc *calc, t_env *env, int x)
 void         raycasting(t_env *env)
 {
   t_calc    *calc;
-  int       x;
 
   if (!(calc = (t_calc*)ft_memalloc(sizeof(*calc))))
     return (ft_error(env, "Error calc: failure on memory allocation.\n"));
@@ -120,14 +111,14 @@ void         raycasting(t_env *env)
   calc->dirY = env->cmd->dirY;
   calc->planeX = env->cmd->planeX;
   calc->planeY = env->cmd->planeY;
-  x = 0;
-  while (x < env->width)
+  env->x = 0;
+  while (env->x < env->width)
   {
-    calc = calc_pos_and_dir(calc, env, x);
-    calc_step_and_init_dist(calc);
-    calc_if_hit_wall(calc, env);
-    calc_draw_start_end(calc, env, x);
-    x++;
+    calc = calc_pos_and_dir(calc, env);
+    calc = calc_step_and_init_dist(calc);
+    calc = calc_if_hit_wall(calc, env);
+    calc_draw_start_end(calc, env);
+    env->x++;
   }
   free(calc);
 }

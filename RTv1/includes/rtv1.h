@@ -43,7 +43,7 @@ typedef struct      s_cam
   float             x;
   float             y;
   float             z;
-  t_vec3d           vpul;
+  t_vec3d           *vpul;
 }                   t_cam;
 
 typedef struct      s_env
@@ -67,15 +67,15 @@ int                 main(int ac, char **av);
 
 t_env		            *init_env(t_env *env);
 void		            init_img(t_env *env);
-t_cam		            *init_cam(t_cam *cam);
-t_vec3d		          *init_vpul(t_vec3d *vpul);
+t_cam		            *init_cam();
+t_vec3d		          *init_vpul();
 
 
 int			            ft_exit(t_env *env);
 void		            ft_error(t_env *env, char *str);
 int			            check_input(int ac);
 
-void                raytracer(t_env *env);
+void                raytracer();
 
 void			          free_malloc(t_env *env);
 

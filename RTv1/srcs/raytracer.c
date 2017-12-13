@@ -12,6 +12,19 @@
 
 #include "./../includes/rtv1.h"
 
-void         raytracer(t_env *env)
+void         raytracer()
 {
+  int     x;
+  int     y;
+
+  x = 0;
+  y = 0;
+  while (y < 480)
+  {
+    while (x < 640)
+    {
+      x++;
+    }
+    y++;
+  }
 }

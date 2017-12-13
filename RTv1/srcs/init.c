@@ -20,5 +20,11 @@ t_env		*init_env(t_env *env)
 		exit(0);
 	}
   init_img(env);
+  if (!(env->cam = (t_cam*)ft_memalloc(sizeof(env->cam))))
+  {
+    ft_putstr_fd("Malloc Error: Faillure on memory allocation.\n", 2);
+    exit(0);
+  }
+  env->cam = init_cam();
   return (env);
 }

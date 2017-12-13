@@ -49,14 +49,12 @@ clean:
 	rm -rf $(OBJS)
 	rm -rf ./includes/rtv1.h.gch
 	rm -rf ./rtv1.dSYM
-	rm -rf .DS_Store
 	make -C $(LIBFT_PATH) clean
 
 fclean: clean
 	rm -rf $(NAME)
 	rm -rf ./includes/rtv1.h.gch
 	rm -rf ./rtv1.dSYM
-	rm -rf .DS_Store
 	make -C $(LIBFT_PATH) fclean
 
 re: fclean all

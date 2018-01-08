@@ -17,7 +17,7 @@ int				key_hook(int keycode, t_env *env)
 	if (keycode == ESC)
 	{
 		mlx_destroy_window(env->mlx, env->win);
-		free(env);
+		free_malloc(env);
 		exit(0);
 	}
 	return (0);

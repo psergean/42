@@ -19,9 +19,10 @@ int       main(int ac, char **av)
   env = NULL;
   if (check_input(ac) == -1)
     return (-1);
+  av[1] = "blabla";
   if (!env)
     env = init_env(env);
   mlx_event_management(env);
-  free_malloc(env);
+  // free_malloc(env);
   return (0);
 }

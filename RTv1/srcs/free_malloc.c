@@ -40,5 +40,7 @@
 
 void			free_malloc(t_env *env)
 {
+	free(env->cam->vpul);
+	free(env->cam);
 	free(env);
 }

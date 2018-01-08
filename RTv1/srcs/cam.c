@@ -12,19 +12,10 @@
 
 #include "./../includes/rtv1.h"
 
-t_cam		*init_cam()
+void        init_cam(t_env *env)
 {
-  t_cam     *cam;
-
-  cam = NULL;
-  if (!(cam = (t_cam*)ft_memalloc(sizeof(*cam))))
-  {
-    ft_putstr_fd("Malloc Error: Faillure on memory allocation.\n", 2);
-    exit(0);
-  }
-  cam->x = 0;
-  cam->y = 0;
-  cam->z = 5;
-  cam->vpul = init_vpul();
-  return (cam);
+  env->cam->x = 0;
+  env->cam->y = 0;
+  env->cam->z = 5;
+  init_vpul(env);
 }

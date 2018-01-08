@@ -27,6 +27,7 @@ SRCS = ./srcs/main.c\
 	./srcs/cam.c\
 	./srcs/raytracer.c\
 	./srcs/vpul.c\
+	./srcs/free_malloc.c
 
 OBJS = $(SRCS:.c=.o)
 

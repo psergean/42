@@ -12,18 +12,14 @@
 
 #include "./../includes/rtv1.h"
 
-t_vec3d		*init_vpul()
+void		init_vpul(t_env *env)
 {
-  t_vec3d     *vpul;
-
-  vpul = NULL;
-  if (!(vpul = (t_vec3d*)ft_memalloc(sizeof(*vpul))))
+  if (!(env->cam->vpul = (t_vec3d*)ft_memalloc(sizeof(*env->cam->vpul))))
   {
     ft_putstr_fd("Malloc Error: Faillure on memory allocation.\n", 2);
     exit(0);
   }
-  vpul->x = 0;
-  vpul->y = 0;
-  vpul->z = 0;
-  return (vpul);
+  env->cam->vpul->x = 1;
+  env->cam->vpul->y = 1 * (0.48 / 2);
+  env->cam->vpul->z = 5 + (1 * (0.64 / 2));
 }

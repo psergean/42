@@ -1,0 +1,51 @@
+BODY
+{
+  background-image: url(http://www.lapetiteviedeci.com/wordpress/wp-content/uploads/2015/08/fond_tableau_noir.jpg);
+  background-attachment: fixed;
+}
+H2
+{
+  color: white;
+  border: 1px solid white;
+  width: 30vw;
+}
+TD
+{
+ border: 1px solid white;
+ width: 8vw;
+ height: 8vh;
+}
+.content
+{
+  max-width: 160vw;
+}
+.elementnb
+{
+  text-align: right;
+  margin-right: 2px;
+  color: yellow;
+  font-size: 1vmin;
+}
+.element
+{
+  text-align: center;
+  color: white;
+  font-size: 4vmin;
+}
+.atomicweigth
+{
+  text-align: left;
+  margin-left: 2px;
+  color: #64FE2E;
+  font-size: 1vmin;
+}
+.blank
+{
+  border: none;
+}
+.lanthanides
+{
+  text-align: center;
+  color: white;
+  font-size: 1vmin;
+}

@@ -2,18 +2,18 @@
 
 $priv_path = "../private";
 $psswd_path = "../private/passwd";
-if ($_POST['login'] != "" && $_POST['passwd'] != "")
+if ($_POST['login'] != "" && $_POST['psswd'] != "")
 {
   if ($_POST['submit'] === 'OK')
   {
-    $password = hash('whirlpool', $_POST['passwd']);
+    $password = hash('whirlpool', $_POST['psswd']);
     if (file_exists($priv_path) == FALSE)
     {
       mkdir($priv_path, 0777, TRUE);
     }
     if (file_exists($psswd_path) == FALSE)
     {
-      $users_array = array(array('login'=>$_POST['login'], 'passwd'=>$password));
+      $users_array = array(array('login'=>$_POST['login'], 'psswd'=>$password));
       $serialize = serialize($users_array);
       file_put_contents($psswd_path, $serialize);
       echo "OK\n";
@@ -30,7 +30,7 @@ if ($_POST['login'] != "" && $_POST['passwd'] != "")
       }
       if ($exist == FALSE)
       {
-        $unserialize[] = array('login' => $_POST['login'], 'passwd' => $password);
+        $unserialize[] = array('login' => $_POST['login'], 'psswd' => $password);
         $serialize = serialize($unserialize);
         file_put_contents($psswd_path, $serialize);
         echo "OK\n";

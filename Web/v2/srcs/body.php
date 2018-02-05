@@ -1,7 +1,8 @@
 <div class="corpse">
 
                 <?php
-                    if ($_SERVER['PHP_SELF'] === '/v2/srcs/index.php')
+
+                    if ($_SERVER['PHP_SELF'] === "/v2/srcs/index.php")
                     {
                         ?>
                         <html>

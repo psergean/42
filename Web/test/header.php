@@ -1,7 +1,7 @@
 <div class="header">
     <div class="element-header-left">
         <div class="logo">
-            <a href="index.php"><img class="logo" title="association d'gens normal" alt="association d'gens normal" src="img/logo.jpg"></a>
+            <a href="index.php"><img class="logo" title="association d'gens normal" alt="association d'gens normal" src="img/logo.jpg"/></a>
         </div>
         <!-- <div class="title">
             <text class="title-text">GarAge 83-C : Association de gens normal</text>
@@ -18,10 +18,10 @@
         </div>
         <div class="login">
             <div class="login">
-                <input class="text-input" name="login" type="text" maxlength="12"/>
+                <input class="text-input" name="login" type="text" maxlength="12" style="text-align:center"/>
             </div>
             <div class="login">
-                <input class="text-input" name="password "type="password" maxlength="12"/>
+                <input class="text-input" name="password "type="password" maxlength="12" style="text-align:center"/>
             </div>
         </div>
         <div class="login">

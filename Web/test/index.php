@@ -5,7 +5,7 @@
 		<link rel="stylesheet" href="Garage83C.css">
 		<link href="https://use.fontawesome.com/releases/v5.0.6/css/all.css" rel="stylesheet">
 		<link rel="stylesheet" href="fontawesome-free-5.0.6/web-fonts-with-css/css/fontawesome-all.css">
-				<link rel="stylesheet" href="fontawesome-free-5.0.6/web-fonts-with-css/css/fontawesome.min.css">
+		<link rel="stylesheet" href="fontawesome-free-5.0.6/web-fonts-with-css/css/fontawesome.min.css">
 		<title>Garage 83-C</title>
 	</head>
     <body>

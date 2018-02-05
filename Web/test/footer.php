@@ -7,7 +7,7 @@
         </div>
         <div style="margin-left:1vw; margin-right:auto">
             <a href="https://soundcloud.com/garage83c">
-                <center><i class="fab fa-soundcloud" style="padding:0.1vw; font-size:2vw; color:orange; height:2.6vw; width:2.6vw; background-color:white; border:0.3vw solid orange; border-radius:10%;"></i></center>
+                <center><i class="fab fa-soundcloud" style="padding:0.1vw; font-size:2vw; color:orange; height:2.6vw; width:2.6vw; background-color:white; border:0.3vw solid orange; border-radius:10%"></i></center>
             </a>
         </div>
 </div>

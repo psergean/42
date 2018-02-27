@@ -1,4 +1,3 @@
-
 /* ********************** LAYOUT start ********************** */
 
 head, body
@@ -9,13 +8,29 @@ head, body
 
 body
 {
-    background-color: white;
+    font-family: 'Sue Ellen Francisco';
+    font-size: 2.5vmin;
+    background-color: #046380;
+    color: #EFECCA;
+}
+
+.center
+{
+    display: block;
+    width: 60%;
+    height: auto;
+    margin: auto;
+    padding: 8px;
+    background-color: #046380;
+    /* max-width: 1200px; */
 }
 
 .column-flex-container
 {
     margin: 0;
     padding: 0;
+    /* margin-top: 10vh; */
+    /* margin-bottom: 10vh; */
     width: 100%;
     height: 100%;
 }
@@ -32,63 +47,49 @@ body
 /* ********************** LAYOUT end ********************** */
 
 
-/* ********************** FOOTER start ********************** */
-
-footer
-{
-    float: right;
-    width: 85%;
-    height: 10%;
-    background-color: #505050;
-
-}
-
-/* ********************** FOOTER end ********************** */
-
-
-
-/* ********************** CORPSE start ********************** */
-
-.corpse
-{
-    float: right;
-    width: 85%;
-    height: 75%;
-    background-color: #808080;
-    overflow: auto;
-
-}
-
-/* ********************** CORPSE end ********************** */
-
-
-
 /* ********************** NAVBAR start ********************** */
-
-nav
-{
-    width: 15%;
-    height: 100%;
-    background-color: #101010;
-    position: fixed;
-    opacity: 0.9;
-}
 
 .logo
 {
-    width: 90%;
-    height: auto;
+    width: 100%;
+    height: 100%;
+    max-height: 600px;
+    max-width: 600px;
     padding: 5%;
     border-radius: 50%;
+}
+
+#logo
+{
+    transition: margin-left .5s;
+}
+
+::-webkit-scrollbar
+{
+    width: 4px;
+}
+
+::-webkit-scrollbar-track
+{
+    background-color: #046380;
+}
+
+::-webkit-scrollbar-thumb
+{
+    background-color: #E6E2AF;
 }
 
 ul
 {
     list-style-type: none;
-    margin-top: 10%;
+    height: 80%;
+    width: auto;
+    margin-top: 0;
+    margin-bottom: 20%;
     padding: 0;
-    border-top: 2px solid #808080;
-    border-bottom: 2px solid #808080;
+    border-top: 2px solid #E6E2AF;
+    border-bottom: 2px solid #E6E2AF;
+    /* border: 2px solid #E6E2AF; */
     overflow: auto;
 }
 
@@ -97,80 +98,351 @@ li
     text-align: left;
 }
 
+li a:first-child
+{
+    padding-top: 3vh;
+}
+
+li a:last-child
+{
+    padding-bottom: 3vh;
+}
+
 li a
 {
     display: block;
-    padding: 2vmin;
-    background-color: #101010;
+    padding-top: 1.5vh;
+    padding-bottom: 1.5vh;
+    padding-left: 3vw;
+    padding-right: 3vw;
+    background-color: #046380;
     text-decoration: none;
-    font-family: Verdana ,sans-serif;
-    font-size: 12;
-    color: white;
+    color: #EFECCA;
 }
-
 
 li a:hover:not(.activate)
 {
-    background-color: #202020;
+    background-color: #E6E2AF;
+    transition: 0.5s;
 }
 
 li a.activate
 {
-    background-color: #ffc266;
+    background-color: #A7A37E;
 }
+
+.navcenter
+{
+    width: auto;
+    height: 66%;
+}
+
+
+
+.nav
+{
+    height: 100%;
+    width: 0;
+    position: fixed;
+    transition: 0.5s;
+    background-color: #046380;
+    display: block;
+    box-shadow: 20px 5px 45px #002F2F;
+    /* opacity: 0.9; */
+}
+
+.nav .closebtn
+{
+    position: absolute;
+    top: 1vw;
+    right: 1vw;
+    text-decoration: none;
+    color: #046380;
+    opacity: 0.8;
+}
+
+#main
+{
+    transition: margin-left .5s;
+    padding: 1vw;;
+}
+
+/* @media screen and (max-height: 650px) {
+  .sidenav {padding-top: 15px;}
+  .sidenav a {font-size: 18px;}
+} */
 
 /* ********************** NAVBAR end ********************** */
 
 
 
+
+
 /* ********************** HEADER start ********************** */
 
-header
+#header
 {
-    float: right;
-    width: 85%;
-    height: 15%;
-    background-color: #505050;
+    width: 100%;
+    height: 10%;
+    /* top: 0; */
+    background-color: #046380;
+    transition: 0.5s;
+    /* position: fixed; */
 }
 
 /* ********************** HEADER end ********************** */
 
-/* ********************** PHONE start ********************** */
 
-@media only screen and (max-width:620px)
+/* ********************** Slideshow_gallery start ********************** */
+
+*
 {
-  /* For mobile phones: */
+    box-sizing: border-box;
+}
 
+.container
+{
+    position: relative;
+}
+
+.Myslides
+{
+    display: none;
+}
+
+.cursor
+{
+    cursor: pointer;
+}
+
+.prev,
+.next
+{
+    cursor: pointer;
+    position: absolute;
+    width: auto;
+    padding: 16px;
+    padding-top: 33%;
+    padding-bottom: 33%;
+    color: #EFECCA;
+    border-radius: 0 3px 3px 0;
+    user-select: none;
+    -webkit-user-select: none;
+}
+
+.next
+{
+  right: 0;
+  border-radius: 3px 0 0 3px;
+}
+
+.prev:hover,
+.next:hover
+{
+    opacity: 0.6;
+    background-color: #046380;
+}
+
+.numbertext
+{
+    /* color: #f2f2f2; */
+    padding: 8px 12px;
+    position: absolute;
+    bottom: 0;
+    right: 0;
+}
+
+.caption-container
+{
+    text-align: center;
+    background: #046380;
+    padding: 2px 16px;
+    color: #EFECCA;
+}
+
+.row:after
+{
+    content: "";
+    display: table;
+    clear: both;
+}
+
+.column
+{
+    float: left;
+    width: 16.66%;
+}
+
+.demo
+{
+    opacity: 0.6;
+}
+
+.active,
+.demo:hover
+{
+    opacity: 1;
+    transition: 0.5s;
+}
+
+#slideshow_gallery
+{
+}
+
+
+/* ********************** Slideshow_gallery end ********************** */
+
+
+
+
+
+/* ********************** TeamCard start ********************** */
+
+.profilepix
+{
+    border-bottom-right-radius: 50%;
+    border-bottom-left-radius: 50%;
+    width: 100%;
+    height: auto;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+    padding: 5%;
+    opacity: 0.8;
+}
+
+.column-tc
+{
+    float: left;
+    width: 33.3%;
+    margin-top: 8px;
+    margin-bottom: 8px;
+    padding: 0 8px;
+}
+
+.card
+{
+    box-shadow: 4px 4px 8px 0 rgba(2, 2, 2, 0.4);
+    background-color: #A7A37E;
+}
+
+.container-tc
+{
+    padding: 0 16px;
+}
+
+.container-tc::after, .row-tc::after
+{
+        content: "";
+        clear: both;
+        display: table;
+}
+
+.title-tc
+{
+    color: #EFECCA;
+    text-align: center;
+    background-color: ;
+    border-radius: 5px;
+}
+
+.button-tc
+{
+    border: none;
+    outline: 0;
+    display: inline-block;
+    padding: 8px;
+    color: #046380;
+    background-color: #E6E2AF;
+    text-align: center;
+    cursor: pointer;
+    width: 100%;
+}
+
+.button-tc:hover
+{
+    background-color: #E6E2AF;
+}
+
+
+
+
+
+/* ********************** TeamCard end ********************** */
+
+
+
+
+/* ********************** Contactsection start ********************** */
+
+
+
+
+
+/* ********************** Contactsection end ********************** */
+
+
+
+
+/* ********************** CORPSE start ********************** */
+
+#corpse
+{
+    /* float: right; */
+    width: 100%;
+    height: 80%;
+    padding-top: 1%;
+    padding-bottom: 1%;
+    background-color: #E6E2AF;
+    overflow: auto;
+    /* transition: 0.5s; */
+
+
+}
+
+/* ********************** CORPSE end ********************** */
+
+
+
+
+
+
+/* ********************** FOOTER start ********************** */
+
+#footer
+{
+    width: 100%;
+    height: 10%;
+    background-color: #046380;
+    /* transition: 0.5s; */
+    position: relative;
+    /* bottom: 0; */
+}
+
+/* ********************** FOOTER end ********************** */
+
+
+
+/* ********************** Responsive Phone start ********************** */
+
+/* @media only screen and (max-height:420px)
+{
   .flex-container
   {
     display: block;
   }
 
-  nav
+  .nav
   {
     width: 100%;
     height: auto;
     position: static;
     padding-bottom: 5%;
   }
-
-  .logo
-  {
-      width: 90%;
-      height: auto;
-      border-radius: 50%;
-  }
-
-  li
-  {
-      text-align: center;
-  }
-
   li a
   {
-      font-size: 2.5vmin;
+      font-size: 2vmin;
   }
-
   .column-flex-container
   {
       height: auto;
@@ -194,6 +466,48 @@ header
      width: 100%;
      height: 10%;
  }
-}
+} */
+/* @media only screen and (max-width:420px)
+{
+  .flex-container
+  {
+    display: block;
+  }
 
-/* ********************** PHONE end ********************** */
+  .nav
+  {
+    width: 100%;
+    height: auto;
+    position: static;
+    padding-bottom: 5%;
+  }
+  li a
+  {
+      font-size: 2vmin;
+  }
+  .column-flex-container
+  {
+      height: auto;
+  }
+
+  header
+  {
+      width: 100%;
+      height: 15%;
+
+  }
+
+ .corpse
+ {
+     width: 100%;
+     height: auto;
+ }
+
+ footer
+ {
+     width: 100%;
+     height: 10%;
+ }
+} */
+
+/* ********************** Responsive phone end ********************** */

@@ -1,18 +1,18 @@
-<footer>
+<div id="footer" onclick="closeNav()">
     <div>
         <center>
-            <text style="color:white;">Follow us on :</text>
-            <a href="https://www.facebook.com/Garage83C">
-                <i class="fab fa-facebook-square" style="color:white;"></i>
+            Follow us on :
+            <a href="https://www.facebook.com/Garage83C" style="text-decoration:none;color:#EFECCA;">
+                <i class="fab fa-facebook-square"></i>
             </a>
-            <a href="https://soundcloud.com/garage83c">
-                <i class="fab fa-soundcloud" style="color:white;"></i>
+            <a href="https://soundcloud.com/garage83c" style="color:#EFECCA">
+                <i class="fab fa-soundcloud"></i>
             </a>
         </center>
     </div>
     <div>
         <center>
-            <text style="color:white">© 2018 GarAge83C - All Rights Reserved</text>
+            © 2018 GarAge83C - All Rights Reserved
         </center>
     </div>
-</footer>
+</div>

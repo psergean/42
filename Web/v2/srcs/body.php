@@ -1,12 +1,15 @@
-<div class="corpse">
 
+<html>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <div id="corpse" onclick="closeNav()">
+        </html>
                 <?php
-
-                    if ($_SERVER['PHP_SELF'] === "/v2/srcs/index.php")
+                    if ($_SERVER['PHP_SELF'] === '/v2/srcs/index.php')
                     {
                         ?>
-                        <html>
-                            <div style="width:100%; height:100%; background-image:url(../img/logo.jpg); background-size:cover; background-repeat:no-repeat; background-position:center; opacity:0.9;">
+                            <html>
+                            <div class="center">
+                                <div style="width:auto; height:100%; background-image:url(../img/logo.jpg); background-size:cover; background-repeat:no-repeat; background-position:center; opacity:0.9;"></div>
                             </div>
                         </html>
                         <?php
@@ -15,32 +18,27 @@
                     {
                         ?>
                         <html>
-                            <div>
+                            <div class="center">
+                                <div>
                                     <p><h1><u>Le projet Associatif :</u></h1></p>
                                     <p>A prevoir une description de l'asso</p>
+                                </div>
                             </div>
                         </html>
                         <?php
                     }
                     else if ($_SERVER['PHP_SELF'] === '/v2/srcs/team.php')
                     {
-                        ?>
-                        <html>
-                            <div>
-                                <img src="../img/dreamteam.jpg" style="width:100%; height:auto;"/>
-                            </div>
-                            <div style="width:100%; height:100%; background-image:url(../img/logo.jpg); background-size:contain;">
-
-                            </div>
-                        </html>
-                        <?php
+                        include("./teamcard.php");
                     }
                     else if ($_SERVER['PHP_SELF'] === '/v2/srcs/calendar.php')
                     {
                         ?>
                         <html>
-                            <div>
-                                a prevoir un belle agenda ! peut etre en JS ???
+                            <div class="center">
+                                <div>
+                                    a prevoir un belle agenda ! peut etre en JS ???
+                                </div>
                             </div>
                         </html>
                         <?php
@@ -49,8 +47,10 @@
                     {
                         ?>
                         <html>
-                            <div>
-                                tableau des news
+                            <div class="center">
+                                <div>
+                                    tableau des news
+                                </div>
                             </div>
                         </html>
                         <?php
@@ -59,37 +59,23 @@
                     {
                         ?>
                         <html>
-                            <div>
-                                une image d'acceuil
-                            </div>
-                        </html>
-                        <?php
-                    }
-                    else if ($_SERVER['PHP_SELF'] === '/v2/srcs/gallery.php')
-                    {
-                        ?>
-                        <html>
-                            <div>
-                                pix gallery
+                            <div class="center">
+                                <div>
+                                    une image d'acceuil
+                                </div>
                             </div>
                         </html>
                         <?php
                     }
                     else if ($_SERVER['PHP_SELF'] === '/v2/srcs/contact.php')
                     {
-                        ?>
-                        <html>
-                                <div style="color:white">
-                                    <p><h1><u>Contacts :</u></h1></p>
-                                    <p>Email : Gararge83-C@jesaispassiyaunemail.com</p>
-                                    <p>Telephone : +36123612</p>
-                                    <p>Adresse : La boite au lettre de l'association</p>
-                                    <p>rue Mirabeau peut etre<p>
-                                    <p>Lille Fives le Ghetto, 59800</p>
-                                </div>
-                        </html>
-                        <?php
+                        include("contactsection.php");
                     }
-                ?>
-
-</div>
+                    else if ($_SERVER['PHP_SELF'] === '/v2/srcs/gallery.php')
+                    {
+                        include("slideshow_gallery.php");
+                    }
+                        ?>
+        <html>
+    </div>
+</html>

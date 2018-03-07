@@ -6,7 +6,7 @@
 /*   By: tzaaboul <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/12 11:46:34 by tzaaboul          #+#    #+#             */
-/*   Updated: 2018/03/07 14:44:03 by tzaaboul         ###   ########.fr       */
+/*   Updated: 2018/03/07 20:37:19 by psergean         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ void				get_color(t_color *color, char *line)
 {
 	unsigned int	s;
 
-	s = 8;
+	s = 6;
 	color->r = get_val(line, s);
 	s += (unsigned int)(val_len(line , s) + 1);
 	color->g = get_val(line, s);

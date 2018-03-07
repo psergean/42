@@ -6,7 +6,7 @@
 /*   By: tapperce <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/21 14:31:08 by tapperce          #+#    #+#             */
-/*   Updated: 2018/03/06 16:37:24 by tapperce         ###   ########.fr       */
+/*   Updated: 2018/03/07 20:47:29 by psergean         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,9 +20,9 @@ static int	fill_pxl(t_env *e, int x, int y, double k)
 	int		i;
 	int		c;
 
-	r = (e->prim.obj->color.r * 255 * (1 / e->rayl.tnear) * 0.027) * k;
-	g = (e->prim.obj->color.g * 255 * (1 / e->rayl.tnear) * 0.027) * k;
-	b = (e->prim.obj->color.b * 255 * (1 / e->rayl.tnear) * 0.027) * k;
+	r = 255 * e->prim.obj->color.r * (1 /(1 + 1 * e->prim.tnear + 1 * pow(e->prim.tnear, 2))) * 50;
+	g = 255 * e->prim.obj->color.g;
+	b = 255 * e->prim.obj->color.b;
 	i = (x * (e->bpp / 8)) + (y * e->sline);
 	c = (r << 16) + (g << 8) + b;
 	ft_memcpy(e->img_addr + i, &c, 4);

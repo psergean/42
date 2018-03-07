@@ -6,7 +6,7 @@
 /*   By: tzaaboul <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/18 18:06:46 by tzaaboul          #+#    #+#             */
-/*   Updated: 2018/03/06 16:37:29 by tapperce         ###   ########.fr       */
+/*   Updated: 2018/03/07 20:34:30 by psergean         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,7 @@ int				main(int ac, char **av)
 	init_env(e);
 	init_val(e, av[1]);
 	init_mlx(e, av[1]);
+	printf("%f %f %f\n", e->obj->color.r, e->obj->color.g, e->obj->color.b);
 	rt(e);
 	ft_loop(e);
 	return (1);

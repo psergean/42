@@ -15,5 +15,5 @@
 	<dir>0,0,0</dir>
 	<scl>0,0,0</scl>
 	<dif>1</dif>
-	<clr>0,0,1</clr>
+	<clr>1,0,0</clr>
 </obj>

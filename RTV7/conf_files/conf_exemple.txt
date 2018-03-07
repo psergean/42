@@ -1,0 +1,19 @@
+<cam>
+	<pos>x,y,z</pos>
+	<dir>x,y,z</dir>
+</cam>
+
+<obj>
+	<type>sphere | cylinder | cone | plane</type>
+	<pos>x,y,z</pos>
+	<dir>x,y,z</dir>
+	<scl>x,y,z</scl>
+	<dif>k</dif>
+	<color>r,g,b</color>
+</obj>
+
+<light>
+	<pos>x,y,z</pos>
+	<intensity>i</intensity>
+	<color>r,g,b</color>
+</light>

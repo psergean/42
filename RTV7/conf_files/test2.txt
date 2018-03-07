@@ -1,0 +1,19 @@
+<cam>
+	<pos>0,0,20</pos>
+	<dir>0,0,0</dir>
+</cam>
+
+<light>
+	<pos>15,0,15</pos>
+	<intensity>1</intensity>
+	<clr>1,1,1</clr>
+</light>
+
+<obj>
+	<type>cylinder</type>
+	<pos>0,0,10</pos>
+	<dir>0,0,0</dir>
+	<scl>0,0,0</scl>
+	<dif>1</dif>
+	<clr>0,0,1</clr>
+</obj>

@@ -6,7 +6,7 @@
 /*   By: tzaaboul <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/15 21:02:42 by tzaaboul          #+#    #+#             */
-/*   Updated: 2018/03/07 20:39:09 by psergean         ###   ########.fr       */
+/*   Updated: 2018/03/07 20:50:13 by tapperce         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,7 +92,9 @@ static void			init_color_scale(t_obj *obj, char **conf, int *i)
 	else if (!ft_strncmp(conf[*i], "\t<dif>", 6))
 		obj->k = get_val(conf[*i], s);
 	else if (!ft_strncmp(conf[*i], "\t<clr>", 6))
+	{
 		get_color(&(obj->color), conf[*i]);
+	}
 }
 
 void				init_objs(t_obj *obj, char **conf, char *type, int *i)

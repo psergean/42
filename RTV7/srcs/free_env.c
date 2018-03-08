@@ -6,7 +6,7 @@
 /*   By: tzaaboul <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/05 10:51:03 by tzaaboul          #+#    #+#             */
-/*   Updated: 2018/03/07 20:35:46 by psergean         ###   ########.fr       */
+/*   Updated: 2018/03/07 20:50:17 by tapperce         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ void			check_short_double(t_env *e)
 
 	tmp1 = e->obj;
 	tmp2 = e->light;
+	printf("k=%f r=%f g=%f b=%f\n", tmp1->k, tmp1->color.r, tmp1->color.g, tmp1->color.b);
 	while (tmp1)
 	{
 		if (tmp1->k < 0 || tmp1->k > 1 || tmp1->color.r < 0 ||

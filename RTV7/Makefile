@@ -6,7 +6,7 @@
 #    By: tapperce <tapperce@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/12/18 17:26:42 by tapperce          #+#    #+#              #
-#    Updated: 2018/03/07 13:35:08 by tzaaboul         ###   ########.fr        #
+#    Updated: 2018/03/08 09:53:49 by tapperce         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,7 +28,7 @@ LFT_PATH = ./libft/
 LVEC_PATH = ./libvec/
 
 SRC_NAME = main.c build_prim.c rt.c intersect.c check_conf.c check_value.c \
-		   free_env.c ft_hook.c get_val.c init_objs.c init_val.c
+		   free_env.c ft_hook.c get_val.c init_objs.c init_val.c get_normal.c
 OBJ_NAME = $(SRC_NAME:.c=.o)
 INC_NAME = rtv1.h
 
@@ -41,7 +41,7 @@ all: $(NAME)
 $(NAME): $(OBJ)
 		@make -C $(LFT_PATH)
 		@make -C $(LVEC_PATH)
-		@$(CC) -o $(NAME) $(OBJ) -lm -L $(LFT_PATH) -lft -lm -L $(LVEC_PATH) -lvec -L./minilibx_macos -lmlx -framework OpenGL -framework AppKit
+		@$(CC) -o $(NAME) $(OBJ) -lm -L $(LFT_PATH) -lft -lm -L $(LVEC_PATH) -lvec -lmlx -framework OpenGL -framework AppKit
 		@echo "$(OKC)RTv1: Compilation ready$(NOC)"
 
 $(OBJ_PATH)%.o: $(SRC_PATH)%.c

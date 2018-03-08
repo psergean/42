@@ -4,16 +4,16 @@
 </cam>
 
 <light>
-	<pos>0,0,20</pos>
+	<pos>5,5,20</pos>
 	<intensity>1</intensity>
 	<clr>1,1,1</clr>
 </light>
 
 <obj>
-	<type>cylinder</type>
+	<type>sphere</type>
 	<pos>0,0,10</pos>
 	<dir>0,0,0</dir>
 	<scl>0,0,0</scl>
-	<dif>1</dif>
+	<dif>0.5</dif>
 	<clr>1,0,0</clr>
 </obj>

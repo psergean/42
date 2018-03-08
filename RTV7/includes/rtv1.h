@@ -6,7 +6,7 @@
 /*   By: tapperce <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/21 15:18:50 by tapperce          #+#    #+#             */
-/*   Updated: 2018/03/07 15:11:35 by tzaaboul         ###   ########.fr       */
+/*   Updated: 2018/03/08 12:43:20 by tapperce         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 # include "../libft/libft.h"
 # include "../libvec/includes/libvec.h"
-# include "../minilibx_macos/mlx.h"
+# include <mlx.h>
 
 
 
@@ -54,6 +54,7 @@ typedef struct		s_ray
 	double			tnear;
 	t_vec3			inter;
 	t_obj			*obj;
+	t_vec3			normal;
 }					t_ray;
 
 typedef struct		s_cam
@@ -114,15 +115,20 @@ int					build_prim(int x, int y, t_env *e);
 int					rt(t_env *e);
 double				intersect(t_env *e);
 double				light(t_env *e);
+int					get_normal(t_env *e);
 
 
-// <-------------- lighting in Progress -------------->
+// <------------------------- light in progress -------------------------->
 
-static double	ambient_light(double i, double k, double s);
-static double	diffuse_light(double i, double k, double s, t_env *e);
+static double		ambient_light(double i, double k, double s, t_env *e);
+static double		diffuse_light(double i, double k, double s, t_env *e);
+static double		spec_light(double i, double k, double s, t_env *e);
 
 
-// <-------------- lighting in Progress -------------->
+// <------------------------- light in progress -------------------------->
+
+
+
 
 
 #endif

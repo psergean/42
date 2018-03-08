@@ -140,12 +140,12 @@ double	light(t_env *e)
 		trans.pos = mat_multpmat44(trans.pos, b);
 		mat_free44(a);
 		mat_free44(b);
-		t = light_cylinder(e, trans);
+		// t = light_cylinder(e, trans);
 		//printf("t=%.12f\n", t);
-		if (t  > 0)
-		{
-			return (0);
-		}
+		// if (t  > 0)
+		// {
+		// 	return (0);
+		// }
 		//printf("olx=%f oly=%f olz=%f t=%f\n", e->rayl.o.x, e->rayl.o.y, e->rayl.o.z, e->prim.tnear);
 		//printf("ldx=%f pdx=%f | ldy=%f pdy=%f | ldz=%f pdz=%f\n", e->rayl.dir.x, e->prim.dir.x, e->rayl.dir.y, e->prim.dir.y, e->rayl.dir.z, e->prim.dir.z);
 		obj = obj->next;

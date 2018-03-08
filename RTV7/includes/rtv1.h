@@ -15,7 +15,7 @@
 
 # include "../libft/libft.h"
 # include "../libvec/includes/libvec.h"
-# include <mlx.h>
+# include "../minilibx_macos/mlx.h"
 
 
 
@@ -114,5 +114,15 @@ int					build_prim(int x, int y, t_env *e);
 int					rt(t_env *e);
 double				intersect(t_env *e);
 double				light(t_env *e);
+
+
+// <-------------- lighting in Progress -------------->
+
+static double	ambient_light(double i, double k, double s);
+static double	diffuse_light(double i, double k, double s, t_env *e);
+
+
+// <-------------- lighting in Progress -------------->
+
 
 #endif

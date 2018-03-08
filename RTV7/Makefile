@@ -41,7 +41,7 @@ all: $(NAME)
 $(NAME): $(OBJ)
 		@make -C $(LFT_PATH)
 		@make -C $(LVEC_PATH)
-		@$(CC) -o $(NAME) $(OBJ) -lm -L $(LFT_PATH) -lft -lm -L $(LVEC_PATH) -lvec -lmlx -framework OpenGL -framework AppKit
+		@$(CC) -o $(NAME) $(OBJ) -lm -L $(LFT_PATH) -lft -lm -L $(LVEC_PATH) -lvec -L./minilibx_macos -lmlx -framework OpenGL -framework AppKit
 		@echo "$(OKC)RTv1: Compilation ready$(NOC)"
 
 $(OBJ_PATH)%.o: $(SRC_PATH)%.c
